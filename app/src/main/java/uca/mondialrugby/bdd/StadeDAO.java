@@ -84,12 +84,12 @@ public class StadeDAO extends DAO {
 
         /* Requete */
         Cursor cursor = db.query(TABLE_STADE, // Nom de table
-                new String[] {COL_ID, COL_NOM, COL_NUM_RUE, COL_NOM_RUE, COL_CP, COL_VILLE, COL_PLACE}, // Liste des Colonnes
-                COL_ID + "=?", // Colonne cible du WHERE
-                new String[] {String.valueOf(id)}, // Valeur cherchée par le WHERE
+                new String[] {COL_ID, COL_NOM, COL_NUM_RUE, COL_NOM_RUE, COL_CP, COL_VILLE, COL_PLACE},
+                COL_ID + "=?",
+                new String[] {String.valueOf(id)},
                 null, null, null, null); // Options
         if(cursor != null)
-            cursor.moveToFirst(); /* Si le curseur est pas null, on le place au début de la liste */
+            cursor.moveToFirst();
         Stade stade = new Stade (
         cursor.getInt(0),
         cursor.getString(1),
@@ -98,8 +98,7 @@ public class StadeDAO extends DAO {
         cursor.getString(4),
         cursor.getString(5),
         cursor.getInt(6) );
-         /* Création d'un Client vide pour le remplir */
-        /* On peut mettre le cursor.getInt etc ... dans le constructeur directe */
+
         db.close();
         return stade;
     }

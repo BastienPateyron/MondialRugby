@@ -88,7 +88,8 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
     /******** Poste ***********/
 
-
+    private static final String INSERT_TALONNEUR = "INSERT INTO STADE VALUES " +
+            "(2, 'Talloneur ');";
 
     /******** Jouer ***********/
 
@@ -105,6 +106,8 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     public SQLiteDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
+
     /* Methodes */
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -117,6 +120,8 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
 
         db.execSQL(INSERT_CLERMONT);
+        db.execSQL(INSERT_TALONNEUR);
+
 
     }
 
