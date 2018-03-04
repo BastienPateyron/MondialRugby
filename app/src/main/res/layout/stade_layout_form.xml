@@ -1,0 +1,117 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/line_nom_stade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nom du stade"
+        app:hintTextAppearance="@style/Widget.AppCompat.EditText">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/value_nom_stade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/line_nb_place"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line_nom_stade"
+        android:hint="Nombre de place"
+        app:hintTextAppearance="@style/Widget.AppCompat.EditText">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/value_nb_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+
+
+    <LinearLayout
+        android:id="@+id/line_adresse1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line_nb_place">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/line_numero_rue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1"
+            android:hint="N° "
+            app:hintTextAppearance="@style/Widget.AppCompat.EditText">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/value_numero_rue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:gravity="" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/line_nom_rue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".9"
+            android:hint="Adresse"
+            app:hintTextAppearance="@style/Widget.AppCompat.EditText">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/value_nom_rue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/line_adresse2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line_adresse1">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/line_ville"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".6"
+            android:hint="Ville"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/value_ville"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/line_cp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".4"
+            android:hint="Code postal"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/value_cp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

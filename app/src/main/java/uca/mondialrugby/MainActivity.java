@@ -1,6 +1,8 @@
 package uca.mondialrugby;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -12,8 +14,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import uca.mondialrugby.fragments.Home_fragment;
+import uca.mondialrugby.fragments.Stade.Fragment_Home_Stade;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -74,7 +79,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home_layout) {
-            changeFragment(new Home_fragment());
+            changeFragment(new Fragment_Home_Stade());
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -89,4 +94,12 @@ public class MainActivity extends AppCompatActivity
         getSupportFragmentManager().executePendingTransactions();
 
     }
+
+    public static void closekeyboard(Context context, View view)
+    {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+    }
+
 }
