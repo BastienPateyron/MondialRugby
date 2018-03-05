@@ -62,7 +62,7 @@ public class JouerDAO extends SQLiteDBHelper {
             cursor.moveToFirst();
 
         equipe = equipeDAO.retrieveEquipe(cursor.getInt(0));
-        match = matchDAO.retieveMatch(cursor.getInt(1));
+        match = matchDAO.retrieveMatch(cursor.getInt(1),cursor.getInt(0), context); // TODO : risque de beug
         Jouer jouer = new Jouer (
                 equipe,
                 match,
@@ -86,7 +86,7 @@ public class JouerDAO extends SQLiteDBHelper {
             do {
 
                 equipe = equipeDAO.retrieveEquipe(cursor.getInt(0));
-                match = matchDAO.retieveMatch(cursor.getInt(1));
+                match = matchDAO.retrieveMatch(cursor.getInt(1),cursor.getInt(0),context); // TODO : rique de beug 2eme cursor
                 Jouer jouer = new Jouer (
                         equipe,
                         match,
@@ -117,7 +117,6 @@ public class JouerDAO extends SQLiteDBHelper {
     public void deleteClient(Context context, int idEquipe , int idMatch)
     {
 
-        //TODO : supprimer avec double clé
 
         SQLiteDatabase db = this.getWritableDatabase();
 

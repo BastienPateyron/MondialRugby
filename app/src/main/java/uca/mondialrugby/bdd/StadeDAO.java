@@ -13,7 +13,7 @@ import uca.mondialrugby.Classe.Stade;
  * Created by watson on 28/02/2018.
  */
 
-public class StadeDAO extends DAO {
+public class StadeDAO extends SQLiteDBHelper {
 
 
 
@@ -31,32 +31,7 @@ public class StadeDAO extends DAO {
         super(context);
     }
 
-    @Override
-    public boolean insert(Object object) {
-        return false;
-    }
 
-
-    public boolean insert(Stade object) {
-        return false;
-    }
-
-
-
-    @Override
-    public boolean delete(Object object) {
-        return false;
-    }
-
-    @Override
-    public void update(Object object) {
-
-    }
-
-    @Override
-    public void find(Object object) {
-
-    }
 
 
 

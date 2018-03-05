@@ -11,9 +11,9 @@ public class Match {
     private int idMatch;
     private Stade idStade;
     private Personne idPersonne;
-    private Date dateMatch;
+    private String dateMatch;
 
-    public Match(int idMatch, Stade idStade, Personne idPersonne, Date dateMatch) {
+    public Match(int idMatch, Stade idStade, Personne idPersonne, String dateMatch) {
         this.idMatch = idMatch;
         this.idStade = idStade;
         this.idPersonne = idPersonne;
@@ -46,11 +46,11 @@ public class Match {
         this.idPersonne = idPersonne;
     }
 
-    public Date getDateMatch() {
+    public String getDateMatch() {
         return dateMatch;
     }
 
-    public void setDateMatch(Date dateMatch) {
+    public void setDateMatch(String dateMatch) {
         this.dateMatch = dateMatch;
     }
 }
