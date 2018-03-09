@@ -1,4 +1,4 @@
-package uca.mondialrugby.Classe;
+package uca.mondialrugby.classes;
 
 /**
  * Created by watson on 28/02/2018.

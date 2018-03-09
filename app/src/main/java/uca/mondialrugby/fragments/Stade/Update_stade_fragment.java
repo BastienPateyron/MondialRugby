@@ -1,10 +1,8 @@
 package uca.mondialrugby.fragments.Stade;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,13 +13,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
-import uca.mondialrugby.Classe.Stade;
+import uca.mondialrugby.classes.Stade;
 import uca.mondialrugby.MainActivity;
 import uca.mondialrugby.R;
 import uca.mondialrugby.bdd.StadeDAO;

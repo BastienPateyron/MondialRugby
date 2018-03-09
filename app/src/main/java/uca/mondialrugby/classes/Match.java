@@ -1,6 +1,4 @@
-package uca.mondialrugby.Classe;
-
-import java.util.Date;
+package uca.mondialrugby.classes;
 
 /**
  * Created by watson on 28/02/2018.

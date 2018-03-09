@@ -10,10 +10,9 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import uca.mondialrugby.Classe.Stade;
+import uca.mondialrugby.classes.Stade;
 import uca.mondialrugby.MainActivity;
 import uca.mondialrugby.R;
-import uca.mondialrugby.fragments.Stade.Update_stade_fragment;
 
 /**
  * Created by watson on 03/03/2018.

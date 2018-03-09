@@ -7,10 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
-import uca.mondialrugby.Classe.Equipe;
-import uca.mondialrugby.Classe.Personne;
-import uca.mondialrugby.Classe.Poste;
-import uca.mondialrugby.Classe.Personne;
+import uca.mondialrugby.classes.Equipe;
+import uca.mondialrugby.classes.Personne;
+import uca.mondialrugby.classes.Poste;
 
 /**
  * Created by watson on 28/02/2018.

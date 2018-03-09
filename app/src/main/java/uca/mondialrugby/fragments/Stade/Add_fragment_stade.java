@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import uca.mondialrugby.Classe.Stade;
+import uca.mondialrugby.classes.Stade;
 import uca.mondialrugby.MainActivity;
 import uca.mondialrugby.R;
 import uca.mondialrugby.bdd.StadeDAO;

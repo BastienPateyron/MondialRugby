@@ -2,7 +2,7 @@ package uca.mondialrugby.bdd;
 
 import android.content.Context;
 
-import uca.mondialrugby.Classe.Stade;
+import uca.mondialrugby.classes.Stade;
 
 /**
  * Created by watson on 03/03/2018.
