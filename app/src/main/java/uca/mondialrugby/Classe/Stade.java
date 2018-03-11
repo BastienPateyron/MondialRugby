@@ -1,10 +1,12 @@
 package uca.mondialrugby.Classe;
 
+import uca.mondialrugby.bdd.SQLiteDBHelper;
+
 /**
  * Created by watson on 28/02/2018.
  */
 
-public class Stade extends ClasseManager {
+public class Stade extends SQLiteDBHelper {
 
     private int id;
     private String nom   ;
@@ -15,7 +17,7 @@ public class Stade extends ClasseManager {
     private int nombre_place;
 
  // Constructeur
-    public Stade(Integer id, String nom, String num_rue, String nom_rue, String ville, String cp, int nombre_place) {
+    public Stade(int id, String nom, String num_rue, String nom_rue, String ville, String cp, int nombre_place) {
         this.id = id;
         this.nom = nom;
         this.num_rue = num_rue;
@@ -35,8 +37,8 @@ public class Stade extends ClasseManager {
     // Getter & Setter
 
 
-    public String getId() {
-        return String.valueOf(id);
+    public int getId() {
+        return id;
     }
 
     public String getNom() {
