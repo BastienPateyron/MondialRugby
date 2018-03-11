@@ -11,16 +11,20 @@
 
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_matchs"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="Matchs" />
+            <item
+                android:id="@+id/nav_equipes"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Equipes" />
+            <item
+                android:id="@+id/nav_personnes"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Personnes" />
         </menu>
     </item>
 
