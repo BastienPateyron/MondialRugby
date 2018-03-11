@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity
 		
 		NavigationView navigationView = findViewById(R.id.nav_view);
 		navigationView.setNavigationItemSelectedListener(this);
+		
 	}
 	
 	@Override
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity
 			changeFragment(new Home_fragment());
 		}
 		if (id == R.id.nav_matchs){
-			changeFragment(new Fragment_Home_Stade());
+			// TODO changeFragment(new Match_Fragment .....());
 		}
 		if(id == R.id.nav_equipes){
 			// TODO
