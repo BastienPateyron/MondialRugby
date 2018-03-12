@@ -42,7 +42,7 @@ public class Fragment_Home_Stade extends FragmentManager {
         add_part.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 Add_fragment_stade afs = new Add_fragment_stade();
+                 Stade_fragment_ajout afs = new Stade_fragment_ajout();
                 ((MainActivity)getActivity()).changeFragment(afs);
             }
         });
