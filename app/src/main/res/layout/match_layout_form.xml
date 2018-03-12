@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/stadeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stade: "
+            android:layout_weight="5"/>
+        <Spinner
+            android:id="@+id/stadeSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="95">
+        </Spinner>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/arbitreLayout"
+        android:layout_below="@id/stadeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Arbitre: "
+            android:layout_weight="5"/>
+        <Spinner
+            android:id="@+id/arbitreSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="95">
+        </Spinner>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dateLayout"
+        android:layout_below="@+id/arbitreLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:weightSum="100">
+
+        <TextView
+            android:id="@+id/dateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:text="Date: " />
+
+        <EditText
+            android:id="@+id/dateMatch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:layout_weight="95"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ajoutLayout"
+        android:layout_below="@+id/dateLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity="right">
+
+        <Button
+            android:id="@+id/cancelBoutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ANNULER"
+            android:background="@color/trash_button"
+            />
+
+        <Button
+            android:id="@+id/ajoutBoutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VALIDER"
+            android:background="@color/add_button"
+            android:layout_marginLeft="10dp"
+
+            />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
