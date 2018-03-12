@@ -40,7 +40,7 @@ public class EquipeDAO extends SQLiteDBHelper {
         return insertSuccessful;
     }
 
-    public Equipe retrieveEquipe(int id){
+    public Equipe retrieveEquipe(String id){ // TODO : modifier avec un string
         SQLiteDatabase db = this.getReadableDatabase();
 
 
@@ -48,7 +48,7 @@ public class EquipeDAO extends SQLiteDBHelper {
         Cursor cursor = db.query(TABLE_EQUIPE, // Nom de table
                 new String[] {COL_PAYS, COL_SURNOM},
                 COL_PAYS + "=?",
-                new String[] {String.valueOf(id)},
+                new String[] {id},
                 null, null, null, null); // Options
         if(cursor != null)
             cursor.moveToFirst();

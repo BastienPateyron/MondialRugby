@@ -27,7 +27,7 @@ public class Stade_fragment_ajout extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.stade_layout_add, container, false);
 
-        getActivity().setTitle("Nouveau Client");
+        getActivity().setTitle("Nouveau Stade");
 
         Button button_add_stade = (Button) myView.findViewById(R.id.button_add_stade);
 

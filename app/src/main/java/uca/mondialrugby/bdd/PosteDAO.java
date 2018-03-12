@@ -28,7 +28,7 @@ public class PosteDAO extends SQLiteDBHelper {
 
 
 
-    public Poste retrievePoste(int id){
+    public Poste retrievePoste(String id){ // TODO : modifier avec un string
         SQLiteDatabase db = this.getReadableDatabase();
 
 
@@ -36,7 +36,7 @@ public class PosteDAO extends SQLiteDBHelper {
         Cursor cursor = db.query(TABLE_POSTE, // Nom de table
                 new String[] {COL_ID, COL_LIBELLE},
                 COL_ID + "=?",
-                new String[] {String.valueOf(id)},
+                new String[] {id},
                 null, null, null, null); // Options
         if(cursor != null)
             cursor.moveToFirst();

@@ -63,28 +63,28 @@ public class Match_fragment_ajout extends Fragment {
 		context = myView.getContext();
 		// TODO Saisie Stade
 
-		// TODO Saisie Arbitre
+		// TODO Saisie Arbitre : pk todo ???????????
 
 		// TODO Saisie de Date
 		
-//		Bundle bundle = this.getArguments();    // TODO On a besoin de récupérer des arguments ?
+//		Bundle bundle = this.getArguments();    // TODO On a besoin de récupérer des arguments ? // ouais je pense pour les cle etranger mais pas sur
 
 
         // Spinner Arbitre
         final Spinner spinnerArbitre = myView.findViewById(R.id.arbitreSpinner); // Création du spinner
-        final ArrayList<Personne> listPersonne; // Création de la liste de secteurs
-        final PersonneDAO personneDAO = new PersonneDAO(context); // Creation de l'object secteur DAO
-        listPersonne = personneDAO.getAllPersonne(context); // Remplissage de la liste des secteurs
+        final ArrayList<Personne> listPersonne;
+        final PersonneDAO personneDAO = new PersonneDAO(context);
+        listPersonne = personneDAO.getAllPersonne(context);
 
-        final ArrayAdapter<Personne> adapterPersonne = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, listPersonne); // Création de l'adapter
-        adapterPersonne.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // Définition du style de l'adapter
+        final ArrayAdapter<Personne> adapterPersonne = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, listPersonne);
+        adapterPersonne.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 
         spinnerArbitre.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (adapterPersonne.getItem(position).getId() == -1) { // Si l'item est l'item par défaut on fait rien
+                if (adapterPersonne.getItem(position).getId() == -1) {
 
-                } else idPersonne = adapterPersonne.getItem(position).getId(); // On récupère l'ID du secteur selectionné
+                } else idPersonne = adapterPersonne.getItem(position).getId();
             }
 
             public void onNothingSelected(AdapterView<?> parent) {
@@ -103,12 +103,12 @@ public class Match_fragment_ajout extends Fragment {
         adapterStade.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerStade.setAdapter(adapterStade);
 
-        // Récupération de l'ID Activité sélectionné
+
         spinnerStade.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (adapterStade.getItem(position).getId() == -1) {
 
-                } else idStade = adapterStade.getItem(position).getId(); // On récupère l'ID de l'activité selectionné
+                } else idStade = adapterStade.getItem(position).getId();
             }
 
             public void onNothingSelected(AdapterView<?> parent) {
