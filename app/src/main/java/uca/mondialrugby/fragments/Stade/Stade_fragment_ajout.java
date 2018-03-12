@@ -19,7 +19,7 @@ import uca.mondialrugby.bdd.StadeDAO;
  * Created by watson on 28/02/2018.
  */
 
-public class Add_fragment_stade extends Fragment {
+public class Stade_fragment_ajout extends Fragment {
 
     View myView;
     boolean validate = true;

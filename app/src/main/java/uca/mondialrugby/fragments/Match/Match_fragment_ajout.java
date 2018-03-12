@@ -38,7 +38,7 @@ import static java.security.AccessController.getContext;
  * Created by watson on 11/03/2018.
  */
 
-public class Add_fragment_Match {
+public class Match_fragment_ajout {
    // private List<Personne> listPersonne = new ArrayList<Personne>();
     //private List<Stade> listStade = new ArrayList<Stade>();
     private EditText dateMatch;
