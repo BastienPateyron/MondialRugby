@@ -88,7 +88,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
     /******** Poste ***********/
 
-    private static final String INSERT_TALONNEUR = "INSERT INTO STADE VALUES " +
+    private static final String INSERT_TALONNEUR = "INSERT INTO POSTE VALUES " +
             "(2, 'Talloneur ');";
 
     /******** Jouer ***********/

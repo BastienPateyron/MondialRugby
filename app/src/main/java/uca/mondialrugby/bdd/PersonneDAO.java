@@ -18,7 +18,7 @@ import uca.mondialrugby.classes.Poste;
 public class PersonneDAO extends SQLiteDBHelper {
     private static final String TABLE_PERSONNE = "PERSONNE";
     private static final String COL_ID = "ID_PERSONNE";
-    private static final String COL_PERS_PAYS = "PAYS";
+    private static final String COL_PERS_PAYS = "PAYS_PERSONNE";
     private static final String COL_POSTE = "NUMERO";
     private static final String COL_NOM = "NOM_PERSONNE";
     private static final String COL_PRENOM = "PRENOM_PERSONNE";
@@ -62,7 +62,7 @@ public class PersonneDAO extends SQLiteDBHelper {
             cursor.moveToFirst();
 
         EquipeDAO equipeDAO = new EquipeDAO(context);
-        Equipe equipe = equipeDAO.retrieveEquipe(cursor.getInt(2));
+        Equipe equipe = equipeDAO.retrieveEquipe(cursor.getInt(0));
         if (equipe == null){
             equipe = new Equipe ();
             equipe.setSurmon("Null");

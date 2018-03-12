@@ -81,7 +81,7 @@
         android:gravity="right">
 
         <Button
-            android:id="@+id/cancelBoutton"
+            android:id="@+id/matchBouttonNegatif"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ANNULER"
@@ -89,7 +89,7 @@
             />
 
         <Button
-            android:id="@+id/ajoutBoutton"
+            android:id="@+id/matchBoutonPositif"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="VALIDER"

@@ -1,12 +1,10 @@
 package uca.mondialrugby.classes;
 
-import uca.mondialrugby.bdd.SQLiteDBHelper;
-
 /**
  * Created by watson on 28/02/2018.
  */
 
-public class Stade extends SQLiteDBHelper {
+public class Stade {
 
     private int id;
     private String nom   ;

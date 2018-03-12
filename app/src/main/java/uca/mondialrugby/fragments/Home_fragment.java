@@ -23,7 +23,7 @@ public class Home_fragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState)
     {
-        myView = inflater.inflate(R.layout.match_layout_form,container,false);     // TODO Remettre home_layout
+        myView = inflater.inflate(R.layout.home_layout,container,false);
         return myView;
     }
 }

@@ -22,10 +22,9 @@
         android:layout_alignBaseline="@+id/button_noupdate_stade"
         android:layout_alignBottom="@+id/button_noupdate_stade"
         android:layout_alignParentEnd="true"
-        android:background="@color/colorPrimary"
+        android:background="@color/add_button"
         android:padding="20dp"
-        android:text="Modifier le stade"
-        android:textColor="@android:color/white" />
+        android:text="Mettre à jour" />
 
     <Button
         android:id="@+id/button_noupdate_stade"
@@ -36,10 +35,9 @@
         android:layout_marginEnd="25dp"
         android:layout_marginTop="30dp"
         android:layout_toStartOf="@+id/button_update_stade"
-        android:background="@color/colorPrimary"
+        android:background="@color/trash_button"
         android:padding="20dp"
-        android:text="Annuler"
-        android:textColor="@android:color/white" />
+        android:text="Annuler"/>
 
 
 </RelativeLayout>

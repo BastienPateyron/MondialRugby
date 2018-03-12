@@ -12,17 +12,17 @@ public abstract class DAO extends SQLiteDBHelper {
     public DAO(Context context) {
         super(context);
     }
-
-
-
+	
+    // TODO
     public boolean insert(Object object) {
         return false;
     }
 
 
-    public boolean insert(Stade object) {
-        return false;
-    }
+        // TODO Inutile ?
+//    public boolean insert(Stade object) {
+//        return false;
+//    }
 
 
 
@@ -36,11 +36,12 @@ public abstract class DAO extends SQLiteDBHelper {
 
     }
 
-
-    public void find(Object object) {
+    // Retrieve correspond à find mais est plus lisible car il appartient aux méthodes CRUD
+    public void retrieve(Object object) {
 
     }
 
+    // TODO Je crois que getId() n'appartiens pas aux classes DAO vu qu'il dépend uniquement de l'objet et pas de la bdd
      public String getId(){
         return null;
      };
