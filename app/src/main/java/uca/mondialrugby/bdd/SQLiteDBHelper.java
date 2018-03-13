@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class SQLiteDBHelper extends SQLiteOpenHelper {
     protected static final String DATABASE_NAME = "MONDIALRUGBY";
-    private static final int DATABASE_VERSION = 10; /* A incrémenter quand on modifie cette classe */
+    private static final int DATABASE_VERSION = 11; /* A incrémenter quand on modifie cette classe */
 
 
     /* Tables */
@@ -86,19 +86,72 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
 
     /******** Personne ********/
-	// TODO Valoriser
+    private static final String INSERT_PERSONNES = "INSERT INTO PERSONNE (PAYS_PERSONNE, NUMERO, NOM_PERSONNE, PRENOM_PERSONNE, DATE_NAISSANCE) VALUES " +
+		    "('France', 1, 'LEDUC',     'Bruce', '03/13/1988'),"        +
+		    "('France', 2, 'DULONG',    'Mikael', '03/13/1988'),"       +
+		    "('France', 3, 'PELUS',     'George', '03/13/1988'),"       +
+		    "('France', 4, 'BENTON',    'Pierre', '03/13/1988'),"       +
+		    "('France', 5, 'DUPONT',    'Dylan', '03/13/1988'),"        +
+		    "('France', 6, 'MAILLE',    'Paul', '03/13/1988'),"         +
+		    "('France', 7, 'PARAT',     'Morgan', '03/13/1988'),"       +
+		    "('France', 8, 'LENEUF',    'Henri', '03/13/1988'),"        +
+		    "('France', 9, 'MELET',     'Pele', '03/13/1988'),"         +
+		    "('France', 10, 'BARBOSSE', 'Jean', '03/13/1988'),"         +
+		    "('France', 11, 'COURBET',  'Theo', '03/13/1988'),"         +
+		    "('France', 12, 'CELUS',    'Kevin', '03/13/1988'),"        +
+		    "('France', 13, 'PIQUET',   'Moris', '03/13/1988'),"        +
+		    "('France', 14, 'TULIS',    'Patrick', '03/13/1988'),"      +
+		    "('France', 15, 'RANDET',   'Eric', '03/13/1988'),"         +
+		    
+		    "('Australie', 1, 'WILLIS', 'Bruce', '03/13/1988'),"        +
+		    "('Australie', 2, 'LETNER', 'Bill', '03/13/1988'),"         +
+		    "('Australie', 3, 'BOTER',  'Spencer', '03/13/1988'),"      +
+		    "('Australie', 4, 'WILKINS','Stan', '03/13/1988'),"         +
+		    "('Australie', 5, 'HARPER', 'Ben', '03/13/1988'),"          +
+		    "('Australie', 6, 'KOLE',   'Chris', '03/13/1988'),"        +
+		    "('Australie', 7, 'DENVER', 'Joe', '03/13/1988'),"          +
+		    "('Australie', 8, 'MILES',  'Price', '03/13/1988'),"        +
+		    "('Australie', 9, 'SINK',   'Fabian', '03/13/1988'),"       +
+		    "('Australie', 10, 'TRANT', 'Merryn', '03/13/1988'),"       +
+		    "('Australie', 11, 'STARK', 'Tony', '03/13/1988'),"         +
+		    "('Australie', 12, 'JIGHS', 'Killian', '03/13/1988'),"      +
+		    "('Australie', 13, 'FALOUT','Shelter', '03/13/1988'),"      +
+		    "('Australie', 14, 'MOORE', 'Morris', '03/13/1988'),"       +
+		    "('Australie', 15, 'PRICE', 'Tag', '03/13/1988');";
 
     /******** Poste ***********/
 
-    private static final String INSERT_TALONNEUR = "INSERT INTO POSTE VALUES " +
-            "(2, 'Talloneur ');";
+    private static final String INSERT_POSTES = "INSERT INTO POSTE (NUMERO, LIBELLE_POSTE)VALUES " +
+            "(1, 'Première Ligne'),"        +
+            "(2, 'Première Ligne'),"        +
+            "(3, 'Première Ligne'),"        +
+            "(4, 'Deuxième Ligne'),"        +
+            "(5, 'Deuxième Ligne'),"        +
+            "(6, 'Troisième Ligne'),"       +
+            "(7, 'Troisième Ligne'),"       +
+            "(8, 'Troisième Ligne'),"       +
+            "(9, 'Demi de mêlée'),"         +
+            "(10, 'Demi d'ouverture'),"     +
+            "(12, 'Trois-quart centre'),"   +
+            "(13, 'Trois-quart centre'),"   +
+            "(11, 'Aillier'),"              +
+            "(14, 'Aillier'),"              +
+            "(15, 'Arrière');";
 
     /******** Jouer ***********/
+    
+    
 
 
 
     /******** Equipe **********/
-
+    // PAYS
+	// SURNOM_EQUIPE
+	private static String INSERT_EQUIPES = "INSERT INTO EQUIPE (PAYS, SURNOM_EQUIPE) VALUES " +
+		    "('FRANCE',     'Les Bleus'),"          +
+		    "('ANGLETERRE', 'Les Rosbifs'),"    +
+		    "('IRLANDE',    'Les Verts');";
+    
 
 
     /******** Match ***********/
@@ -121,8 +174,10 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_JOUER);
 
 
+        // Valeurs par défaut
         db.execSQL(INSERT_STADES);
-        db.execSQL(INSERT_TALONNEUR);
+        db.execSQL(INSERT_POSTES);
+        db.execSQL(INSERT_EQUIPES);
 
 
     }
