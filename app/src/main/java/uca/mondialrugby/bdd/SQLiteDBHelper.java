@@ -77,14 +77,16 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     /* Inserts */
     /******** Stade ********/
 
-    private static final String INSERT_CLERMONT = "INSERT INTO STADE VALUES " +
-            "(1, ' Marcel Michelin', 12, 'avenue', 'Clermont-Ferrand', '63000', 20000);";
+    private static final String INSERT_STADES = "INSERT INTO STADE (ID_STADE, NOM_STADE, NUM_RUE, NOM_RUE, NOM_RUE, VILLE, CP, NB_PLACE) VALUES " +
+            "(1, 'Marcel Michelin', 12, 'avenue michelin', 'Clermont-Ferrand', '63000', 20000)," +
+            "(2, 'Stade Marcel-Deflandre', 15, 'rue musclor', 'La Rochelle', '17000', 16000)," +
+		    "(3, 'Stade Mayol', 1, 'Quai Joseph Lafontan', 'Toulon', '83000', 18200);";
 
     // insert
 
 
     /******** Personne ********/
-
+	// TODO Valoriser
 
     /******** Poste ***********/
 
@@ -119,7 +121,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_JOUER);
 
 
-        db.execSQL(INSERT_CLERMONT);
+        db.execSQL(INSERT_STADES);
         db.execSQL(INSERT_TALONNEUR);
 
 
