@@ -10,11 +10,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class SQLiteDBHelper extends SQLiteOpenHelper {
     protected static final String DATABASE_NAME = "MONDIALRUGBY";
-    private static final int DATABASE_VERSION = 11; /* A incrémenter quand on modifie cette classe */
+    private static final int DATABASE_VERSION = 15; /* A incrémenter quand on modifie cette classe */
 
 
     /* Tables */
-    // TODO Creer tables Personne | poste | match | jouer | stade | equipe
+    // TODO Creer tables Personne | poste | matchs | jouer | stade | equipe
 
     private static final String CREATE_TABLE_PERSONNE = "CREATE TABLE PERSONNE" +
             "(" +
@@ -31,7 +31,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_POSTE = "CREATE TABLE POSTE" +
             "(" +
             "NUMERO INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
-            "LIBELLE_POSTE TEXT NOT NULL" +
+			"LIBELLE_POSTE TEXT NOT NULL" +
             ");";
 
     private static final String CREATE_TABLE_EQUIPE = "CREATE TABLE EQUIPE" +
@@ -41,7 +41,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
             ");";
 
 
-    private static final String CREATE_TABLE_MATCH1 = "CREATE TABLE MATCH" +
+    private static final String CREATE_TABLE_MATCHS = "CREATE TABLE MATCHS" +
             "(" +
             "ID_MATCH INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
             "ID_STADE INTEGER NOT NULL," +
@@ -77,51 +77,63 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     /* Inserts */
     /******** Stade ********/
 
-    private static final String INSERT_STADES = "INSERT INTO STADE (ID_STADE, NOM_STADE, NUM_RUE, NOM_RUE, NOM_RUE, VILLE, CP, NB_PLACE) VALUES " +
-            "(1, 'Marcel Michelin', 12, 'avenue michelin', 'Clermont-Ferrand', '63000', 20000)," +
-            "(2, 'Stade Marcel-Deflandre', 15, 'rue musclor', 'La Rochelle', '17000', 16000)," +
-		    "(3, 'Stade Mayol', 1, 'Quai Joseph Lafontan', 'Toulon', '83000', 18200);";
+    private static final String INSERT_STADES = "INSERT INTO STADE (NOM_STADE, NUM_RUE, NOM_RUE, NOM_RUE, VILLE, CP, NB_PLACE) VALUES " +
+            "('Marcel Michelin', 12, 'avenue michelin', 'Clermont-Ferrand', '63000', 20000)," +
+            "('Stade Marcel-Deflandre', 15, 'rue musclor', 'La Rochelle', '17000', 16000)," +
+		    "('Stade Mayol', 1, 'Quai Joseph Lafontan', 'Toulon', '83000', 18200);";
 
     // insert
 
 
     /******** Personne ********/
     private static final String INSERT_PERSONNES = "INSERT INTO PERSONNE (PAYS_PERSONNE, NUMERO, NOM_PERSONNE, PRENOM_PERSONNE, DATE_NAISSANCE) VALUES " +
-		    "('France', 1, 'LEDUC',     'Bruce', '03/13/1988'),"        +
-		    "('France', 2, 'DULONG',    'Mikael', '03/13/1988'),"       +
-		    "('France', 3, 'PELUS',     'George', '03/13/1988'),"       +
-		    "('France', 4, 'BENTON',    'Pierre', '03/13/1988'),"       +
-		    "('France', 5, 'DUPONT',    'Dylan', '03/13/1988'),"        +
-		    "('France', 6, 'MAILLE',    'Paul', '03/13/1988'),"         +
-		    "('France', 7, 'PARAT',     'Morgan', '03/13/1988'),"       +
-		    "('France', 8, 'LENEUF',    'Henri', '03/13/1988'),"        +
-		    "('France', 9, 'MELET',     'Pele', '03/13/1988'),"         +
-		    "('France', 10, 'BARBOSSE', 'Jean', '03/13/1988'),"         +
-		    "('France', 11, 'COURBET',  'Theo', '03/13/1988'),"         +
-		    "('France', 12, 'CELUS',    'Kevin', '03/13/1988'),"        +
-		    "('France', 13, 'PIQUET',   'Moris', '03/13/1988'),"        +
-		    "('France', 14, 'TULIS',    'Patrick', '03/13/1988'),"      +
-		    "('France', 15, 'RANDET',   'Eric', '03/13/1988'),"         +
+		    // Arbitres
+		    "('FRANCE',     0,  'LEPRAT',   'Fabrice',  '03/11/1987'),"     +
+		    "('AUSTRALIE',  0,  'REEVES',   'Mathiew',  '04/09/1978'),"     +
+		    "('IRLANDE',    0,  'TORTELI',  'Armando',  '03/04/1983'),"     +
 		    
-		    "('Australie', 1, 'WILLIS', 'Bruce', '03/13/1988'),"        +
-		    "('Australie', 2, 'LETNER', 'Bill', '03/13/1988'),"         +
-		    "('Australie', 3, 'BOTER',  'Spencer', '03/13/1988'),"      +
-		    "('Australie', 4, 'WILKINS','Stan', '03/13/1988'),"         +
-		    "('Australie', 5, 'HARPER', 'Ben', '03/13/1988'),"          +
-		    "('Australie', 6, 'KOLE',   'Chris', '03/13/1988'),"        +
-		    "('Australie', 7, 'DENVER', 'Joe', '03/13/1988'),"          +
-		    "('Australie', 8, 'MILES',  'Price', '03/13/1988'),"        +
-		    "('Australie', 9, 'SINK',   'Fabian', '03/13/1988'),"       +
-		    "('Australie', 10, 'TRANT', 'Merryn', '03/13/1988'),"       +
-		    "('Australie', 11, 'STARK', 'Tony', '03/13/1988'),"         +
-		    "('Australie', 12, 'JIGHS', 'Killian', '03/13/1988'),"      +
-		    "('Australie', 13, 'FALOUT','Shelter', '03/13/1988'),"      +
-		    "('Australie', 14, 'MOORE', 'Morris', '03/13/1988'),"       +
-		    "('Australie', 15, 'PRICE', 'Tag', '03/13/1988');";
+		    // Joueurs
+		    "('FRANCE', 1, 'LEDUC',     'Bruce',    '13/03/1988'),"         +
+		    "('FRANCE', 2, 'DULONG',    'Mikael',   '13/03/1988'),"         +
+		    "('FRANCE', 3, 'PELUS',     'George',   '13/03/1988'),"         +
+		    "('FRANCE', 4, 'BENTON',    'Pierre',   '13/03/1988'),"         +
+		    "('FRANCE', 5, 'DUPONT',    'Dylan',    '13/03/1988'),"         +
+		    "('FRANCE', 6, 'MAILLE',    'Paul',     '13/03/1988'),"         +
+		    "('FRANCE', 7, 'PARAT',     'Morgan',   '13/03/1988'),"         +
+		    "('FRANCE', 8, 'LENEUF',    'Henri',    '13/03/1988'),"         +
+		    "('FRANCE', 9, 'MELET',     'Pele',     '13/03/1988'),"         +
+		    "('FRANCE', 10, 'BARBOSSE', 'Jean',     '13/03/1988'),"         +
+		    "('FRANCE', 11, 'COURBET',  'Theo',     '13/03/1988'),"         +
+		    "('FRANCE', 12, 'CELUS',    'Kevin',    '13/03/1988'),"         +
+		    "('FRANCE', 13, 'PIQUET',   'Moris',    '13/03/1988'),"         +
+		    "('FRANCE', 14, 'TULIS',    'Patrick',  '13/03/1988'),"         +
+		    "('FRANCE', 15, 'RANDET',   'Eric',     '13/03/1988'),"         +
+		    
+		    "('ANGLETERRE', 1, 'BOND',  'James',    '13/03/1988'),"         +
+		    "('ANGLETERRE', 2, 'CRAIG', 'Daniel',   '13/03/1988'),"         +
+		    "('ANGLETERRE', 3, 'MOORE', 'Roger',    '13/03/1988'),"         +
+		    "('ANGLETERRE', 4, 'CONERY','Shean',    '13/03/1988'),"         +
+		    
+		    "('AUSTRALIE', 1, 'WILLIS', 'Bruce',    '13/03/1988'),"         +
+		    "('AUSTRALIE', 2, 'LETNER', 'Bill',     '13/03/1988'),"         +
+		    "('AUSTRALIE', 3, 'BOTER',  'Spencer',  '13/03/1988'),"         +
+		    "('AUSTRALIE', 4, 'WILKINS','Stan',     '13/03/1988'),"         +
+		    "('AUSTRALIE', 5, 'HARPER', 'Ben',      '13/03/1988'),"         +
+		    "('AUSTRALIE', 6, 'KOLE',   'Chris',    '13/03/1988'),"         +
+		    "('AUSTRALIE', 7, 'DENVER', 'Joe',      '13/03/1988'),"         +
+		    "('AUSTRALIE', 8, 'MILES',  'Price',    '13/03/1988'),"         +
+		    "('AUSTRALIE', 9, 'SINK',   'Fabian',   '13/03/1988'),"         +
+		    "('AUSTRALIE', 10, 'TRANT', 'Merryn',   '13/03/1988'),"         +
+		    "('AUSTRALIE', 11, 'STARK', 'Tony',     '13/03/1988'),"         +
+		    "('AUSTRALIE', 12, 'JIGHS', 'Killian',  '13/03/1988'),"         +
+		    "('AUSTRALIE', 13, 'FALOUT','Shelter',  '13/03/1988'),"         +
+		    "('AUSTRALIE', 14, 'MOORE', 'Morris',   '13/03/1988'),"         +
+		    "('AUSTRALIE', 15, 'PRICE', 'Tag',      '13/03/1988');";
 
     /******** Poste ***********/
 
-    private static final String INSERT_POSTES = "INSERT INTO POSTE (NUMERO, LIBELLE_POSTE)VALUES " +
+    private static final String INSERT_POSTES = "INSERT INTO POSTE (NUMERO, LIBELLE_POSTE) VALUES " +
+		    "(0, 'Arbitre'),"               +
             "(1, 'Première Ligne'),"        +
             "(2, 'Première Ligne'),"        +
             "(3, 'Première Ligne'),"        +
@@ -131,7 +143,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
             "(7, 'Troisième Ligne'),"       +
             "(8, 'Troisième Ligne'),"       +
             "(9, 'Demi de mêlée'),"         +
-            "(10, 'Demi d'ouverture'),"     +
+            "(10, 'Demi d'ouverture'),"     + // TODO supprimer la cote ou échapper
             "(12, 'Trois-quart centre'),"   +
             "(13, 'Trois-quart centre'),"   +
             "(11, 'Aillier'),"              +
@@ -139,22 +151,34 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
             "(15, 'Arrière');";
 
     /******** Jouer ***********/
-    
-    
-
-
-
-    /******** Equipe **********/
-    // PAYS
-	// SURNOM_EQUIPE
+	private static String INSERT_JOUER = "INSERT INTO JOUER (PAYS, ID_MATCH, SCORE) VALUES " +
+		    // Match 1
+		    "('FRANCE',     1, 27),"    +
+		    "('AUSTRALIE',  1, 13),"    +
+		    
+		    // Match 2
+		    "('FRANCE', 1, 17),"        +
+		    "('ANGLETERRE', 1, 17);";
+		    
+	
+	
+	
+	
+	/******** Equipe **********/
 	private static String INSERT_EQUIPES = "INSERT INTO EQUIPE (PAYS, SURNOM_EQUIPE) VALUES " +
 		    "('FRANCE',     'Les Bleus'),"          +
-		    "('ANGLETERRE', 'Les Rosbifs'),"    +
+		    "('ANGLETERRE', 'Les Rosbifs'),"        +
+		    "('AUSTRALIE',  'Les Wallabies'),"      +
 		    "('IRLANDE',    'Les Verts');";
     
 
 
     /******** Match ***********/
+    private static String INSERT_MATCHS = "INSERT INTO MATCHS (ID_STADE, ID_PERSONNE, DATE_MATCH) VALUES " +
+		    "(1, 1, '13/03/2018')," +
+		    "(1, 2, '14/03/2018')," +
+		    "(1, 1, '15/03/2018')," +
+		    "(2, 3, '16/03/2018');";
 
 
      /* Constructeur */
@@ -168,16 +192,21 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_PERSONNE);
         db.execSQL(CREATE_TABLE_POSTE);
-        db.execSQL(CREATE_TABLE_MATCH1);
+        db.execSQL(CREATE_TABLE_MATCHS);
         db.execSQL(CREATE_TABLE_STADE);
         db.execSQL(CREATE_TABLE_EQUIPE);
         db.execSQL(CREATE_TABLE_JOUER);
 
 
         // Valeurs par défaut
-        db.execSQL(INSERT_STADES);
+	    db.execSQL(INSERT_PERSONNES);
         db.execSQL(INSERT_POSTES);
-        db.execSQL(INSERT_EQUIPES);
+        db.execSQL(INSERT_MATCHS);
+	    db.execSQL(INSERT_STADES);
+	    db.execSQL(INSERT_EQUIPES);
+	    db.execSQL(INSERT_JOUER);
+     
+     
 
 
     }
@@ -188,8 +217,10 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + "PERSONNE");
         db.execSQL("DROP TABLE IF EXISTS " + "POSTE");
         db.execSQL("DROP TABLE IF EXISTS " + "EQUIPE");
-        db.execSQL("DROP TABLE IF EXISTS " + "MATCH1");
+        db.execSQL("DROP TABLE IF EXISTS " + "MATCHS");
         db.execSQL("DROP TABLE IF EXISTS " + "JOUER");
         db.execSQL("DROP TABLE IF EXISTS " + "STADE");
+        
+        onCreate(db);
     }
 }
