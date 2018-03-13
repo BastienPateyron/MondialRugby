@@ -24,7 +24,7 @@ import uca.mondialrugby.bdd.StadeDAO;
  * Created by watson on 28/02/2018.
  */
 
-public class Fragment_Home_Stade extends Fragment {
+public class Stade_fragment_home extends Fragment {
     View myView;
     private ArrayList<Stade> listStade = new ArrayList<Stade>();
 
@@ -70,7 +70,7 @@ public class Fragment_Home_Stade extends Fragment {
 
                 Bundle bundle = new Bundle();
                 bundle.putString("id", String.valueOf(adapter.getItem(position).getId()));
-                Update_stade_fragment usf = new Update_stade_fragment();
+                Stade_fragment_update usf = new Stade_fragment_update();
                 usf.setArguments(bundle);
                 ((MainActivity) getContext()).changeFragment(usf);
             }

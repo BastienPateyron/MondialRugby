@@ -18,7 +18,9 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import uca.mondialrugby.fragments.Home_fragment;
+import uca.mondialrugby.fragments.Match.Match_fragment;
 import uca.mondialrugby.fragments.Match.Match_fragment_ajout;
+import uca.mondialrugby.fragments.Stade.Stade_fragment_home;
 
 public class MainActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
@@ -83,13 +85,16 @@ public class MainActivity extends AppCompatActivity
 			changeFragment(new Home_fragment());
 		}
 		if (id == R.id.nav_matchs){
-			changeFragment(new Match_fragment_ajout());
+			changeFragment(new Match_fragment());
 		}
 		if(id == R.id.nav_equipes){
-			// TODO
+			// TODO lien fragment equipe
 		}
 		if(id == R.id.nav_personnes){
-			// TODO
+			// TODO lien fragment personnes
+		}
+		if(id == R.id.nav_stade){
+			changeFragment(new Stade_fragment_home());
 		}
 		
 		DrawerLayout drawer = findViewById(R.id.drawer_layout);

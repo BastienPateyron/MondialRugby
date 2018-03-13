@@ -25,7 +25,7 @@ import uca.mondialrugby.bdd.StadeDAO;
  */
 // TODO : problème de modification ( cause : surement  layout)
 
-public class Update_stade_fragment extends Fragment {
+public class Stade_fragment_update extends Fragment {
     View myView;
     private int idStade;
 
@@ -85,7 +85,7 @@ public class Update_stade_fragment extends Fragment {
 
                 stadeDAO.updateStade(stade_modify);
                 MainActivity.closekeyboard(getContext(), myView);
-                ((MainActivity) getActivity()).changeFragment(new Fragment_Home_Stade());
+                ((MainActivity) getActivity()).changeFragment(new Stade_fragment_home());
             }
         });
 
@@ -95,7 +95,7 @@ public class Update_stade_fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 MainActivity.closekeyboard(getContext(), myView);
-                ((MainActivity) getActivity()).changeFragment(new Fragment_Home_Stade());
+                ((MainActivity) getActivity()).changeFragment(new Stade_fragment_home());
             }
         });
 
@@ -126,7 +126,7 @@ public class Update_stade_fragment extends Fragment {
 
                 Bundle bundle = new Bundle();
                 bundle.putString("id", String.valueOf(adapter.getItem(position).getId()));
-                Update_stade_fragment usf = new Update_stade_fragment();
+                Stade_fragment_update usf = new Stade_fragment_update();
                 usf.setArguments(bundle);
                 ((MainActivity) getContext()).changeFragment(usf);
 

@@ -96,7 +96,7 @@ public class Stade_fragment_ajout extends Fragment {
                     stadeDAO.insertStade(stade);
 
 
-                    ((MainActivity) getActivity()).changeFragment(new Fragment_Home_Stade());
+                    ((MainActivity) getActivity()).changeFragment(new Stade_fragment_home());
                 }
             }
         });

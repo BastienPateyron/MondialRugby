@@ -46,8 +46,8 @@ public class Personne_Fragment_home extends Fragment {
         add_part.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Personne_Fragment_Ajout pfs = new Personne_Fragment_Ajout();
-                ((MainActivity)getActivity()).changeFragment(pfs);
+//                Personne_Fragment_Ajout pfs = new Personne_Fragment_Ajout();
+//                ((MainActivity)getActivity()).changeFragment(pfs);
             }
         });
 

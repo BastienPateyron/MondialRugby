@@ -1,39 +1,5 @@
 package uca.mondialrugby.fragments.Personne;
 
-import android.app.DatePickerDialog;
-import android.content.Context;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.Toast;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Locale;
-
-import uca.mondialrugby.MainActivity;
-import uca.mondialrugby.R;
-import uca.mondialrugby.bdd.EquipeDAO;
-import uca.mondialrugby.bdd.PersonneDAO;
-import uca.mondialrugby.bdd.PosteDAO;
-import uca.mondialrugby.classes.Equipe;
-import uca.mondialrugby.classes.Personne;
-import uca.mondialrugby.classes.Poste;
-import uca.mondialrugby.classes.Poste;
-import uca.mondialrugby.classes.Stade;
-import uca.mondialrugby.fragments.Stade.Fragment_Home_Stade;
-
 /**
  * Created by watson on 12/03/2018.
  */
