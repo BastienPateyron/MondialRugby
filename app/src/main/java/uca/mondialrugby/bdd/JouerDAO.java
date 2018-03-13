@@ -60,7 +60,7 @@ public class JouerDAO extends SQLiteDBHelper {
         if(cursor != null)
             cursor.moveToFirst();
 
-        equipe = equipeDAO.retrieveEquipe(cursor.getInt(0));
+        equipe = equipeDAO.retrieveEquipe(cursor.getString(0));
         match = matchDAO.retrieveMatch(cursor.getInt(1),cursor.getInt(0), context); // TODO : risque de beug
         Jouer jouer = new Jouer (
                 equipe,
@@ -84,7 +84,7 @@ public class JouerDAO extends SQLiteDBHelper {
         if (cursor.moveToFirst()){
             do {
 
-                equipe = equipeDAO.retrieveEquipe(cursor.getInt(0));
+                equipe = equipeDAO.retrieveEquipe(cursor.getString(0));
                 match = matchDAO.retrieveMatch(cursor.getInt(1),cursor.getInt(0),context); // TODO : rique de beug 2eme cursor
                 Jouer jouer = new Jouer (
                         equipe,

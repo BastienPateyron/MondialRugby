@@ -3,6 +3,7 @@ package uca.mondialrugby.fragments.Stade;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +24,7 @@ import uca.mondialrugby.bdd.StadeDAO;
  * Created by watson on 28/02/2018.
  */
 
-public class Fragment_Home_Stade extends FragmentManager {
+public class Fragment_Home_Stade extends Fragment {
     View myView;
     private ArrayList<Stade> listStade = new ArrayList<Stade>();
 

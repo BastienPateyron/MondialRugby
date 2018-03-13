@@ -19,7 +19,6 @@ import android.view.inputmethod.InputMethodManager;
 
 import uca.mondialrugby.fragments.Home_fragment;
 import uca.mondialrugby.fragments.Match.Match_fragment_ajout;
-import uca.mondialrugby.fragments.Stade.Fragment_Home_Stade;
 
 public class MainActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {

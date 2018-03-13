@@ -2,6 +2,7 @@ package uca.mondialrugby.fragments.Personne;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,14 +19,13 @@ import uca.mondialrugby.MainActivity;
 import uca.mondialrugby.R;
 import uca.mondialrugby.bdd.PersonneDAO;
 import uca.mondialrugby.classes.Personne;
-import uca.mondialrugby.fragments.Stade.FragmentManager;
 
 
 /**
  * Created by watson on 12/03/2018.
  */
 
-public class Personne_Fragment_home extends FragmentManager {
+public class Personne_Fragment_home extends Fragment {
 
 
     View myView;

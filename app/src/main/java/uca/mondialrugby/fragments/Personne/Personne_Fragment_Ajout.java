@@ -38,6 +38,7 @@ import uca.mondialrugby.fragments.Stade.Fragment_Home_Stade;
  * Created by watson on 12/03/2018.
  */
 
+/* TODO A supprimer
 public class Personne_Fragment_Ajout extends Fragment {
     String idEquipe;
     String idPoste;
@@ -189,3 +190,4 @@ public class Personne_Fragment_Ajout extends Fragment {
     }
 
 }//fin
+*/
