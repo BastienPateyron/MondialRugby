@@ -59,7 +59,7 @@ public class Stade_fragment_home extends Fragment {
         StadeDAO stadeDAO = new StadeDAO(getContext());
         listStade = stadeDAO.getAllStade();
 
-        ListView listView = (ListView) myView.findViewById(R.id.list_generique);
+        ListView listView = (ListView) myView.findViewById(R.id.stadeListe);
         final ArrayAdapter<Stade> adapter = new ArrayAdapter<Stade>(myView.getContext(), android.R.layout.simple_list_item_1, listStade);
         listView.setAdapter(adapter);
 

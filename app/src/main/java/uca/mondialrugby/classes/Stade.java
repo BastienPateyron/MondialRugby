@@ -29,7 +29,7 @@ public class Stade {
     // toString
     @Override
     public String toString () {
-        return ("Le stade " + this.nom);
+        return this.nom;
     }
 
     // Getter & Setter

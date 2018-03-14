@@ -1,41 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:clickable="true"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true">
 
     <LinearLayout
         android:id="@+id/add_part"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="@color/colorPrimary"
+        android:layout_height="wrap_content"
+        android:background="@color/add_button"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:weightSum="10"
-        >
+        android:padding="15dp"
+        android:weightSum="10">
+
         <TextView
             android:id="@+id/add_part_textview"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:text="Add new"
-            android:textStyle="bold"
             android:textSize="22sp"
-            android:layout_weight="7"
-            android:gravity="center"
-            />
-
-
-
+            android:textStyle="bold" />
     </LinearLayout>
+
     <LinearLayout
-        android:layout_below="@+id/add_part"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/add_part">
 
         <ListView
-            android:id="@+id/list_generique"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+            android:id="@+id/stadeListe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
 
     </LinearLayout>
 

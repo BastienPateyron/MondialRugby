@@ -15,7 +15,7 @@ import uca.mondialrugby.classes.Equipe;
 
 public class EquipeDAO extends SQLiteDBHelper {
     private static final String TABLE_EQUIPE = "EQUIPE";
-    private static final String COL_PAYS = "ID_PAYS";
+    private static final String COL_PAYS = "PAYS";
     private static final String COL_SURNOM = "SURNOM_EQUIPE";
 
 
@@ -66,7 +66,7 @@ public class EquipeDAO extends SQLiteDBHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         ArrayList<Equipe> listEquipe = new ArrayList<>();
-        String query = "SELECT * FROM EQUIPE;";
+        String query = "SELECT * FROM " + COL_PAYS + ";";
         Cursor cursor = db.rawQuery(query, null);
 
         if (cursor.moveToFirst()){

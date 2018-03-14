@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class SQLiteDBHelper extends SQLiteOpenHelper {
     protected static final String DATABASE_NAME = "MONDIALRUGBY";
-    private static final int DATABASE_VERSION = 15; /* A incrémenter quand on modifie cette classe */
+    private static final int DATABASE_VERSION = 16; /* A incrémenter quand on modifie cette classe */
 
 
     /* Tables */
@@ -77,10 +77,10 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     /* Inserts */
     /******** Stade ********/
 
-    private static final String INSERT_STADES = "INSERT INTO STADE (NOM_STADE, NUM_RUE, NOM_RUE, NOM_RUE, VILLE, CP, NB_PLACE) VALUES " +
+    private static final String INSERT_STADES = "INSERT INTO STADE (NOM_STADE, NUM_RUE, NOM_RUE, VILLE, CP, NB_PLACE) VALUES " +
             "('Marcel Michelin', 12, 'avenue michelin', 'Clermont-Ferrand', '63000', 20000)," +
-            "('Stade Marcel-Deflandre', 15, 'rue musclor', 'La Rochelle', '17000', 16000)," +
-		    "('Stade Mayol', 1, 'Quai Joseph Lafontan', 'Toulon', '83000', 18200);";
+            "('Marcel-Deflandre', 15, 'rue musclor', 'La Rochelle', '17000', 16000)," +
+		    "('Mayol', 1, 'Quai Joseph Lafontan', 'Toulon', '83000', 18200);";
 
     // insert
 
@@ -143,7 +143,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
             "(7, 'Troisième Ligne'),"       +
             "(8, 'Troisième Ligne'),"       +
             "(9, 'Demi de mêlée'),"         +
-            "(10, 'Demi d'ouverture'),"     + // TODO supprimer la cote ou échapper
+            "(10, 'Demi d\'\'ouverture'),"  + // Double cote pour insérer une cote simple dans SQLite
             "(12, 'Trois-quart centre'),"   +
             "(13, 'Trois-quart centre'),"   +
             "(11, 'Aillier'),"              +

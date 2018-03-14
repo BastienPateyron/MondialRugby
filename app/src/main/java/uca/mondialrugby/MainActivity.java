@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import uca.mondialrugby.fragments.Classement.Classement_fragment;
 import uca.mondialrugby.fragments.Home_fragment;
 import uca.mondialrugby.fragments.Match.Match_fragment;
 import uca.mondialrugby.fragments.Match.Match_fragment_ajout;
@@ -95,6 +96,9 @@ public class MainActivity extends AppCompatActivity
 		}
 		if(id == R.id.nav_stade){
 			changeFragment(new Stade_fragment_home());
+		}
+		if(id == R.id.nav_classement){
+			changeFragment(new Classement_fragment());
 		}
 		
 		DrawerLayout drawer = findViewById(R.id.drawer_layout);

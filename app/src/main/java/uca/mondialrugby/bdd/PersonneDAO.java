@@ -92,14 +92,15 @@ public class PersonneDAO extends SQLiteDBHelper {
         EquipeDAO equipeDAO = new EquipeDAO(context);
 
         ArrayList<Personne> listPersonne = new ArrayList<>();
-        String query = "SELECT * FROM PERSONNE;";
+        String query = "SELECT * FROM " + TABLE_PERSONNE + ";";
         Cursor cursor = db.rawQuery(query, null);
 
         if (cursor.moveToFirst()){
             do {
-
-                Poste poste = posteDAO.retrievePoste (cursor.getString(1));
-                Equipe equipe = equipeDAO.retrieveEquipe(cursor.getString(2));
+    
+                Equipe equipe = equipeDAO.retrieveEquipe(cursor.getString(1));
+                Poste poste = posteDAO.retrievePoste (cursor.getString(2));
+                
                 Personne personne = new Personne (
                         cursor.getInt(0),
                         poste,

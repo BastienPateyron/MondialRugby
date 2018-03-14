@@ -14,6 +14,10 @@
     <item android:title="">
         <menu>
             <item
+                android:id="@+id/nav_classement"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Classement" />
+            <item
                 android:id="@+id/nav_matchs"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Matchs" />
@@ -29,6 +33,7 @@
                 android:id="@+id/nav_stade"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Stade" />
+
         </menu>
     </item>
 

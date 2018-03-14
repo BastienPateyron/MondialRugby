@@ -25,7 +25,7 @@
 
         android:text="Ajouter un stade"
         android:textColor="@android:color/white"
-        android:background="@color/colorPrimary"
+        android:background="@color/add_button"
 
         />
 

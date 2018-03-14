@@ -17,8 +17,8 @@ import uca.mondialrugby.classes.Poste;
  */
 public class PosteDAO extends SQLiteDBHelper {
 
-    private static final String TABLE_POSTE = "EQUIPE";
-    private static final String COL_ID = "ID_POSTE";
+    private static final String TABLE_POSTE = "POSTE";
+    private static final String COL_ID = "NUMERO";
     private static final String COL_LIBELLE = "LIBELLE_POSTE";
 
 
@@ -28,7 +28,7 @@ public class PosteDAO extends SQLiteDBHelper {
 
 
 
-    public Poste retrievePoste(String id){ // TODO : modifier avec un string
+    public Poste retrievePoste(String id){
         SQLiteDatabase db = this.getReadableDatabase();
 
 
@@ -54,7 +54,7 @@ public class PosteDAO extends SQLiteDBHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         ArrayList<Poste> listPoste = new ArrayList<>();
-        String query = "SELECT * FROM POSTE;";
+        String query = "SELECT * FROM " + TABLE_POSTE + ";";
         Cursor cursor = db.rawQuery(query, null);
 
         if (cursor.moveToFirst()){

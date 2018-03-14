@@ -51,10 +51,12 @@ public class Match_fragment extends Fragment {
 			}
 		});
 		
+		// TODO Get all matchs
+		
 		// TODO Liste matchsPrévus
 		
 		
-		// TODO Liste matchsFini
+		// TODO Liste matchsFini (Avec score non null)
 		
 		
 		
