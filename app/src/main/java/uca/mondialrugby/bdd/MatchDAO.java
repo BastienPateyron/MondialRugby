@@ -51,6 +51,7 @@ public class MatchDAO extends SQLiteDBHelper {
 				stade = stadeDAO.retrieveStade(cursor.getInt(1));
 				personne = personneDAO.retrievePersonne(cursor.getInt(2),context);
 				Match jouer = new Match (
+						context,
 						cursor.getInt(0),
 						stade,
 						personne,

@@ -1,5 +1,7 @@
 package uca.mondialrugby.classes;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 
 import uca.mondialrugby.MainActivity;
@@ -15,6 +17,8 @@ public class Match {
     private Stade idStade;
     private Personne idPersonne;
     private String dateMatch;
+    private Context context;
+    
 
     public Match(int idMatch, Stade idStade, Personne idPersonne, String dateMatch) {
         this.idMatch = idMatch;
@@ -22,7 +26,13 @@ public class Match {
         this.idPersonne = idPersonne;
         this.dateMatch = dateMatch;
     }
-    public Match () {}
+    public Match (Context context, int idMatch, Stade idStade, Personne idPersonne, String dateMatch) {
+	    this.context = context;
+    	this.idMatch = idMatch;
+	    this.idStade = idStade;
+	    this.idPersonne = idPersonne;
+	    this.dateMatch = dateMatch;
+    }
 	
     
     // TODO : redéfinir le toString
@@ -31,8 +41,9 @@ public class Match {
         // TODO Recupere les 2 matchs (getAllMatchOf(Table, id))
         // Garde les 3 lettre du début
         // [FRA 17 - 19 ITA]
-        
-        return "Match{}";
+	
+	    
+	    return "Match{}";
     }
 
     public int getIdMatch() {

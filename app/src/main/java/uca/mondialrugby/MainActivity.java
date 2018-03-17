@@ -26,10 +26,15 @@ import uca.mondialrugby.fragments.Stade.Stade_fragment_home;
 public class MainActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
 	
+	private static Context sContext;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		sContext = getApplicationContext();
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
 		Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 		
@@ -85,19 +90,19 @@ public class MainActivity extends AppCompatActivity
 		if (id == R.id.nav_home_layout) {
 			changeFragment(new Home_fragment());
 		}
-		if (id == R.id.nav_matchs){
+		if (id == R.id.nav_matchs) {
 			changeFragment(new Match_fragment());
 		}
-		if(id == R.id.nav_equipes){
+		if (id == R.id.nav_equipes) {
 			// TODO lien fragment equipe
 		}
-		if(id == R.id.nav_personnes){
+		if (id == R.id.nav_personnes) {
 			// TODO lien fragment personnes
 		}
-		if(id == R.id.nav_stade){
+		if (id == R.id.nav_stade) {
 			changeFragment(new Stade_fragment_home());
 		}
-		if(id == R.id.nav_classement){
+		if (id == R.id.nav_classement) {
 			changeFragment(new Classement_fragment());
 		}
 		
@@ -118,5 +123,8 @@ public class MainActivity extends AppCompatActivity
 		imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 		
 	}
+	
+	// permet d'accéder au context de n'importe ou dans l'application
+	public static Context getsContext(){return sContext;}
 	
 }
