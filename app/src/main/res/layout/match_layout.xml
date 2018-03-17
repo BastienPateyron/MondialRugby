@@ -29,12 +29,14 @@
     </RelativeLayout>
 
 
-    <ScrollView
-        android:id="@+id/matchPrevuScroll"
+    <ListView
+        android:id="@+id/matchPrevuList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/txtAVenir"
-        android:layout_weight="50"></ScrollView>
+        android:layout_weight="50">
+
+    </ListView>
 
     <TextView
         android:layout_width="wrap_content"
@@ -43,12 +45,12 @@
         android:text="Matchs terminés"
         android:textStyle="bold" />
 
-    <ScrollView
-        android:id="@+id/matchFiniScroll"
+    <ListView
+        android:id="@+id/matchFiniList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="50">
 
-    </ScrollView>
+    </ListView>
 
 </LinearLayout>

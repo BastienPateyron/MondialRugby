@@ -68,7 +68,7 @@ public class StadeDAO extends SQLiteDBHelper {
         Stade stade = new Stade (
         cursor.getInt(0),
         cursor.getString(1),
-       cursor.getString(2),
+        cursor.getString(2),
         cursor.getString(3),
         cursor.getString(4),
         cursor.getString(5),

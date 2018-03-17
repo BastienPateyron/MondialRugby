@@ -1,5 +1,10 @@
 package uca.mondialrugby.classes;
 
+import java.util.ArrayList;
+
+import uca.mondialrugby.MainActivity;
+import uca.mondialrugby.bdd.JouerDAO;
+
 /**
  * Created by watson on 28/02/2018.
  */
@@ -18,9 +23,15 @@ public class Match {
         this.dateMatch = dateMatch;
     }
     public Match () {}
+	
+    
     // TODO : redéfinir le toString
     @Override
     public String toString() {
+        // TODO Recupere les 2 matchs (getAllMatchOf(Table, id))
+        // Garde les 3 lettre du début
+        // [FRA 17 - 19 ITA]
+        JouerDAO jouerDAO = new JouerDAO()
         return "Match{}";
     }
 

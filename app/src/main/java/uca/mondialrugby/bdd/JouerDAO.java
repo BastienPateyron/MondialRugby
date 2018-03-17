@@ -4,12 +4,15 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 
 import uca.mondialrugby.classes.Equipe;
 import uca.mondialrugby.classes.Jouer;
 import uca.mondialrugby.classes.Match;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by watson on 04/03/2018.
@@ -30,8 +33,47 @@ public class JouerDAO extends SQLiteDBHelper {
         super(context);
     }
 
-    /*insertJouer*/
-    public boolean insertJouer( Jouer jouer){
+    
+    //TODO
+    /* getJouerOf
+    * Cherche tout les occurences de la table jouer en fonction de de l'id du match ou de l'équipe (qui sont les seules tables admissibles */
+    public ArrayList<Jouer> getAllJouerOf(String tableName, int id){
+    	
+    	tableName       = tableName.toUpperCase();                // Conversion en majuscules
+	    String idName   = "";                                      // Contiendra le libellé de l'id de la table concernée
+	    
+	    if(tableName == "EQUIPE") idName        = "PAYS";
+	    else if(tableName == "MATCH") idName    = "ID_MATCH";
+	    else Log.d(TAG, "getAllJouerOf: tableName invalide ! [" + tableName + "]");
+	    
+	    SQLiteDatabase db = this.getReadableDatabase();
+	    equipeDAO = new EquipeDAO(super.getContext());
+	    matchDAO = new MatchDAO(super.getContext());
+	
+	    ArrayList<Jouer> jouerArrayList = new ArrayList<>();
+	    String query = "SELECT * FROM JOUER WHERE " + idName + " = " + id + ";";
+	    Cursor cursor = db.rawQuery(query, null);
+	
+	    if (cursor.moveToFirst()){
+		    do {
+			    equipe = equipeDAO.retrieveEquipe(cursor.getString(0));
+			    match = matchDAO.retrieveMatch(super.getContext(), cursor.getInt(1)); // Risque de bug 2e élément :: risque supprimé
+			    Jouer jouer = new Jouer (
+					    equipe,
+					    match,
+					    cursor.getInt(2)
+			    );
+			
+			    jouerArrayList.add(jouer);
+		    } while(cursor.moveToNext());
+	    }
+	    db.close();
+	    return jouerArrayList;
+    }
+    
+    /* Méthodes CRUD */
+    /*createJouer*/
+    public boolean createJouer(Jouer jouer){
         ContentValues values = new ContentValues();
 
         values.put(COL_PAYS,jouer.getIdPays().getPays());
@@ -61,7 +103,7 @@ public class JouerDAO extends SQLiteDBHelper {
             cursor.moveToFirst();
 
         equipe = equipeDAO.retrieveEquipe(cursor.getString(0));
-        match = matchDAO.retrieveMatch(cursor.getInt(1),cursor.getInt(0), context); // TODO : risque de beug
+        match = matchDAO.retrieveMatch(context, cursor.getInt(1)); // TODO : risque de beug
         Jouer jouer = new Jouer (
                 equipe,
                 match,
@@ -85,7 +127,7 @@ public class JouerDAO extends SQLiteDBHelper {
             do {
 
                 equipe = equipeDAO.retrieveEquipe(cursor.getString(0));
-                match = matchDAO.retrieveMatch(cursor.getInt(1),cursor.getInt(0),context); // TODO : rique de beug 2eme cursor
+                match = matchDAO.retrieveMatch(context, cursor.getInt(1)); // TODO : rique de beug 2eme cursor
                 Jouer jouer = new Jouer (
                         equipe,
                         match,

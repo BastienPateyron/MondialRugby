@@ -10,12 +10,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class SQLiteDBHelper extends SQLiteOpenHelper {
     protected static final String DATABASE_NAME = "MONDIALRUGBY";
-    private static final int DATABASE_VERSION = 16; /* A incrémenter quand on modifie cette classe */
+    private static final int DATABASE_VERSION = 17;      /* A incrémenter quand on modifie cette classe */
 
 
     /* Tables */
-    // TODO Creer tables Personne | poste | matchs | jouer | stade | equipe
 
+    // TODO Ajouter les ON DELETE CASCADE !!
+	
     private static final String CREATE_TABLE_PERSONNE = "CREATE TABLE PERSONNE" +
             "(" +
             "ID_PERSONNE  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
@@ -157,8 +158,17 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 		    "('AUSTRALIE',  1, 13),"    +
 		    
 		    // Match 2
-		    "('FRANCE', 1, 17),"        +
-		    "('ANGLETERRE', 1, 17);";
+		    "('FRANCE',     2, 17),"    +
+		    "('ANGLETERRE', 2, 17),"    +
+		    
+		    // Match 3
+		    "('FRANCE',     3, 31),"    +
+		    "('AUSTRALIE',  3, 9),"     +
+		    
+		    // Match 4
+		    "('ANGLETERRE', 4, 17),"    +
+		    "('ANGLETERRE', 4, 7)"      +
+		    ";";
 		    
 	
 	
@@ -178,13 +188,22 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 		    "(1, 1, '13/03/2018')," +
 		    "(1, 2, '14/03/2018')," +
 		    "(1, 1, '15/03/2018')," +
-		    "(2, 3, '16/03/2018');";
+		    "(2, 3, '16/03/2018')," +
+		   
+		    // Matchs non joués
+		    "(2, 2, '17/03/2018')," +
+		    "(2, 2, '18/03/2018')," +
+		    "(3, 3, '19/03/2018')," +
+		    "(3, 3, '20/03/2018')," +
+		    ";";
 
 
      /* Constructeur */
     public SQLiteDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+    
+    public Context getContext(){ return this.getContext(); }
 
 
     /* Methodes */
@@ -211,7 +230,6 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
     }
 
-    //TODO : y a un ordre ????????? // ça veut pas de match
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + "PERSONNE");

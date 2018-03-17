@@ -54,8 +54,8 @@ public class EquipeDAO extends SQLiteDBHelper {
             cursor.moveToFirst();
         Equipe equipe = new Equipe (
                 cursor.getString(0),
-                cursor.getString(1))
-                ;
+                cursor.getString(1)
+        );
 
         db.close();
         return equipe;

@@ -5,17 +5,25 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import uca.mondialrugby.MainActivity;
 import uca.mondialrugby.R;
+import uca.mondialrugby.bdd.MatchDAO;
 import uca.mondialrugby.classes.Match;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by basti on 3/12/2018.
@@ -52,8 +60,35 @@ public class Match_fragment extends Fragment {
 		});
 		
 		// TODO Get all matchs
+		MatchDAO matchDAO = new MatchDAO(getContext());
+		ArrayList<Match> matchFinisListe = matchDAO.getAllMatch(getContext());
+		Log.d(TAG, "onCreateView: matchs chargés");
+		
+		ListView listView = myView.findViewById(R.id.matchPrevuList);
+		final ArrayAdapter<Match> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, matchFinisListe);
+		
+		listView.setAdapter(adapter);
+		Log.d(TAG, "onCreateView: matchs affichés");
+		
+		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			                                @Override
+			                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				
+			                                }
+		                                }
+		
+		);
 		
 		// TODO Liste matchsPrévus
+		ArrayList<Match> matchPrevusListe = new ArrayList<>();
+		
+		// On parcours la liste des matchs finis (qui contient pour l'instant tout les matchs) et on supprime les matchs qui n'ont pas  encore de score pour les placer dans la liste des matchs Prévus
+		for(Match m : matchFinisListe){
+			
+			// TODO REPRISE !!! Lire ci dessous
+			// Récupérer les 2 occurences de JOUER qui font référence à ce match
+			// Faire une requete spécifique pour récupérer
+		}
 		
 		
 		// TODO Liste matchsFini (Avec score non null)

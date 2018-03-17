@@ -62,14 +62,14 @@ public class PersonneDAO extends SQLiteDBHelper {
             cursor.moveToFirst();
 
         EquipeDAO equipeDAO = new EquipeDAO(context);
-        Equipe equipe = equipeDAO.retrieveEquipe(cursor.getString(0));
+        Equipe equipe = equipeDAO.retrieveEquipe(cursor.getString(1));
         if (equipe == null){
             equipe = new Equipe ();
             equipe.setSurmon("Null");
         }
 
         PosteDAO posteDAO = new PosteDAO (context);
-        Poste poste = posteDAO.retrievePoste (cursor.getString(1));
+        Poste poste = posteDAO.retrievePoste (cursor.getString(2));
 
         Personne personne = new Personne(
                 cursor.getInt(0),

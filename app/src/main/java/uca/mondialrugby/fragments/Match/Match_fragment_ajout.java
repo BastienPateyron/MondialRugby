@@ -1,7 +1,6 @@
 package uca.mondialrugby.fragments.Match;
 
 import android.app.DatePickerDialog;
-import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,7 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 import uca.mondialrugby.classes.Match;
@@ -35,7 +33,6 @@ import uca.mondialrugby.bdd.PersonneDAO;
 import uca.mondialrugby.bdd.StadeDAO;
 
 import static android.content.ContentValues.TAG;
-import static java.security.AccessController.getContext;
 
 /**
  * Created by watson on 11/03/2018.
@@ -168,7 +165,7 @@ public class Match_fragment_ajout extends Fragment {
 				try {
 					if (champsRemplis(match)) { // Si tout les champs sont bien remplis on réalise l'insertion
 						MatchDAO matchDAO = new MatchDAO(context);
-						matchDAO.insertMatch(match);
+						matchDAO.createMatch(match);
 						Log.d(TAG, "Ajout match");
 						((MainActivity) context).changeFragment(new Match_fragment()); // TODO : changer le fragment
 						Toast.makeText(context, "Match ajoutée", Toast.LENGTH_SHORT).show();
