@@ -28,12 +28,13 @@
 
     </RelativeLayout>
 
-
     <ListView
         android:id="@+id/matchPrevuList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:layout_below="@+id/txtAVenir"
+
         android:layout_weight="50">
 
     </ListView>

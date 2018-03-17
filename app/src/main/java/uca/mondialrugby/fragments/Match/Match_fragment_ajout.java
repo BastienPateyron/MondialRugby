@@ -156,10 +156,10 @@ public class Match_fragment_ajout extends Fragment {
 				
 				
 				Match match = new Match(
-						
-						idMatch, stade, personne, dateMatch.getText().toString()
-				
-				
+						idMatch,
+						stade,
+						personne,
+						dateMatch.getText().toString()
 				);
 				
 				try {

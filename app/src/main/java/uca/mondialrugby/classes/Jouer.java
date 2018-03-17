@@ -1,5 +1,7 @@
 package uca.mondialrugby.classes;
 
+import static java.sql.Types.NULL;
+
 /**
  * Created by watson on 28/02/2018.
  */
@@ -14,10 +16,23 @@ public class Jouer {
         this.match = match;
         this.score = score;
     }
-   // Todo : redéfinir le toString
+   
     @Override
     public String toString() {
         return "Jouer{" + "idPays='" + idEquipe + '\'' + ", match=" + match + ", score=" + score + '}';
+    }
+    
+    public String toStringDomicile(){
+    	// TODO Afficher uniquement 3 lettres
+	    String tag = idEquipe.getPays().substring(0,3); // Garde les 3 premières lettres du pays ex: FRA, ITA, AUS, IRL ...
+	    if(score == NULL) return tag + " ~";
+	    else return tag + " " + score;
+    }
+    
+    public String toStringExterieur(){
+	    String tag = idEquipe.getPays().substring(0,3); // Garde les 3 premières lettres du pays ex: FRA, ITA, AUS, IRL ...
+	    if(score == NULL) return " ~ " + tag;
+	    else return score + " " + tag;
     }
 
     public Equipe getIdPays() {

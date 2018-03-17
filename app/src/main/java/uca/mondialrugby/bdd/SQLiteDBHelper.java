@@ -10,9 +10,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class SQLiteDBHelper extends SQLiteOpenHelper {
     protected static final String DATABASE_NAME = "MONDIALRUGBY";
-    private static final int DATABASE_VERSION = 17;      /* A incrémenter quand on modifie cette classe */
+    private static final int DATABASE_VERSION = 21;      /* A incrémenter quand on modifie cette classe */
 
 
+	private Context context;
     /* Tables */
 
     // TODO Ajouter les ON DELETE CASCADE !!
@@ -68,9 +69,9 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
             "(" +
             "PAYS  INTEGER  NOT NULL," +
             "ID_MATCH INTEGER NOT NULL,"  +
-            "SCORE TEXT NOT NULL,"  +
-            "FOREIGN KEY(PAYS) REFERENCES EQUIPE(PAYS)," +
-            "FOREIGN KEY(ID_MATCH) REFERENCES STADE(ID_MATCH)" +
+            "SCORE TEXT,"  +
+            "FOREIGN KEY(PAYS) REFERENCES EQUIPE(PAYS) ON DELETE CASCADE," +
+            "FOREIGN KEY(ID_MATCH) REFERENCES STADE(ID_MATCH) ON DELETE CASCADE" +
             ");";
 
 
@@ -167,7 +168,20 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 		    
 		    // Match 4
 		    "('ANGLETERRE', 4, 17),"    +
-		    "('ANGLETERRE', 4, 7)"      +
+		    "('AUSTRALIE', 4, 7)," +
+		    
+		    // 5
+		    "('ANGLETERRE', 5, 7)," +
+		    "('FRANCE', 5, 21)," +
+		    
+		    "('AUSTRALIE', 6, 15)," +
+		    "('FRANCE', 6, 4)," +
+		    
+		    "('ANGLETERRE', 7, 24)," +
+		    "('FRANCE', 7, 13)," +
+		    
+		    "('AUSTRALIE', 8, 19)," +
+		    "('ANGLETERRE', 8, 23)" +
 		    ";";
 		    
 	
@@ -194,16 +208,17 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 		    "(2, 2, '17/03/2018')," +
 		    "(2, 2, '18/03/2018')," +
 		    "(3, 3, '19/03/2018')," +
-		    "(3, 3, '20/03/2018')," +
+		    "(3, 3, '20/03/2018')" +
 		    ";";
 
 
      /* Constructeur */
     public SQLiteDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
     
-    public Context getContext(){ return this.getContext(); }
+    public Context getContext(){ return this.context; }
 
 
     /* Methodes */

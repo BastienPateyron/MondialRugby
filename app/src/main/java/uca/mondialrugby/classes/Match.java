@@ -1,11 +1,14 @@
 package uca.mondialrugby.classes;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 
 import uca.mondialrugby.MainActivity;
 import uca.mondialrugby.bdd.JouerDAO;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by watson on 28/02/2018.
@@ -20,14 +23,8 @@ public class Match {
     private Context context;
     
 
-    public Match(int idMatch, Stade idStade, Personne idPersonne, String dateMatch) {
-        this.idMatch = idMatch;
-        this.idStade = idStade;
-        this.idPersonne = idPersonne;
-        this.dateMatch = dateMatch;
-    }
-    public Match (Context context, int idMatch, Stade idStade, Personne idPersonne, String dateMatch) {
-	    this.context = context;
+    
+    public Match (int idMatch, Stade idStade, Personne idPersonne, String dateMatch) {
     	this.idMatch = idMatch;
 	    this.idStade = idStade;
 	    this.idPersonne = idPersonne;
@@ -41,9 +38,17 @@ public class Match {
         // TODO Recupere les 2 matchs (getAllMatchOf(Table, id))
         // Garde les 3 lettre du début
         // [FRA 17 - 19 ITA]
+        
+		JouerDAO jouerDAO = new JouerDAO(MainActivity.getsContext());
+		
+		// Récupère les 2 équipes du match
+		ArrayList<Jouer> jouerArrayList = jouerDAO.getAllJouerOf("MATCHS", idMatch);
 	
+	    Log.d(TAG, "toString: size list: " + jouerArrayList.size());
 	    
-	    return "Match{}";
+	    String matchStr = jouerArrayList.get(0).toStringDomicile() + " - " + jouerArrayList.get(1).toStringExterieur();
+	    System.out.println(matchStr);
+	    return jouerArrayList.get(0).toStringDomicile() + " - " + jouerArrayList.get(1).toStringExterieur();
     }
 
     public int getIdMatch() {

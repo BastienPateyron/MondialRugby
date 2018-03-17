@@ -32,21 +32,16 @@ import static android.content.ContentValues.TAG;
 public class Match_fragment extends Fragment {
 	
 	private View myView;
-	private Context context;
 	private Button creerBouton;
-	private ArrayList<Match> listMatchPrevu = new ArrayList<>();;
-	private ArrayList<Match> listMatchFini = new ArrayList<>();;
-	
-	
+	private ArrayList<Match> listMatchPrevu = new ArrayList<>();
+	private ArrayList<Match> listMatchFini = new ArrayList<>();
 	
 	@Nullable
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 	                         @Nullable ViewGroup container,
-	                         @Nullable Bundle savedInstanceState)
-	{
-		myView = inflater.inflate(R.layout.match_layout,container,false);
-		
+	                         @Nullable Bundle savedInstanceState) {
+		myView = inflater.inflate(R.layout.match_layout, container, false);
 		
 		
 		// TODO Ajouter bouton CREER MATCH
@@ -62,20 +57,25 @@ public class Match_fragment extends Fragment {
 		// TODO Get all matchs
 		MatchDAO matchDAO = new MatchDAO(getContext());
 		ArrayList<Match> matchFinisListe = matchDAO.getAllMatch(getContext());
-		Log.d(TAG, "onCreateView: matchs chargés");
+		
 		
 		ListView listView = myView.findViewById(R.id.matchPrevuList);
-		final ArrayAdapter<Match> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, matchFinisListe);
 		
-		listView.setAdapter(adapter);
+		// Liste centrée
+		ArrayAdapter<String> ad = new ArrayAdapter<String>(getContext(), R.layout.text_center_layout, R.id.textItem);
+		ad.addAll(matchFinisListe.toString());
+		listView.setAdapter(ad);
+		
+		
 		Log.d(TAG, "onCreateView: matchs affichés");
 		
-		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			                                @Override
-			                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				
-			                                }
-		                                }
+		listView.setOnItemClickListener(
+				new AdapterView.OnItemClickListener() {
+					@Override
+					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+						// TODO Ouvrir dialog modification ?
+					}
+				}
 		
 		);
 		
@@ -83,7 +83,7 @@ public class Match_fragment extends Fragment {
 		ArrayList<Match> matchPrevusListe = new ArrayList<>();
 		
 		// On parcours la liste des matchs finis (qui contient pour l'instant tout les matchs) et on supprime les matchs qui n'ont pas  encore de score pour les placer dans la liste des matchs Prévus
-		for(Match m : matchFinisListe){
+		for (Match m : matchFinisListe) {
 			
 			// TODO REPRISE !!! Lire ci dessous
 			// Récupérer les 2 occurences de JOUER qui font référence à ce match
@@ -92,7 +92,6 @@ public class Match_fragment extends Fragment {
 		
 		
 		// TODO Liste matchsFini (Avec score non null)
-		
 		
 		
 		return myView;

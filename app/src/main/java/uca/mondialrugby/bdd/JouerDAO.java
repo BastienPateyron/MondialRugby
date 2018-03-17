@@ -43,7 +43,7 @@ public class JouerDAO extends SQLiteDBHelper {
 	    String idName   = "";                                      // Contiendra le libellé de l'id de la table concernée
 	    
 	    if(tableName == "EQUIPE") idName        = "PAYS";
-	    else if(tableName == "MATCH") idName    = "ID_MATCH";
+	    else if(tableName == "MATCHS") idName    = "ID_MATCH";
 	    else Log.d(TAG, "getAllJouerOf: tableName invalide ! [" + tableName + "]");
 	    
 	    SQLiteDatabase db = this.getReadableDatabase();
