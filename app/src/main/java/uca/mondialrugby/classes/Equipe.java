@@ -7,12 +7,14 @@ package uca.mondialrugby.classes;
 public class Equipe {
 
     private String pays;
-    private String surmon;
+    private String surnom;
+
+    private String copyPays;
 
     // Constructeur
     public Equipe(String pays, String surmon) {
         this.pays = pays;
-        this.surmon = surmon;
+        this.surnom = surmon;
     }
 
     public  Equipe (){}
@@ -21,21 +23,31 @@ public class Equipe {
  // Todo : rédéfinir le toString
     @Override
     public String toString() {
-        return "Equipe{" + "pays='" + pays + '\'' + ", surmon='" + surmon + '\'' + '}';
+        return "Equipe{" + "pays='" + pays + '\'' + ", surnom='" + surnom + '\'' + '}';
+    }
+
+    public void setPays(String pays) {
+        this.pays = pays;
     }
 
     public String getPays() {
         return pays;
     }
 
-    public String getSurmon() {
-        return surmon;
+    public String getSurnom() {
+        return surnom;
     }
 
-    public void setSurmon(String surmon) {
-        this.surmon = surmon;
+    public void setSurnom(String surmon) {
+        this.surnom = surmon;
+    }
+    public String getCopyPays() {
+        return copyPays;
     }
 
+    public void setCopyPays(String copyPays) {
+        this.copyPays = copyPays;
+    }
 
 
 }

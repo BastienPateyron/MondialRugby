@@ -30,7 +30,7 @@ public class EquipeDAO extends SQLiteDBHelper {
         ContentValues values = new ContentValues();
 
         values.put(COL_PAYS,equipe.getPays());
-        values.put(COL_SURNOM,equipe.getSurmon());
+        values.put(COL_SURNOM,equipe.getSurnom());
 
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -89,9 +89,9 @@ public class EquipeDAO extends SQLiteDBHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COL_PAYS,equipe.getPays());
-        values.put(COL_SURNOM,equipe.getSurmon());
-
-        db.update(TABLE_EQUIPE, values, COL_PAYS + "="+ equipe.getPays(), null);
+        values.put(COL_SURNOM,equipe.getSurnom());
+        System.out.println();
+        db.update(TABLE_EQUIPE, values, COL_PAYS + "= '"+ equipe.getCopyPays()+ "'", null);
         db.close();
     }
 

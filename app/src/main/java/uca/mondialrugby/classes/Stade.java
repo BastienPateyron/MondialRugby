@@ -6,6 +6,8 @@ package uca.mondialrugby.classes;
 
 public class Stade {
 
+
+
     private int id;
     private String nom   ;
     private String num_rue  ;
@@ -37,6 +39,10 @@ public class Stade {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNom() {

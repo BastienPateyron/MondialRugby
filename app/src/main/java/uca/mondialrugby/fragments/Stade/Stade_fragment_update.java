@@ -39,7 +39,7 @@ public class Stade_fragment_update extends Fragment {
         if (bundle != null) {
             idStade = Integer.valueOf(bundle.get("id").toString());
         }
-        System.out.println("Id Client: " + idStade);
+        System.out.println("Id stade : " + idStade);
 
         final EditText value_nom = (EditText) myView.findViewById(R.id.value_nom_stade);
         final EditText value_place = (EditText) myView.findViewById(R.id.value_nb_place);
@@ -69,13 +69,13 @@ public class Stade_fragment_update extends Fragment {
                 ((MainActivity) getActivity()).changeFragment(new Client_fragment());
             }
         });*/
-        Button button_modify_client = (Button) myView.findViewById(R.id.button_update_stade);
+        Button button_update_stade = (Button) myView.findViewById(R.id.button_update_equipe);
 
-        button_modify_client.setOnClickListener(new View.OnClickListener() {
+        button_update_stade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Stade stade_modify = new Stade();
-
+                stade_modify.setId(idStade);
                 stade_modify.setNom(value_nom.getText().toString());
                 stade_modify.setNombre_place(Integer.parseInt(value_place.getText().toString()));
                 stade_modify.setNum_rue(value_num.getText().toString());
@@ -84,12 +84,13 @@ public class Stade_fragment_update extends Fragment {
                 stade_modify.setVille(value_ville.getText().toString());
 
                 stadeDAO.updateStade(stade_modify);
+                System.out.println("Stade modifie");
                 MainActivity.closekeyboard(getContext(), myView);
                 ((MainActivity) getActivity()).changeFragment(new Stade_fragment_home());
             }
         });
 
-        Button button_annule_stade = (Button) myView.findViewById(R.id.button_noupdate_stade);
+        Button button_annule_stade = (Button) myView.findViewById(R.id.button_noupdate_equipe);
 
         button_annule_stade.setOnClickListener(new View.OnClickListener() {
             @Override

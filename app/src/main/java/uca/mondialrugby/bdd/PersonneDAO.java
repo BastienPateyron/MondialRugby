@@ -35,8 +35,8 @@ public class PersonneDAO extends SQLiteDBHelper {
         ContentValues values = new ContentValues();
 
         values.put(COL_ID,personne.getId());
-        values.put(COL_PERS_PAYS,personne.getPoste().getLibelle());
-        values.put(COL_POSTE,personne.getEquipe().getPays());
+        values.put(COL_PERS_PAYS,personne.getEquipe().getPays());
+        values.put(COL_POSTE,personne.getPoste().getLibelle());
         values.put(COL_NOM,personne.getNom());
         values.put(COL_PRENOM,personne.getPrenom());
         values.put(COL_DATE_N,personne.getDate());
@@ -65,7 +65,7 @@ public class PersonneDAO extends SQLiteDBHelper {
         Equipe equipe = equipeDAO.retrieveEquipe(cursor.getString(1));
         if (equipe == null){
             equipe = new Equipe ();
-            equipe.setSurmon("Null");
+            equipe.setSurnom("Null");
         }
 
         PosteDAO posteDAO = new PosteDAO (context);
@@ -101,6 +101,39 @@ public class PersonneDAO extends SQLiteDBHelper {
                 Equipe equipe = equipeDAO.retrieveEquipe(cursor.getString(1));
                 Poste poste = posteDAO.retrievePoste (cursor.getString(2));
                 
+                Personne personne = new Personne (
+                        cursor.getInt(0),
+                        poste,
+                        equipe,
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5)
+
+                );
+
+                listPersonne.add(personne);
+            } while(cursor.moveToNext());
+        }
+        db.close();
+        return listPersonne;
+    }
+
+    /* getAllPersonne*/
+    public ArrayList<Personne> getAllPersonneOfEquipe(Context context,String id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        PosteDAO posteDAO = new PosteDAO (context);
+        EquipeDAO equipeDAO = new EquipeDAO(context);
+
+        ArrayList<Personne> listPersonne = new ArrayList<>();
+        String query = "SELECT * FROM PERSONNE WHERE PAYS_PERSONNE" + "='" + id + "';";
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()){
+            do {
+
+                Equipe equipe = equipeDAO.retrieveEquipe(cursor.getString(1));
+                Poste poste = posteDAO.retrievePoste (cursor.getString(2));
+
                 Personne personne = new Personne (
                         cursor.getInt(0),
                         poste,

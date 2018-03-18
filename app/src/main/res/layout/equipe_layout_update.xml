@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <include layout="@layout/stade_layout_form"/>
+        <include layout="@layout/equipe_form"/>
     </RelativeLayout>
 
 
@@ -40,4 +40,43 @@
         android:text="Annuler"/>
 
 
+
+
+
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_below="@+id/button_noupdate_equipe"
+android:layout_marginTop="15dp"
+    >
+
+<LinearLayout
+    android:id="@+id/equipe_cs_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="100">
+
+    <TextView
+        android:id="@+id/title_list"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:background="@color/colorPrimary"
+        android:text="Liste des joueurs"
+        android:layout_weight="90"/>
+
+
+</LinearLayout>
+
+<ListView
+    android:id="@+id/list_joueur"
+    android:layout_below="@+id/equipe_cs_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
 </RelativeLayout>
+
+
+    </RelativeLayout>

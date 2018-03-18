@@ -28,7 +28,7 @@ public class MatchDAO extends SQLiteDBHelper {
 	
 	// Table jouer
 	private static final String TABLE_JOUER = "JOUER";
-	private static final String COL_SCORE = "DATE_MATCH ";
+	private static final String COL_SCORE = "SCORE ";
 	
 	
 	private Personne personne;
@@ -50,11 +50,11 @@ public class MatchDAO extends SQLiteDBHelper {
 		
 		ArrayList<Match> listMatch = new ArrayList<>();
 		
-		db.query(TABLE_MATCHS, // Nom de table
+		/*db.query(TABLE_MATCHS, // Nom de table
 				new String[]{COL_ID, COL_STADE, COL_PERSONNE, COL_DATE},
 				COL_ID + "=?",
 				new String[]{String.valueOf(idMatch)}, // j'ai supprimé ici, pourquoi on avait besoin de String.valueOf(idPays) en plus ???
-				null, null, null, null); // Options
+				null, null, null, null); // Options*/
 		
 		// On récupère les matchs dont le score est renseigné
 		String query = "SELECT DISTINCT ID_MATCH, ID_STADE, ID_PERSONNE, DATE_MATCH" +
@@ -94,7 +94,7 @@ public class MatchDAO extends SQLiteDBHelper {
 				" FROM " + TABLE_MATCHS + " JOIN " + TABLE_JOUER + " USING(" + COL_ID + ") " +
 				" WHERE " + COL_SCORE + " = 'NULL';";
 		Cursor cursor = db.rawQuery(query, null);
-		
+
 		if (cursor.moveToFirst()){
 			do {
 				stade = stadeDAO.retrieveStade(cursor.getInt(1));

@@ -14,7 +14,7 @@ public class Personne {
 
 
     // CONSTRUCTEUR
-    public Personne(int id, Poste poste, Equipe equipe, String Nom, String Prenom, String date) {
+    public Personne(int id, Poste poste, Equipe equipe, String nom, String prenom, String date) {
         this.id = id;
         this.poste = poste;
         this.equipe = equipe;
@@ -22,7 +22,10 @@ public class Personne {
         this.prenom = prenom;
         this.date = date;
     }
-
+    @Override
+    public String toString (){
+        return (" " + nom + " " + prenom );
+    }
 
     // GETTER & SETTER
     public int getId() {

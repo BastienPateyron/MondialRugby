@@ -116,6 +116,8 @@ public class StadeDAO extends SQLiteDBHelper {
         values.put(COL_VILLE,stade.getVille());
         values.put(COL_PLACE,stade.getNombre_place());
         db.update(TABLE_STADE, values, COL_ID + "="+ stade.getId(), null);
+        System.out.println("update faite");
+        System.out.println(stade.getNom());
         db.close();
     }
 
