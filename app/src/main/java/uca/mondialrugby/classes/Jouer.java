@@ -25,14 +25,14 @@ public class Jouer {
     public String toStringDomicile(){
     	// TODO Afficher uniquement 3 lettres
 	    String tag = idEquipe.getPays().substring(0,3); // Garde les 3 premières lettres du pays ex: FRA, ITA, AUS, IRL ...
-	    if(score == NULL) return tag + " ~";
-	    else return tag + " " + score;
+	    if(score == NULL) return "\t\t\t\t\t\t\t[" + tag + "]\t\t-";
+	    else return "\t\t\t\t\t\t\t[" + tag + "]  \t" + score;
     }
     
     public String toStringExterieur(){
 	    String tag = idEquipe.getPays().substring(0,3); // Garde les 3 premières lettres du pays ex: FRA, ITA, AUS, IRL ...
-	    if(score == NULL) return " ~ " + tag;
-	    else return score + " " + tag;
+	    if(score == NULL) return "\t\t-\t\t[" + tag + "]";
+	    else return "\t" + score + "\t\t[" + tag + "]";
     }
 
     public Equipe getIdPays() {

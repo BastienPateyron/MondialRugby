@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class SQLiteDBHelper extends SQLiteOpenHelper {
     protected static final String DATABASE_NAME = "MONDIALRUGBY";
-    private static final int DATABASE_VERSION = 21;      /* A incrémenter quand on modifie cette classe */
+    private static final int DATABASE_VERSION = 23;      /* A incrémenter quand on modifie cette classe */
 
 
 	private Context context;
@@ -69,7 +69,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
             "(" +
             "PAYS  INTEGER  NOT NULL," +
             "ID_MATCH INTEGER NOT NULL,"  +
-            "SCORE TEXT,"  +
+            "SCORE TEXT DEFAULT NULL,"  +
             "FOREIGN KEY(PAYS) REFERENCES EQUIPE(PAYS) ON DELETE CASCADE," +
             "FOREIGN KEY(ID_MATCH) REFERENCES STADE(ID_MATCH) ON DELETE CASCADE" +
             ");";
@@ -174,14 +174,14 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 		    "('ANGLETERRE', 5, 7)," +
 		    "('FRANCE', 5, 21)," +
 		    
-		    "('AUSTRALIE', 6, 15)," +
-		    "('FRANCE', 6, 4)," +
+		    "('AUSTRALIE', 6, '')," +
+		    "('FRANCE', 6, '')," +
 		    
-		    "('ANGLETERRE', 7, 24)," +
-		    "('FRANCE', 7, 13)," +
+		    "('ANGLETERRE', 7, '')," +
+		    "('FRANCE', 7, '')," +
 		    
-		    "('AUSTRALIE', 8, 19)," +
-		    "('ANGLETERRE', 8, 23)" +
+		    "('AUSTRALIE', 8, '')," +
+		    "('ANGLETERRE', 8, '')" +
 		    ";";
 		    
 	

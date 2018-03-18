@@ -61,12 +61,9 @@ public class Match_fragment extends Fragment {
 		
 		ListView listView = myView.findViewById(R.id.matchPrevuList);
 		
-		// Liste centrée
-		ArrayAdapter<String> ad = new ArrayAdapter<String>(getContext(), R.layout.text_center_layout, R.id.textItem);
-		ad.addAll(matchFinisListe.toString());
-		listView.setAdapter(ad);
+		final ArrayAdapter<Match> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, matchFinisListe);
 		
-		
+		listView.setAdapter(adapter);
 		Log.d(TAG, "onCreateView: matchs affichés");
 		
 		listView.setOnItemClickListener(

@@ -46,9 +46,9 @@ public class Match {
 	
 	    Log.d(TAG, "toString: size list: " + jouerArrayList.size());
 	    
-	    String matchStr = jouerArrayList.get(0).toStringDomicile() + " - " + jouerArrayList.get(1).toStringExterieur();
+	    String matchStr = jouerArrayList.get(0).toStringDomicile() + "\t\t\t|\t" + jouerArrayList.get(1).toStringExterieur();
 	    System.out.println(matchStr);
-	    return jouerArrayList.get(0).toStringDomicile() + " - " + jouerArrayList.get(1).toStringExterieur();
+	    return jouerArrayList.get(0).toStringDomicile() + "\t\t\t|\t" + jouerArrayList.get(1).toStringExterieur();
     }
 
     public int getIdMatch() {
