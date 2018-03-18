@@ -17,7 +17,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import uca.mondialrugby.fragments.Classement.Classement_fragment;
+//import uca.mondialrugby.fragments.Classement.Classement_fragment;
+import uca.mondialrugby.fragments.Equipe.Equipe_Fragment_Add;
+import uca.mondialrugby.fragments.Equipe.Equipe_Fragment_Home;
 import uca.mondialrugby.fragments.Home_fragment;
 import uca.mondialrugby.fragments.Match.Match_fragment;
 import uca.mondialrugby.fragments.Match.Match_fragment_ajout;
@@ -94,7 +96,7 @@ public class MainActivity extends AppCompatActivity
 			changeFragment(new Match_fragment());
 		}
 		if (id == R.id.nav_equipes) {
-			// TODO lien fragment equipe
+			changeFragment(new Equipe_Fragment_Home());
 		}
 		if (id == R.id.nav_personnes) {
 			// TODO lien fragment personnes
@@ -103,7 +105,7 @@ public class MainActivity extends AppCompatActivity
 			changeFragment(new Stade_fragment_home());
 		}
 		if (id == R.id.nav_classement) {
-			changeFragment(new Classement_fragment());
+			//changeFragment(new Classement_fragment());
 		}
 		
 		DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -126,5 +128,6 @@ public class MainActivity extends AppCompatActivity
 	
 	// permet d'accéder au context de n'importe ou dans l'application
 	public static Context getsContext(){return sContext;}
-	
+
+
 }
