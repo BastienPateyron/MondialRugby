@@ -59,7 +59,7 @@ public class MatchDAO extends SQLiteDBHelper {
 		// On récupère les matchs dont le score est renseigné
 		String query = "SELECT DISTINCT ID_MATCH, ID_STADE, ID_PERSONNE, DATE_MATCH" +
 						" FROM " + TABLE_MATCHS + " JOIN " + TABLE_JOUER + " USING(" + COL_ID + ")" +
-						" WHERE " + COL_SCORE + " NOT LIKE 'NULL';";
+						" WHERE " + COL_SCORE + ";";
 		Cursor cursor = db.rawQuery(query, null);
 		
 		if (cursor.moveToFirst()){
@@ -92,7 +92,7 @@ public class MatchDAO extends SQLiteDBHelper {
 		// On récupère les matchs dont le score est 'NULL'
 		String query = "SELECT DISTINCT ID_MATCH, ID_STADE, ID_PERSONNE, DATE_MATCH " +
 				" FROM " + TABLE_MATCHS + " JOIN " + TABLE_JOUER + " USING(" + COL_ID + ") " +
-				" WHERE " + COL_SCORE + " = 'NULL';";
+				" WHERE " + COL_SCORE + " = '';";
 		Cursor cursor = db.rawQuery(query, null);
 
 		if (cursor.moveToFirst()){
