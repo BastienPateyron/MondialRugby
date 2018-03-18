@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class SQLiteDBHelper extends SQLiteOpenHelper {
     protected static final String DATABASE_NAME = "MONDIALRUGBY";
-    private static final int DATABASE_VERSION = 25;      /* A incrémenter quand on modifie cette classe */
+    private static final int DATABASE_VERSION = 26;      /* A incrémenter quand on modifie cette classe */
 
 
 	private Context context;
@@ -67,9 +67,9 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_JOUER = "CREATE TABLE JOUER" +
             "(" +
-            "PAYS  INTEGER  NOT NULL," +
+            "PAYS  TEXT  NOT NULL," +
             "ID_MATCH INTEGER NOT NULL,"  +
-            "SCORE TEXT DEFAULT NULL,"  +
+            "SCORE INTEGER DEFAULT NULL,"  +
             "FOREIGN KEY(PAYS) REFERENCES EQUIPE(PAYS) ON DELETE CASCADE," +
             "FOREIGN KEY(ID_MATCH) REFERENCES STADE(ID_MATCH) ON DELETE CASCADE" +
             ");";
@@ -83,10 +83,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
             "('Marcel Michelin', 12, 'avenue michelin', 'Clermont-Ferrand', '63000', 20000)," +
             "('Marcel-Deflandre', 15, 'rue musclor', 'La Rochelle', '17000', 16000)," +
 		    "('Mayol', 1, 'Quai Joseph Lafontan', 'Toulon', '83000', 18200);";
-
-    // insert
-
-
+	
     /******** Personne ********/
     private static final String INSERT_PERSONNES = "INSERT INTO PERSONNE (PAYS_PERSONNE, NUMERO, NOM_PERSONNE, PRENOM_PERSONNE, DATE_NAISSANCE) VALUES " +
 		    // Arbitres
@@ -212,7 +209,34 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 		    ";";
 
 
-     /* Constructeur */
+    
+    
+    
+    /* VUES */
+	/* Matchs joués*/
+	private static String MATCHS_FINIS_VIEW =
+		    "CREATE VIEW IF NOT EXISTS MATCHSFINIS AS " +
+		    "SELECT A.PAYS A_PAYS, A.SCORE A_SCORE, B.SCORE B_SCORE, B.PAYS  B_PAYS " +
+		    "FROM JOUER A JOIN JOUER B USING (ID_MATCH) " +
+		    "WHERE A.PAYS NOT LIKE B.PAYS" +
+		    "AND A.SCORE;";
+	
+	/* Victoires
+	TODO: Comment on gère les egalités ? ? ?
+	ca marche pas*/
+//	select *
+//	from matchsFinis
+//	where  a_score > b_score;
+
+	
+	/* On ordonne les pays en fonction du nombre de victoires puis du score total */
+	
+	/* On compte le score total de chaque pays */
+	
+	/* On compte le nombre de victoires par pays */
+	
+	
+	/* Constructeur */
     public SQLiteDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
@@ -241,6 +265,8 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 	    db.execSQL(INSERT_JOUER);
      
      
+	    // Création des Vues
+	    // TODO
 
 
     }

@@ -23,7 +23,7 @@ public class Equipe {
  // Todo : rédéfinir le toString
     @Override
     public String toString() {
-        return "Equipe{" + "pays='" + pays + '\'' + ", surnom='" + surnom + '\'' + '}';
+        return pays + "\t\t( " + surnom + " )";
     }
 
     public void setPays(String pays) {

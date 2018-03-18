@@ -23,8 +23,35 @@ public class EquipeDAO extends SQLiteDBHelper {
     public EquipeDAO(Context context) {
         super(context);
     }
-
-
+    
+    
+    /* Get Classement
+    * Retourne une liste des équipes classées en fonction de leur nombre de victoires
+    * puis de leur score total */
+    
+    
+    public ArrayList<Equipe> getClassement(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        
+        ArrayList<Equipe> classement = new ArrayList<>();
+        String query = "SELECT * FROM EQUIPE";
+        Cursor cursor = db.rawQuery(query, null);
+        
+        if (cursor.moveToFirst()){
+            do {
+                Equipe equipe = new Equipe (
+                        cursor.getString(0),
+                        cursor.getString(1)
+                );
+    
+                classement.add(equipe);
+            } while(cursor.moveToNext());
+        }
+        db.close();
+        return classement;
+    }
+    
+    
     /*insertEquipe*/
     public boolean insertEquipe( Equipe equipe){
         ContentValues values = new ContentValues();
