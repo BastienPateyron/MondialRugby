@@ -30,7 +30,7 @@
         android:layout_below="@+id/add_part">
 
         <ListView
-            android:id="@+id/stadeListe"
+            android:id="@+id/generalListe"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

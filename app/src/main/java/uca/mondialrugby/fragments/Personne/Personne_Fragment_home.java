@@ -62,7 +62,7 @@ public class Personne_Fragment_home extends Fragment {
         PersonneDAO personneDAO = new PersonneDAO(getContext());
         listPersonne = personneDAO.getAllPersonne(getContext());
 
-        ListView listView = (ListView) myView.findViewById(R.id.stadeListe);
+        ListView listView = (ListView) myView.findViewById(R.id.generalListe);
         final ArrayAdapter<Personne> adapter = new ArrayAdapter<Personne>(myView.getContext(), android.R.layout.simple_list_item_1, listPersonne);
         listView.setAdapter(adapter);
 

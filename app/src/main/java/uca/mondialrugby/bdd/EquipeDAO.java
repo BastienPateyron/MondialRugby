@@ -66,7 +66,7 @@ public class EquipeDAO extends SQLiteDBHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         ArrayList<Equipe> listEquipe = new ArrayList<>();
-        String query = "SELECT * FROM " + COL_PAYS + ";";
+        String query = "SELECT * FROM EQUIPE";
         Cursor cursor = db.rawQuery(query, null);
 
         if (cursor.moveToFirst()){

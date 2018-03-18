@@ -62,6 +62,7 @@ public class Match_fragment extends Fragment {
 		ListView listView = myView.findViewById(R.id.matchPrevuList);
 		
 		final ArrayAdapter<Match> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, matchFinisListe);
+
 		
 		listView.setAdapter(adapter);
 		Log.d(TAG, "onCreateView: matchs affichés");
