@@ -23,6 +23,7 @@ import uca.mondialrugby.fragments.Equipe.Equipe_Fragment_Home;
 import uca.mondialrugby.fragments.Home_fragment;
 import uca.mondialrugby.fragments.Match.Match_fragment;
 import uca.mondialrugby.fragments.Match.Match_fragment_ajout;
+import uca.mondialrugby.fragments.Personne.Personne_Fragment_home;
 import uca.mondialrugby.fragments.Stade.Stade_fragment_home;
 
 public class MainActivity extends AppCompatActivity
@@ -99,7 +100,7 @@ public class MainActivity extends AppCompatActivity
 			changeFragment(new Equipe_Fragment_Home());
 		}
 		if (id == R.id.nav_personnes) {
-			// TODO lien fragment personnes
+			changeFragment(new Personne_Fragment_home());
 		}
 		if (id == R.id.nav_stade) {
 			changeFragment(new Stade_fragment_home());
