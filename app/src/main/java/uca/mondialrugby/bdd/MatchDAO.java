@@ -42,36 +42,6 @@ public class MatchDAO extends SQLiteDBHelper {
 	
 	/*** Méthodes alternatives ***/
 	
-	/* getAllMatchPrevu */
-	public ArrayList<Match> getAllMatchPrevu(Context context){
-		SQLiteDatabase db = this.getReadableDatabase();
-		PersonneDAO personneDAO = new PersonneDAO (context);
-		StadeDAO stadeDAO = new StadeDAO(context);
-		
-		ArrayList<Match> listMatch = new ArrayList<>();
-		
-		// On récupère les matchs dont le score est NULL ('')
-		String query = "SELECT * FROM " + TABLE_MATCHS + " JOIN " + TABLE_JOUER + " USING(" + COL_ID + ") WHERE " + COL_SCORE + " = '';";
-		Cursor cursor = db.rawQuery(query, null);
-		
-		if (cursor.moveToFirst()){
-			do {
-				stade = stadeDAO.retrieveStade(cursor.getInt(1));
-				personne = personneDAO.retrievePersonne(cursor.getInt(2),context);
-				Match jouer = new Match (
-						cursor.getInt(0),
-						stade,
-						personne,
-						cursor.getString(3)
-				);
-				
-				listMatch.add(jouer);
-			} while(cursor.moveToNext());
-		} else Log.d(TAG, "getAllMatch: Liste vide");
-		db.close();
-		return listMatch;
-	}
-	
 	/* getAllMatchFini */
 	public ArrayList<Match> getAllMatchFini(Context context){
 		SQLiteDatabase db = this.getReadableDatabase();
@@ -80,8 +50,49 @@ public class MatchDAO extends SQLiteDBHelper {
 		
 		ArrayList<Match> listMatch = new ArrayList<>();
 		
+		db.query(TABLE_MATCHS, // Nom de table
+				new String[]{COL_ID, COL_STADE, COL_PERSONNE, COL_DATE},
+				COL_ID + "=?",
+				new String[]{String.valueOf(idMatch)}, // j'ai supprimé ici, pourquoi on avait besoin de String.valueOf(idPays) en plus ???
+				null, null, null, null); // Options
+		
 		// On récupère les matchs dont le score est renseigné
-		String query = "SELECT * FROM " + TABLE_MATCHS + " JOIN " + TABLE_JOUER + " USING(" + COL_ID + ") WHERE " + COL_SCORE + ";";
+		String query = "SELECT DISTINCT ID_MATCH, ID_STADE, ID_PERSONNE, DATE_MATCH" +
+						" FROM " + TABLE_MATCHS + " JOIN " + TABLE_JOUER + " USING(" + COL_ID + ")" +
+						" WHERE " + COL_SCORE + " NOT LIKE 'NULL';";
+		Cursor cursor = db.rawQuery(query, null);
+		
+		if (cursor.moveToFirst()){
+			do {
+				stade = stadeDAO.retrieveStade(cursor.getInt(1));
+				personne = personneDAO.retrievePersonne(cursor.getInt(2),context);
+				Match jouer = new Match (
+						cursor.getInt(0),
+						stade,
+						personne,
+						cursor.getString(3)
+				);
+				
+				Log.d(TAG, "getAllMatchFini: new match: " + jouer);
+				listMatch.add(jouer);
+			} while(cursor.moveToNext());
+		} else Log.d(TAG, "getAllMatchFini: Liste vide");
+		db.close();
+		return listMatch;
+	}
+	
+	/* getAllMatchPrevu */
+	public ArrayList<Match> getAllMatchPrevu(Context context){
+		SQLiteDatabase db = this.getReadableDatabase();
+		PersonneDAO personneDAO = new PersonneDAO (context);
+		StadeDAO stadeDAO = new StadeDAO(context);
+		
+		ArrayList<Match> listMatch = new ArrayList<>();
+		
+		// On récupère les matchs dont le score est 'NULL'
+		String query = "SELECT DISTINCT ID_MATCH, ID_STADE, ID_PERSONNE, DATE_MATCH " +
+				" FROM " + TABLE_MATCHS + " JOIN " + TABLE_JOUER + " USING(" + COL_ID + ") " +
+				" WHERE " + COL_SCORE + " = 'NULL';";
 		Cursor cursor = db.rawQuery(query, null);
 		
 		if (cursor.moveToFirst()){
@@ -96,8 +107,10 @@ public class MatchDAO extends SQLiteDBHelper {
 				);
 				
 				listMatch.add(jouer);
+				
+				Log.d(TAG, "getAllMatchPrevu: new match: " + jouer);
 			} while(cursor.moveToNext());
-		} else Log.d(TAG, "getAllMatch: Liste vide");
+		} else Log.d(TAG, "getAllMatchPrevu: Liste vide");
 		db.close();
 		return listMatch;
 	}

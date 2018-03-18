@@ -32,11 +32,7 @@
         android:id="@+id/matchFiniList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-        android:layout_below="@+id/txtAVenir"
-
         android:layout_weight="50">
-
     </ListView>
 
     <TextView
@@ -51,7 +47,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="50">
-
     </ListView>
 
 </LinearLayout>

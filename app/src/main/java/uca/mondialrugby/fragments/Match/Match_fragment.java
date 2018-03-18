@@ -53,16 +53,12 @@ public class Match_fragment extends Fragment {
 		});
 		
 		
-		
-		
 		/* Liste Matchs Finis */
 		MatchDAO matchDAO = new MatchDAO(getContext());
 		ArrayList<Match> matchFinisListe = matchDAO.getAllMatchFini(getContext());
 		ListView matchFiniListView = myView.findViewById(R.id.matchFiniList);
 		final ArrayAdapter<Match> adapterFini = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, matchFinisListe);
 		matchFiniListView.setAdapter(adapterFini);
-		
-		Log.d(TAG, "onCreateView: matchs Finis affichés");
 		
 		// TODO Définir le comportement d'un click sur un élément de la liste
 		matchFiniListView.setOnItemClickListener(
@@ -79,8 +75,6 @@ public class Match_fragment extends Fragment {
 		ListView matchPrevuListView = myView.findViewById(R.id.matchPrevuList);
 		final ArrayAdapter<Match> adapterPrevu = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, matchPrevusListe);
 		matchPrevuListView.setAdapter(adapterPrevu);
-		
-		Log.d(TAG, "onCreateView: matchs Finis affichés");
 		
 		// TODO Définir le comportement d'un click sur un élément de la liste
 		matchPrevuListView.setOnItemClickListener(

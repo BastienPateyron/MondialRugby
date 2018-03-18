@@ -43,11 +43,7 @@ public class Match {
 		
 		// Récupère les 2 équipes du match
 		ArrayList<Jouer> jouerArrayList = jouerDAO.getAllJouerOf("MATCHS", idMatch);
-	
-	    Log.d(TAG, "toString: size list: " + jouerArrayList.size());
-	    
 	    String matchStr = jouerArrayList.get(0).toStringDomicile() + "\t\t\t|\t" + jouerArrayList.get(1).toStringExterieur();
-	    System.out.println(matchStr);
 	    return jouerArrayList.get(0).toStringDomicile() + "\t\t\t|\t" + jouerArrayList.get(1).toStringExterieur();
     }
 
