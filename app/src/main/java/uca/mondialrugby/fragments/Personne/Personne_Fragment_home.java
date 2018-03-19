@@ -82,3 +82,7 @@ public class Personne_Fragment_home extends Fragment {
 
 
 }//fin
+   /* ListView listView = (ListView) myView.findViewById(R.id.generalListe);
+    Personne_Adapter adapter = new Personne_Adapter(getActivity(), listPersonne);
+        listView.setAdapter(adapter);
+                }*/

@@ -1,4 +1,4 @@
-package uca.mondialrugby.fragments.Stade;
+package uca.mondialrugby.fragments.Personne;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -13,48 +13,48 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import uca.mondialrugby.MainActivity;
 import uca.mondialrugby.R;
-import uca.mondialrugby.bdd.StadeDAO;
-import uca.mondialrugby.classes.Stade;
+import uca.mondialrugby.bdd.PersonneDAO;
+import uca.mondialrugby.classes.Personne;
+import uca.mondialrugby.fragments.Personne.Personne_Adapter;
+
 
 /**
  * Created by watson on 19/03/2018.
  */
 
-public class Stade_Adapter extends ArrayAdapter<Stade> {
+public class Personne_Adapter extends ArrayAdapter<Personne> {
 
-    private ArrayList<Stade> stades = new ArrayList<>();
-    private static class StadeHolder /* Objet qui contient les éléments affichés à l'écran */
+    private ArrayList<Personne> personnes = new ArrayList<>();
+    private static class PersonneHolder
     {
-        TextView secteur_nom;
+        TextView personne_nom;
         ImageButton delete_item;
     }
 
-    public Stade_Adapter(Context context, ArrayList<Stade> stades)
+    public Personne_Adapter(Context context, ArrayList<Personne> personnes)
 
     {
-        super(context,0, stades);
-        this.stades = stades;
+        super(context,0, personnes);
+        this.personnes = personnes;
     }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent)
     {
         //On recupere l'objet
-        final Stade stade = getItem(position);
-        StadeHolder viewHolder;
+        final Personne personne = getItem(position);
+        Personne_Adapter.PersonneHolder viewHolder;
 
         if (convertView == null)
         {
-            viewHolder = new StadeHolder();
-            LayoutInflater inflater = LayoutInflater.from(getContext()); /* On désérialise les données du context */
-            convertView = inflater.inflate(R.layout.test,parent,false); /* On désérialise le layout */
-
-            viewHolder.secteur_nom = (TextView) convertView.findViewById(R.id.generique_item_nom); /* On valorise le nom */
+            viewHolder = new Personne_Adapter.PersonneHolder();
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            convertView = inflater.inflate(R.layout.test,parent,false);
+            viewHolder.personne_nom = (TextView) convertView.findViewById(R.id.generique_item_nom);
             viewHolder.delete_item = (ImageButton) convertView.findViewById(R.id.generique_item_trash);
 
 
@@ -63,11 +63,11 @@ public class Stade_Adapter extends ArrayAdapter<Stade> {
         }
         else {
 
-            viewHolder = (StadeHolder) convertView.getTag();
+            viewHolder = (Personne_Adapter.PersonneHolder) convertView.getTag();
         }
         // setText avec notre object
 
-        viewHolder.secteur_nom.setText(stade.getNom());
+        viewHolder.personne_nom.setText(personne.getId());
         viewHolder.delete_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,9 +81,9 @@ public class Stade_Adapter extends ArrayAdapter<Stade> {
                         .setMessage("Are you sure you want to delete this entry?")
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                StadeDAO stadeDAO = new StadeDAO(getContext());
-                                stadeDAO.deleteStade(stade.getId());
-                                stades.remove(position);
+                                PersonneDAO personneDAO = new PersonneDAO(getContext());
+                                personneDAO.deletePersonne(personne.getId());
+                                personnes.remove(position);
                                 notifyDataSetChanged();
                             }
                         })
@@ -102,16 +102,18 @@ public class Stade_Adapter extends ArrayAdapter<Stade> {
             @Override
             public void onClick(View view) {
                 Log.v("ROW: ", "ROW PRESSED");
-                System.out.println(stade.getId());
+                System.out.println(personne.getId());
                 Bundle bundle = new Bundle();
-             //   bundle.putString("id_stade",String.valueOf(stade.getId()));
-                bundle.putString("id", String.valueOf(getItem(position).getId()));
-                System.out.printf("id stade :"+ stade.getId());
-                Stade_fragment_update sfu = new Stade_fragment_update();
-                sfu.setArguments(bundle);
-                ((MainActivity)getContext()).changeFragment(sfu);
+                bundle.putString("id_secteur",String.valueOf(personne.getId()));
+                Personne_Fragment_Update pfu = new Personne_Fragment_Update();
+                pfu.setArguments(bundle);
+                ((MainActivity)getContext()).changeFragment(pfu);
             }
         });
         return convertView;
     }
+
+
+
+
 }
