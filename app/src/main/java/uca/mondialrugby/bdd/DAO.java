@@ -41,7 +41,7 @@ public abstract class DAO extends SQLiteDBHelper {
 
     }
 
-    // TODO Je crois que getId() n'appartiens pas aux classes DAO vu qu'il dépend uniquement de l'objet et pas de la bdd
+    // Je crois que getId() n'appartiens pas aux classes DAO vu qu'il dépend uniquement de l'objet et pas de la bdd
      public String getId(){
         return null;
      };

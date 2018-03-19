@@ -4,10 +4,13 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 
 import uca.mondialrugby.classes.Equipe;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by watson on 04/03/2018.
@@ -28,8 +31,7 @@ public class EquipeDAO extends SQLiteDBHelper {
     /* Get Classement
     * Retourne une liste des équipes classées en fonction de leur nombre de victoires
     * puis de leur score total */
-    
-    
+    // TODO
     public ArrayList<Equipe> getClassement(){
         SQLiteDatabase db = this.getReadableDatabase();
         
@@ -69,7 +71,7 @@ public class EquipeDAO extends SQLiteDBHelper {
 
     public Equipe retrieveEquipe(String id){ // TODO : modifier avec un string
         SQLiteDatabase db = this.getReadableDatabase();
-
+		Equipe equipe = new Equipe();
 
         /* Requete */
         Cursor cursor = db.query(TABLE_EQUIPE, // Nom de table
@@ -77,14 +79,14 @@ public class EquipeDAO extends SQLiteDBHelper {
                 COL_PAYS + "=?",
                 new String[] {id},
                 null, null, null, null); // Options
-        if(cursor != null)
-            cursor.moveToFirst();
-        Equipe equipe = new Equipe (
-                cursor.getString(0),
-                cursor.getString(1)
-        );
-
-        db.close();
+        if(cursor != null) {
+	        cursor.moveToFirst();
+	        equipe.setPays(cursor.getString(0));
+	        equipe.setSurnom(cursor.getString(1));
+        }
+		else Log.d(TAG, "retrieveEquipe: equipe introuvable");
+	
+	    db.close();
         return equipe;
     }
 
