@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class SQLiteDBHelper extends SQLiteOpenHelper {
     protected static final String DATABASE_NAME = "MONDIALRUGBY";
-    private static final int DATABASE_VERSION = 26;      /* A incrémenter quand on modifie cette classe */
+    private static final int DATABASE_VERSION = 39;      /* A incrémenter quand on modifie cette classe */
 
 
 	private Context context;
@@ -21,13 +21,11 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_PERSONNE = "CREATE TABLE PERSONNE" +
             "(" +
             "ID_PERSONNE  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
-            "PAYS_PERSONNE TEXT NOT NULL,"  +
-            "NUMERO INTEGER NOT NULL, "  +
+            "PAYS_PERSONNE TEXT NOT NULL        REFERENCES EQUIPE(PAYS)     ON DELETE CASCADE,"  +
+            "NUMERO INTEGER NOT NULL            REFERENCES POSTE(NUMERO)    ON DELETE CASCADE, "  +
             "NOM_PERSONNE TEXT NOT NULL," +
             "PRENOM_PERSONNE TEXT NOT NULL," +
-            "DATE_NAISSANCE TEXT NOT NULL," +
-            "FOREIGN KEY(PAYS_PERSONNE) REFERENCES EQUIPE(PAYS)" +
-            "FOREIGN KEY(NUMERO) REFERENCES POSTE(NUMERO)" +
+            "DATE_NAISSANCE TEXT NOT NULL" +
             ");";
 
     private static final String CREATE_TABLE_POSTE = "CREATE TABLE POSTE" +
@@ -43,35 +41,31 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
             ");";
 
 
+    // On met les valeurs par défaut à {null} dans le cas ou on supprime un stade
     private static final String CREATE_TABLE_MATCHS = "CREATE TABLE MATCHS" +
             "(" +
             "ID_MATCH INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
-            "ID_STADE INTEGER NOT NULL," +
-            "ID_PERSONNE INTEGER NOT NULL," +
-            "DATE_MATCH TEXT NOT NULL," +
-            "FOREIGN KEY(ID_PERSONNE) REFERENCES PERSONNE(ID_PERSONNE)," +
-            "FOREIGN KEY(ID_STADE) REFERENCES STADE(ID_STADE)" +
+            "ID_STADE INTEGER NOT NULL      REFERENCES STADE(ID_STADE)          ON DELETE CASCADE," +
+            "ID_PERSONNE INTEGER NOT NULL   REFERENCES PERSONNE(ID_PERSONNE)    ON DELETE CASCADE," +
+            "DATE_MATCH TEXT NOT NULL" +
             ");";
 
     private static final String CREATE_TABLE_STADE = "CREATE TABLE STADE" +
             "(" +
-            "ID_STADE  INTEGER PRIMARY KEY  AUTOINCREMENT NOT NULL," +
-            "NOM_STADE TEXT NOT NULL,"  +
-            "NUM_RUE TEXT NOT NULL,"  +
-            "NOM_RUE TEXT NOT NULL,"  +
-            "VILLE TEXT NOT NULL," +
-            "CP TEXT NOT NULL," +
+            "ID_STADE  INTEGER PRIMARY KEY  AUTOINCREMENT NOT NULL ," +
+            "NOM_STADE TEXT NOT NULL  ,"  +
+            "NUM_RUE TEXT NOT NULL    ,"  +
+            "NOM_RUE TEXT NOT NULL    ,"  +
+            "VILLE TEXT NOT NULL      ," +
+            "CP TEXT NOT NULL         ," +
             "NB_PLACE INTEGER NOT NULL" +
-
             ");";
 
     private static final String CREATE_TABLE_JOUER = "CREATE TABLE JOUER" +
             "(" +
-            "PAYS  TEXT  NOT NULL," +
-            "ID_MATCH INTEGER NOT NULL,"  +
-            "SCORE INTEGER DEFAULT NULL,"  +
-            "FOREIGN KEY(PAYS) REFERENCES EQUIPE(PAYS) ON DELETE CASCADE," +
-            "FOREIGN KEY(ID_MATCH) REFERENCES STADE(ID_MATCH) ON DELETE CASCADE" +
+            "PAYS  TEXT  NOT NULL           REFERENCES EQUIPE(PAYS)     ON DELETE CASCADE," +
+            "ID_MATCH INTEGER NOT NULL      REFERENCES STADE(ID_STADE)  ON DELETE CASCADE,"  +
+            "SCORE INTEGER DEFAULT NULL"  +
             ");";
 
 
@@ -79,13 +73,15 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     /* Inserts */
     /******** Stade ********/
 
-    private static final String INSERT_STADES = "INSERT INTO STADE (NOM_STADE, NUM_RUE, NOM_RUE, VILLE, CP, NB_PLACE) VALUES " +
+    private static final String INSERT_STADES =
+		    "INSERT INTO STADE (NOM_STADE, NUM_RUE, NOM_RUE, VILLE, CP, NB_PLACE) VALUES " +
             "('Marcel Michelin', 12, 'avenue michelin', 'Clermont-Ferrand', '63000', 20000)," +
             "('Marcel-Deflandre', 15, 'rue musclor', 'La Rochelle', '17000', 16000)," +
 		    "('Mayol', 1, 'Quai Joseph Lafontan', 'Toulon', '83000', 18200);";
 	
     /******** Personne ********/
-    private static final String INSERT_PERSONNES = "INSERT INTO PERSONNE (PAYS_PERSONNE, NUMERO, NOM_PERSONNE, PRENOM_PERSONNE, DATE_NAISSANCE) VALUES " +
+    private static final String INSERT_PERSONNES =
+		    "INSERT INTO PERSONNE (PAYS_PERSONNE, NUMERO, NOM_PERSONNE, PRENOM_PERSONNE, DATE_NAISSANCE) VALUES " +
 		    // Arbitres
 		    "('FRANCE',     0,  'LEPRAT',   'Fabrice',  '03/11/1987'),"     +
 		    "('AUSTRALIE',  0,  'REEVES',   'Mathiew',  '04/09/1978'),"     +
@@ -244,10 +240,25 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     
     public Context getContext(){ return this.context; }
 
-
+	@Override
+    public SQLiteDatabase getReadableDatabase(){
+		SQLiteDatabase db = super.getReadableDatabase();
+		db.setForeignKeyConstraintsEnabled(true);
+    	return db;
+	}
+	
+	@Override
+	public SQLiteDatabase getWritableDatabase(){
+		SQLiteDatabase db = super.getReadableDatabase();
+		db.setForeignKeyConstraintsEnabled(true);
+		return db;
+	}
+	
+	
     /* Methodes */
     @Override
     public void onCreate(SQLiteDatabase db) {
+    	
         db.execSQL(CREATE_TABLE_PERSONNE);
         db.execSQL(CREATE_TABLE_POSTE);
         db.execSQL(CREATE_TABLE_MATCHS);
@@ -273,6 +284,8 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+	   
+	    
         db.execSQL("DROP TABLE IF EXISTS " + "PERSONNE");
         db.execSQL("DROP TABLE IF EXISTS " + "POSTE");
         db.execSQL("DROP TABLE IF EXISTS " + "EQUIPE");

@@ -135,8 +135,9 @@ public class PersonneDAO extends SQLiteDBHelper {
 
         if (cursor.moveToFirst()){
             do {
-    
-                Equipe equipe = equipeDAO.retrieveEquipe(cursor.getString(1));
+	            Log.d(TAG, "getAllPersonne: " + cursor.getString(1));
+	            
+	            Equipe equipe = equipeDAO.retrieveEquipe(cursor.getString(1));
                 Poste poste = posteDAO.retrievePoste (cursor.getString(2));
                 
                 Personne personne = new Personne (
