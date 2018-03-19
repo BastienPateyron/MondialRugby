@@ -122,15 +122,15 @@ public class StadeDAO extends SQLiteDBHelper {
     }
 
     // deleteStade
-    public void deleteClient(Context context, int id_client)
+    public void deleteStade(int id_stade)
     {
 
         //TODO : supprimer les matchs delete on cascade
 
         SQLiteDatabase db = this.getWritableDatabase();
 
-        // TODO Supprimer les interventions liées au Client
-        db.delete(TABLE_STADE, COL_ID + "=" + id_client, null);
+   
+        db.delete(TABLE_STADE, COL_ID + "=" + id_stade, null);
 
         db.close();
     }

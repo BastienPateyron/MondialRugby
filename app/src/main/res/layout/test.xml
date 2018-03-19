@@ -1,0 +1,30 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:descendantFocusability="blocksDescendants"
+    >
+
+
+
+    <TextView
+        android:id="@+id/generique_item_nom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:text="name"
+        android:textSize="18dp"
+        android:textStyle="bold"
+                                />
+
+    <ImageButton
+        android:id="@+id/generique_item_trash"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/delete"
+        android:background="@android:color/transparent"
+        android:tint="@color/trash_button"/>
+</RelativeLayout>

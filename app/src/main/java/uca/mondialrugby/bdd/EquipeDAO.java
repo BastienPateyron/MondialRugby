@@ -97,7 +97,7 @@ public class EquipeDAO extends SQLiteDBHelper {
 
 
     // deleteEquipe
-    public void deleteClient(Context context, int id_client)
+    public void deleteEquipe(String id_equipe)
     {
 
         //TODO : supprimer delete on cascade les matchs
@@ -105,7 +105,7 @@ public class EquipeDAO extends SQLiteDBHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
 
-        db.delete(TABLE_EQUIPE, COL_PAYS + "=" + id_client, null);
+        db.delete(TABLE_EQUIPE, COL_PAYS + "='" + id_equipe + "'", null);
 
         db.close();
     }
