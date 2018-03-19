@@ -62,19 +62,19 @@ public class Match_fragment_ajout extends Fragment {
 		
 		// Spinner Arbitre
 		final Spinner spinnerArbitre = myView.findViewById(R.id.arbitreSpinner);
-		final ArrayList<Personne> listArbitres;
+		final ArrayList<Personne> listPersonne;
 		final PersonneDAO personneDAO = new PersonneDAO(context);
-		listArbitres = personneDAO.getAllArbitres(context);
+		listPersonne = personneDAO.getAllPersonne(context);
 		
-		final ArrayAdapter<Personne> adapterArbitre = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, listArbitres);
-		adapterArbitre.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinnerArbitre.setAdapter(adapterArbitre);
+		final ArrayAdapter<Personne> adapterPersonne = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, listPersonne);
+		adapterPersonne.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		
 		
 		spinnerArbitre.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-				if (adapterArbitre.getItem(position).getId() == -1) {
+				if (adapterPersonne.getItem(position).getId() == -1) {
 				
-				} else idPersonne = adapterArbitre.getItem(position).getId();
+				} else idPersonne = adapterPersonne.getItem(position).getId();
 			}
 			
 			public void onNothingSelected(AdapterView<?> parent) {
