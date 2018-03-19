@@ -50,7 +50,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
             "ID_PERSONNE INTEGER NOT NULL," +
             "DATE_MATCH TEXT NOT NULL," +
             "FOREIGN KEY(ID_PERSONNE) REFERENCES PERSONNE(ID_PERSONNE)," +
-            "FOREIGN KEY(ID_STADE) REFERENCES STADE(ID_STADE)" +
+            "FOREIGN KEY(ID_STADE) REFERENCES STADE(ID_STADE) ON DELETE CASCADE" +
             ");";
 
     private static final String CREATE_TABLE_STADE = "CREATE TABLE STADE" +
@@ -271,6 +271,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
     }
 
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + "PERSONNE");
@@ -282,4 +283,5 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         
         onCreate(db);
     }
+
 }

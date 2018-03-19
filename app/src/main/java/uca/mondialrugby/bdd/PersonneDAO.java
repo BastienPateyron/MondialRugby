@@ -38,8 +38,8 @@ public class PersonneDAO extends SQLiteDBHelper {
         ContentValues values = new ContentValues();
 
         values.put(COL_ID,personne.getId());
+        values.put(COL_POSTE,personne.getPoste().getNumero());
         values.put(COL_PERS_PAYS,personne.getEquipe().getPays());
-        values.put(COL_POSTE,personne.getPoste().getLibelle());
         values.put(COL_NOM,personne.getNom());
         values.put(COL_PRENOM,personne.getPrenom());
         values.put(COL_DATE_N,personne.getDate());

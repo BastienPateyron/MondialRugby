@@ -128,7 +128,7 @@ public class StadeDAO extends SQLiteDBHelper {
         //TODO : supprimer les matchs delete on cascade
 
         SQLiteDatabase db = this.getWritableDatabase();
-
+       // db.execSQL("PRAGMA foreign_keys;");
    
         db.delete(TABLE_STADE, COL_ID + "=" + id_stade, null);
 

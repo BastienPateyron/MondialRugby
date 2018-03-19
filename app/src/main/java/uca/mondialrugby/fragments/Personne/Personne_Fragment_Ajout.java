@@ -153,7 +153,7 @@ public class Personne_Fragment_Ajout extends Fragment {
 
                 String nom = value_nom.getText().toString();
                 String prenom = value_prenom.getText().toString();
-                System.out.println("id poste" + idPoste);
+                System.out.println(" ********id poste" + idPoste);
                  poste =  posteDAO.retrievePoste(idPoste);
 
                  equipe = equipeDAO.retrieveEquipe(idEquipe);
