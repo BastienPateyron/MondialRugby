@@ -56,24 +56,13 @@ public class Stade_fragment_home extends Fragment {
     }
 
     public void initListStade () {
+
         StadeDAO stadeDAO = new StadeDAO(getContext());
         listStade = stadeDAO.getAllStade();
 
         ListView listView = (ListView) myView.findViewById(R.id.generalListe);
-        final ArrayAdapter<Stade> adapter = new ArrayAdapter<Stade>(myView.getContext(), android.R.layout.simple_list_item_1, listStade);
+        Stade_Adapter adapter = new Stade_Adapter(getActivity(), listStade);
         listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("ID", String.valueOf(adapter.getItem(position).getId()));
-
-                Bundle bundle = new Bundle();
-                bundle.putString("id", String.valueOf(adapter.getItem(position).getId()));
-                Stade_fragment_update usf = new Stade_fragment_update();
-                usf.setArguments(bundle);
-                ((MainActivity) getContext()).changeFragment(usf);
-            }
-        });
     }
 }

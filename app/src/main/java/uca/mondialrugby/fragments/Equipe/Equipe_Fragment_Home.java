@@ -3,21 +3,18 @@ package uca.mondialrugby.fragments.Equipe;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
-
 import uca.mondialrugby.bdd.EquipeDAO;
 import uca.mondialrugby.classes.Equipe;
 import uca.mondialrugby.MainActivity;
 import uca.mondialrugby.R;
+
 
 
 /**
@@ -60,22 +57,7 @@ public class Equipe_Fragment_Home extends Fragment{
         listEquipe = equipeDAO.getAllEquipe();
 
         ListView listView = (ListView) myView.findViewById(R.id.generalListe);
-        final ArrayAdapter<Equipe> adapter = new ArrayAdapter<Equipe>(myView.getContext(), android.R.layout.simple_list_item_1, listEquipe);
+        Equipe_Adapter adapter = new Equipe_Adapter(getActivity(), listEquipe);
         listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("ID", (adapter.getItem(position).getPays()));
-
-                Bundle bundle = new Bundle();
-                bundle.putString("id", (adapter.getItem(position).getPays()));
-                Equipe_Frament_Update efu = new Equipe_Frament_Update();
-                efu.setArguments(bundle);
-
-                ((MainActivity) getContext()).changeFragment(efu);
-            }
-
-        });
     }
 }
