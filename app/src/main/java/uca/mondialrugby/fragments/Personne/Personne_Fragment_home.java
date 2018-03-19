@@ -53,12 +53,12 @@ public class Personne_Fragment_home extends Fragment {
 
 
 
-        initListStade();
+        initListPersonne();
 
         return myView;
     }
 
-    public void initListStade () {
+    public void initListPersonne () {
         PersonneDAO personneDAO = new PersonneDAO(getContext());
         listPersonne = personneDAO.getAllPersonne(getContext());
         ListView listView = (ListView) myView.findViewById(R.id.generalListe);
