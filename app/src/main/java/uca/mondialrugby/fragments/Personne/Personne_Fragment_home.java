@@ -46,8 +46,8 @@ public class Personne_Fragment_home extends Fragment {
         add_part.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Personne_Fragment_Ajout pfs = new Personne_Fragment_Ajout();
-//                ((MainActivity)getActivity()).changeFragment(pfs);
+                Personne_Fragment_Ajout pfs = new Personne_Fragment_Ajout();
+               ((MainActivity)getActivity()).changeFragment(pfs);
             }
         });
 
@@ -61,8 +61,12 @@ public class Personne_Fragment_home extends Fragment {
     public void initListStade () {
         PersonneDAO personneDAO = new PersonneDAO(getContext());
         listPersonne = personneDAO.getAllPersonne(getContext());
-
         ListView listView = (ListView) myView.findViewById(R.id.generalListe);
+        Personne_Adapter adapter = new Personne_Adapter(getActivity(), listPersonne);
+        listView.setAdapter(adapter);
+    }
+
+      /*  ListView listView = (ListView) myView.findViewById(R.id.generalListe);
         final ArrayAdapter<Personne> adapter = new ArrayAdapter<Personne>(myView.getContext(), android.R.layout.simple_list_item_1, listPersonne);
         listView.setAdapter(adapter);
 
@@ -77,12 +81,8 @@ public class Personne_Fragment_home extends Fragment {
                 pfu.setArguments(bundle);
                 ((MainActivity) getContext()).changeFragment(pfu);
             }
-        });
-    }
+        });*/
+
 
 
 }//fin
-   /* ListView listView = (ListView) myView.findViewById(R.id.generalListe);
-    Personne_Adapter adapter = new Personne_Adapter(getActivity(), listPersonne);
-        listView.setAdapter(adapter);
-                }*/

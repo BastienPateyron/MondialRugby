@@ -67,7 +67,7 @@ public class Personne_Adapter extends ArrayAdapter<Personne> {
         }
         // setText avec notre object
 
-        viewHolder.personne_nom.setText(personne.getId());
+        viewHolder.personne_nom.setText(personne.getNom() +" " + personne.getPrenom());
         viewHolder.delete_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,7 +104,7 @@ public class Personne_Adapter extends ArrayAdapter<Personne> {
                 Log.v("ROW: ", "ROW PRESSED");
                 System.out.println(personne.getId());
                 Bundle bundle = new Bundle();
-                bundle.putString("id_secteur",String.valueOf(personne.getId()));
+                bundle.putString("id", String.valueOf(getItem(position).getId()));
                 Personne_Fragment_Update pfu = new Personne_Fragment_Update();
                 pfu.setArguments(bundle);
                 ((MainActivity)getContext()).changeFragment(pfu);

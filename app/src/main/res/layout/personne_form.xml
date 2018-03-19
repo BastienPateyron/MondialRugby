@@ -1,0 +1,92 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/line_nom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nom"
+        app:hintTextAppearance="@style/Widget.AppCompat.EditText">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/value_nom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/line_prenom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line_nom"
+        android:hint="Prenom"
+        app:hintTextAppearance="@style/Widget.AppCompat.EditText">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/value_prenom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/line_prenom"
+        android:text="Date de naisance :"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:id="@+id/textView2" />
+
+    <EditText
+        android:id="@+id/value_date_naissance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView2"
+        android:focusable="false" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/value_date_naissance"
+        android:text="Selectionner un poste : "
+        android:textSize="16sp"
+        android:id="@+id/textView3"></TextView>
+
+    <Spinner
+        android:id="@+id/spinner_poste"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/textView3" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/spinner_poste"
+        android:text="Selectionner une equipe : "
+        android:textSize="16sp"
+        android:id="@+id/textView4"></TextView>
+
+    <Spinner
+        android:id="@+id/spinner_equipe"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView4" />
+
+
+</RelativeLayout>
+
+
+

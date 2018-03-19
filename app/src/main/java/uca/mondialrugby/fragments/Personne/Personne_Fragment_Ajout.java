@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,9 +38,10 @@ import uca.mondialrugby.classes.Poste;
  */
 
 public class Personne_Fragment_Ajout extends Fragment {
-  /*  String idEquipe;
+    String idEquipe;
     String idPoste;
     View myView;
+    private String editext_state;
     boolean validate = true;
     Context context;
     private EditText dateNaissance;
@@ -55,8 +57,8 @@ public class Personne_Fragment_Ajout extends Fragment {
         button_add_personne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText value_nom = (EditText) myView.findViewById(R.id.value_nom_personne);
-                EditText value_prenom= (EditText) myView.findViewById(R.id.value_prenom_personne);
+                EditText value_nom = (EditText) myView.findViewById(R.id.value_nom);
+                EditText value_prenom= (EditText) myView.findViewById(R.id.value_prenom);
 
 
                 String nom = value_nom.getText().toString();
@@ -74,10 +76,10 @@ public class Personne_Fragment_Ajout extends Fragment {
                         updateLabel();
                     }
                 };
-                //DATE Match
+                //DATE naissance
 
 
-                dateNaissance = (EditText) myView.findViewById(R.id.dateMatch);
+                dateNaissance = (EditText) myView.findViewById(R.id.value_date_naissance);
                 final DatePickerDialog datePicker_match = new DatePickerDialog(context, R.style.DatePicker, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
                 dateNaissance.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -89,32 +91,8 @@ public class Personne_Fragment_Ajout extends Fragment {
                     }
                 });
 
-
-
-                // Spinner Arbitre
-                final Spinner spinnerEquipe = myView.findViewById(R.id.equipeSpinner); // Création du spinner
-                final ArrayList<Equipe> listEquipe;
-                final EquipeDAO equipeDAO = new EquipeDAO(context);
-                listEquipe = equipeDAO.getAllEquipe();
-
-                final ArrayAdapter<Equipe> adapterEquipe = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, listEquipe);
-                adapterEquipe.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-
-                spinnerEquipe.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        if (adapterEquipe.getItem(position).getPays() == null) {
-
-                        } else idEquipe = adapterEquipe.getItem(position).getPays();
-                    }
-
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });// fin spinner
-
                 // Spinner Personne
-                final Spinner spinnerPoste = myView.findViewById(R.id.posteSpinner);
+                final Spinner spinnerPoste = myView.findViewById(R.id.spinner_poste);
                 final ArrayList<Poste> listPoste;
                 final PosteDAO posteDAO = new PosteDAO(context);
                 listPoste = posteDAO.getAllPoste();
@@ -135,6 +113,36 @@ public class Personne_Fragment_Ajout extends Fragment {
 
                     }
                 });
+
+                // Spinner equipe
+                final Spinner spinnerEquipe = myView.findViewById(R.id.spinner_equipe); // Création du spinner
+                final ArrayList<Equipe> listEquipe;
+                final EquipeDAO equipeDAO = new EquipeDAO(context);
+                listEquipe = equipeDAO.getAllEquipe();
+
+                final ArrayAdapter<Equipe> adapterEquipe = new ArrayAdapter<Equipe>(context, android.R.layout.simple_spinner_item, listEquipe);
+                adapterEquipe.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinnerEquipe.setAdapter(adapterEquipe);
+
+                /*spinnerEquipe.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        if (adapterEquipe.getItem(position).getPays().isEmpty()) {
+
+                        } else idEquipe = adapterEquipe.getItem(position).getPays();
+                    }*/
+                spinnerEquipe.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Log.i("ID",(adapterEquipe.getItem(position).getPays()));
+
+                            Bundle bundle = new Bundle();
+                            bundle.putString("id", (adapterEquipe.getItem(position).getPays())); }
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });// fin spinner
+
+
 
                 Equipe equipe = equipeDAO.retrieveEquipe(idEquipe); // TODO changer le parametre avec un string :: fait un bug peut venir de la
                 Poste poste =  posteDAO.retrievePoste(idPoste); // TODO pareil
@@ -180,10 +188,10 @@ public class Personne_Fragment_Ajout extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
 
         // TODO Adapter une fois la saisie de DATE géree
-//        if (editext_state.equals("DEBUT_CONTRAT")) {
-//            date_debut_contrat.setText(sdf.format(myCalendar.getTime()));
-//        }
+             if (editext_state.equals("DEBUT_CONTRAT")) {
+            dateNaissance.setText(sdf.format(myCalendar.getTime()));
+       }
 
     }
-*/
+
 }//fin
