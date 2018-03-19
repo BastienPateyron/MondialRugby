@@ -17,7 +17,7 @@ public class Poste {
 
     @Override
     public String toString() {
-        return "Poste{" + "numero='" + numero + '\'' + ", libelle='" + libelle + '\'' + '}';
+        return "( " + numero + " )\t\t" + libelle;
     }
 
     public String getNumero() {
