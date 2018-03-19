@@ -282,6 +282,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
     }
 
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 	   
@@ -295,4 +296,5 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         
         onCreate(db);
     }
+
 }
