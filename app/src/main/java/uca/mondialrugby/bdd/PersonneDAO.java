@@ -166,12 +166,13 @@ public class PersonneDAO extends SQLiteDBHelper {
     }
 
     // deleteStade
-    public void deleteClient(Context context, int id_client)
+    public void deletePersonne( int id_personne)
     {
+
 
         SQLiteDatabase db = this.getWritableDatabase();
 
-        db.delete(TABLE_PERSONNE, COL_ID + "=" + id_client, null);
+        db.delete(TABLE_PERSONNE, COL_ID + "=" + id_personne, null);
 
         db.close();
     }

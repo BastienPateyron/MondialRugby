@@ -104,7 +104,8 @@ public class Equipe_Adapter extends ArrayAdapter<Equipe> {
                 Log.v("ROW: ", "ROW PRESSED");
                 System.out.println(equipe.getPays());
                 Bundle bundle = new Bundle();
-                bundle.putString("id_secteur",String.valueOf(equipe.getPays()));
+                bundle.putString("id_stade",(equipe.getPays()));
+                System.out.printf(equipe.getPays());
                 Equipe_Frament_Update efu = new Equipe_Frament_Update();
                 efu.setArguments(bundle);
                 ((MainActivity)getContext()).changeFragment(efu);
