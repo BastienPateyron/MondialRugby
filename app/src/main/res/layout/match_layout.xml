@@ -12,9 +12,10 @@
 
         <TextView
             android:id="@+id/matchFiniTxt"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:gravity="center"
             android:text="Matchs terminés"
             android:textStyle="bold" />
 
@@ -36,12 +37,12 @@
     </ListView>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@color/colorPrimary"
         android:text="Matchs à venir"
-        android:textStyle="bold"
-        android:paddingTop="20dp"/>
+        android:textStyle="bold"/>
 
     <ListView
         android:id="@+id/matchPrevuList"

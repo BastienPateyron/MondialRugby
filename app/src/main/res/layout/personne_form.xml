@@ -40,7 +40,6 @@
         android:layout_below="@+id/line_prenom"
         android:text="Date de naisance :"
         android:textSize="16sp"
-        android:textStyle="bold"
         android:id="@+id/textView2" />
 
     <EditText

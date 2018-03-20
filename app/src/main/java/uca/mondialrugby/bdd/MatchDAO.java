@@ -50,12 +50,6 @@ public class MatchDAO extends SQLiteDBHelper {
 		
 		ArrayList<Match> listMatch = new ArrayList<>();
 		
-		/*db.query(TABLE_MATCHS, // Nom de table
-				new String[]{COL_ID, COL_STADE, COL_PERSONNE, COL_DATE},
-				COL_ID + "=?",
-				new String[]{String.valueOf(idMatch)}, // j'ai supprimé ici, pourquoi on avait besoin de String.valueOf(idPays) en plus ???
-				null, null, null, null); // Options*/
-		
 		// On récupère les matchs dont le score est renseigné
 		String query = "SELECT DISTINCT ID_MATCH, ID_STADE, ID_PERSONNE, DATE_MATCH" +
 						" FROM " + TABLE_MATCHS + " JOIN " + TABLE_JOUER + " USING(" + COL_ID + ")" +

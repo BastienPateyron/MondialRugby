@@ -44,11 +44,12 @@ public class Match_fragment_ajout extends Fragment {
 	private EditText dateMatch;
 	private Calendar myCalendar = Calendar.getInstance();
 	
-	private int idPersonne;
+	private int idArbitre;
 	private int idStade;
 	private int idMatch;
 	private View myView;
 	private Context context;
+	private String date_match_default;
 	
 	
 	public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
@@ -58,30 +59,6 @@ public class Match_fragment_ajout extends Fragment {
 		context = myView.getContext();
 
 //		Bundle bundle = this.getArguments();
-		
-		
-		// Spinner Arbitre
-		final Spinner spinnerArbitre = myView.findViewById(R.id.arbitreSpinner);
-		final ArrayList<Personne> listPersonne;
-		final PersonneDAO personneDAO = new PersonneDAO(context);
-		listPersonne = personneDAO.getAllPersonne(context);
-		
-		final ArrayAdapter<Personne> adapterPersonne = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, listPersonne);
-		adapterPersonne.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		
-		
-		spinnerArbitre.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-				if (adapterPersonne.getItem(position).getId() == -1) {
-				
-				} else idPersonne = adapterPersonne.getItem(position).getId();
-			}
-			
-			public void onNothingSelected(AdapterView<?> parent) {
-			
-			}
-		});
-		
 		
 		// Spinner Stade
 		final Spinner spinnerStade = myView.findViewById(R.id.stadeSpinner);
@@ -106,6 +83,36 @@ public class Match_fragment_ajout extends Fragment {
 			}
 		});
 		
+		// Spinner Arbitre
+		final Spinner spinnerArbitre = myView.findViewById(R.id.arbitreSpinner);
+		final ArrayList<Personne> listeArbitres;
+		final PersonneDAO personneDAO = new PersonneDAO(context);
+		listeArbitres = personneDAO.getAllArbitres(context);
+		
+		final ArrayAdapter<Personne> adapterArbitres = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, listeArbitres);
+		adapterArbitres.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinnerArbitre.setAdapter(adapterArbitres);
+		
+		
+		spinnerArbitre.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				if (adapterArbitres.getItem(position).getId() == -1) {
+				
+				} else idArbitre = adapterArbitres.getItem(position).getId();
+			}
+			public void onNothingSelected(AdapterView<?> parent) {
+			
+			}
+		});
+		
+		
+		// TODO 1- Spinner DOMICILE
+		
+		
+		// TODO 2- SPINNER EXTERIEUR
+		
+		
+		
 		//DATE PICKER SETTINGS
 		final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 			@Override
@@ -120,15 +127,13 @@ public class Match_fragment_ajout extends Fragment {
 		//DATE Match
 		
 		
-		dateMatch = (EditText) myView.findViewById(R.id.dateMatch);
+		dateMatch = (EditText) myView.findViewById(R.id.dateMatchInput);
 		final DatePickerDialog datePicker_match = new DatePickerDialog(context, R.style.DatePicker, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
 		dateMatch.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				String editext_state = "Date du match";     // Servira peut être
+				date_match_default = "DATE_MATCH";     // Servira peut être
 				datePicker_match.show();
-				
-				// TODO la selection sur le calendrier ne met pas la date dans le champ
 			}
 		});
 		
@@ -141,19 +146,15 @@ public class Match_fragment_ajout extends Fragment {
 				
 				// Création d'un match
 				
-				
-				System.out.println("Id Personne: " + idPersonne);
+				System.out.println("Id Personne: " + idArbitre);
 				PersonneDAO personneDAO = new PersonneDAO(context);
-				Personne personne = personneDAO.retrievePersonne(idPersonne, context);
-				
+				Personne personne = personneDAO.retrievePersonne(idArbitre, context);
 				
 				System.out.println("Id Stade: " + idStade);
 				Stade stade = stadeDAO.retrieveStade(idStade);
 				
-				
 				// Recupérer les dates
 				System.out.println("Date Debut: " + dateMatch.getText());
-				
 				
 				Match match = new Match(
 						idMatch,
@@ -168,15 +169,13 @@ public class Match_fragment_ajout extends Fragment {
 						matchDAO.createMatch(match);
 						Log.d(TAG, "Ajout match");
 						((MainActivity) context).changeFragment(new Match_fragment()); // TODO : changer le fragment
-						Toast.makeText(context, "Match ajoutée", Toast.LENGTH_SHORT).show();
+						Toast.makeText(context, "Match ajouté", Toast.LENGTH_SHORT).show();
 					}
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
 			}
-			
 		});
-		
 		
 		Button buttonNeg = (Button) myView.findViewById(R.id.matchBouttonNegatif);
 		buttonNeg.setOnClickListener(new View.OnClickListener() {
@@ -184,8 +183,7 @@ public class Match_fragment_ajout extends Fragment {
 			public void onClick(View v) {
 				
 				((MainActivity) getActivity()).changeFragment(new Match_fragment());
-				
-				
+	
 			}
 		});
 		
@@ -202,19 +200,21 @@ public class Match_fragment_ajout extends Fragment {
 		String du_jour = sdf.format(date_du_Jour);
 		date_du_Jour = sdf.parse(du_jour);
 		Date matchDate = sdf.parse(dateMatch);
-		
-		
-		if (match.getStade().equals("")) {
+		Log.d(TAG, "champsRemplis: date_du_jour: " + date_du_Jour);
+		Log.d(TAG, "champsRemplis: matchDate: " + matchDate);
+		if (match.getStade().equals(null)) {
 			Toast.makeText(context, "Stade manquant", Toast.LENGTH_SHORT).show();
 			isSet = false;
-		} else if (match.getPersonne().equals("")) {
+		} else if (match.getPersonne().equals(null)) {
 			Toast.makeText(context, "Arbitre manquant", Toast.LENGTH_SHORT).show();
 			isSet = false;
-		} else if (matchDate.compareTo(date_du_Jour) > 0) {
-			Toast.makeText(context, "Date de début après la date de fin", Toast.LENGTH_SHORT).show();
+		} else if (matchDate.compareTo(date_du_Jour) < 0) {
+			Toast.makeText(context, "Date de début posterieure a la date de fin", Toast.LENGTH_SHORT).show();
+			isSet = false;
+		} else if (dateMatch.isEmpty()) {
+			Toast.makeText(context, "Saisissez une date pour le match", Toast.LENGTH_SHORT).show();
 			isSet = false;
 		}
-		
 		return isSet;
 	}
 	
@@ -223,12 +223,9 @@ public class Match_fragment_ajout extends Fragment {
 	private void updateLabel() {
 		String myFormat = "dd/MM/yyyy"; //In which you need put here
 		SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
-		
-		// TODO Adapter une fois la saisie de DATE géree
-//        if (editext_state.equals("DEBUT_CONTRAT")) {
-//            date_debut_contrat.setText(sdf.format(myCalendar.getTime()));
-//        }
-	
+		if (date_match_default.equals("DATE_MATCH")) {
+			dateMatch.setText(sdf.format(myCalendar.getTime()));
+		}
+
 	}
-	
 }//fin
