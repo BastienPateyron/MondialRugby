@@ -59,7 +59,7 @@ public class StadeDAO extends SQLiteDBHelper {
 
         /* Requete */
         Cursor cursor = db.query(TABLE_STADE, // Nom de table
-                new String[] {COL_ID, COL_NOM, COL_NUM_RUE, COL_NOM_RUE, COL_CP, COL_VILLE, COL_PLACE},
+                new String[] {COL_ID, COL_NOM, COL_NUM_RUE, COL_NOM_RUE, COL_VILLE, COL_CP, COL_PLACE},
                 COL_ID + "=?",
                 new String[] {String.valueOf(id)},
                 null, null, null, null); // Options
@@ -73,7 +73,7 @@ public class StadeDAO extends SQLiteDBHelper {
         cursor.getString(4),
         cursor.getString(5),
         cursor.getInt(6) );
-
+	    
         db.close();
         return stade;
     }
