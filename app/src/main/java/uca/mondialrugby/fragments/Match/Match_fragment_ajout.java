@@ -23,6 +23,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import uca.mondialrugby.bdd.EquipeDAO;
+import uca.mondialrugby.bdd.JouerDAO;
+import uca.mondialrugby.classes.Equipe;
+import uca.mondialrugby.classes.Jouer;
 import uca.mondialrugby.classes.Match;
 import uca.mondialrugby.classes.Personne;
 import uca.mondialrugby.classes.Stade;
@@ -47,6 +51,8 @@ public class Match_fragment_ajout extends Fragment {
 	private int idArbitre;
 	private int idStade;
 	private int idMatch;
+	private String domicile;
+	private String exterieur;
 	private View myView;
 	private Context context;
 	private String date_match_default;
@@ -107,10 +113,43 @@ public class Match_fragment_ajout extends Fragment {
 		
 		
 		// TODO 1- Spinner DOMICILE
+		final Spinner spinnerDomicile = myView.findViewById(R.id.equipeDomicileSpinner);
+		final ArrayList<Equipe> listeEquipes;
+		final EquipeDAO equipeDAO = new EquipeDAO(context);
+		listeEquipes = equipeDAO.getAllEquipe();
 		
+		final ArrayAdapter<Equipe> adapterDomicile = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, listeEquipes);
+		adapterDomicile.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinnerDomicile.setAdapter(adapterDomicile);
+		
+		spinnerDomicile.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				if (position == -1) {
+					Log.d(TAG, "onItemSelected: position = -1");
+				} else domicile = adapterDomicile.getItem(position).getPays();
+			}
+			public void onNothingSelected(AdapterView<?> parent) {
+			
+			}
+		});
 		
 		// TODO 2- SPINNER EXTERIEUR
+		final Spinner spinnerExterieur = myView.findViewById(R.id.equipeExterieurSpinner);
 		
+		final ArrayAdapter<Equipe> adapterExterieur = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, listeEquipes);
+		adapterExterieur.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinnerExterieur.setAdapter(adapterExterieur);
+		
+		spinnerExterieur.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				if (position == -1) {
+					Log.d(TAG, "onItemSelected: position = -1");
+				} else exterieur = adapterExterieur.getItem(position).getPays();
+			}
+			public void onNothingSelected(AdapterView<?> parent) {
+			
+			}
+		});
 		
 		
 		//DATE PICKER SETTINGS
@@ -163,10 +202,27 @@ public class Match_fragment_ajout extends Fragment {
 						dateMatch.getText().toString()
 				);
 				
-				try {
-					if (champsRemplis(match)) { // Si tout les champs sont bien remplis on réalise l'insertion
+				// Creation des occurences de jouer participants[0] = domicile et participants [1] = invité / extérieur
+				ArrayList<Jouer> participants = new ArrayList<>();
+				Log.d(TAG, "onClick: Domicile: " + domicile);
+				Jouer jouer = new Jouer(equipeDAO.retrieveEquipe(domicile));
+				participants.add(jouer);
+				Log.d(TAG, "onClick: Exterieur: " + exterieur);
+				jouer = new Jouer(equipeDAO.retrieveEquipe(exterieur));
+				participants.add(jouer);
+				
+				
+				try {   // TODO ajouter les 2 equipes en parametre
+					if (champsRemplis(match, participants)) { // Si tout les champs sont bien remplis on réalise l'insertion
 						MatchDAO matchDAO = new MatchDAO(context);
-						matchDAO.createMatch(match);
+						JouerDAO jouerDAO = new JouerDAO(context);
+						
+						matchDAO.createMatch(match);                        // Insertion du match dans la bdd
+						Match lastMatch = matchDAO.getLastMatch(context);   // On récupère le match avec son id auto-généré
+						for(Jouer j : participants){
+							j.setMatch(lastMatch);      // On affecte le match créé aux 2 occurences de jouer
+							jouerDAO.createJouer(j);    // On insère le match crée
+						}
 						Log.d(TAG, "Ajout match");
 						((MainActivity) context).changeFragment(new Match_fragment()); // TODO : changer le fragment
 						Toast.makeText(context, "Match ajouté", Toast.LENGTH_SHORT).show();
@@ -191,7 +247,7 @@ public class Match_fragment_ajout extends Fragment {
 	}
 	
 	// Vérifications
-	private boolean champsRemplis(Match match) throws ParseException {
+	private boolean champsRemplis(Match match, ArrayList<Jouer> participants) throws ParseException {
 		boolean isSet = true;
 		String dateMatch = match.getDateMatch();
 		String myFormat = "dd/MM/yyyy"; //In which you need put here
@@ -208,8 +264,13 @@ public class Match_fragment_ajout extends Fragment {
 		} else if (match.getPersonne().equals(null)) {
 			Toast.makeText(context, "Arbitre manquant", Toast.LENGTH_SHORT).show();
 			isSet = false;
-		} else if (matchDate.compareTo(date_du_Jour) < 0) {
-			Toast.makeText(context, "Date de début posterieure a la date de fin", Toast.LENGTH_SHORT).show();
+		} else if (participants.get(0).getIdPays().getPays().equals(participants.get(1).getIdPays().getPays())){
+			Toast.makeText(context, "Les 2 Equipes ne doivent pas être identiques", Toast.LENGTH_SHORT).show();
+			isSet = false;
+		}
+		// TOTO Tester si les 2 equipes sont differentes
+		else if (matchDate.compareTo(date_du_Jour) < 0) {
+			Toast.makeText(context, "La date du match est déjà passée", Toast.LENGTH_SHORT).show();
 			isSet = false;
 		} else if (dateMatch.isEmpty()) {
 			Toast.makeText(context, "Saisissez une date pour le match", Toast.LENGTH_SHORT).show();

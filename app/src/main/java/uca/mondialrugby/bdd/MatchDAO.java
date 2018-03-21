@@ -153,6 +153,33 @@ public class MatchDAO extends SQLiteDBHelper {
 		return insertSuccessful;
 	}
 	
+	
+	// getLastMatch
+	public Match getLastMatch(Context context) {
+		SQLiteDatabase db = this.getReadableDatabase();
+		PersonneDAO personneDAO = new PersonneDAO(context);
+		StadeDAO stadeDAO = new StadeDAO(context);
+
+        /* Requete */
+		String query = "SELECT MAX(" + COL_ID + ")," + COL_STADE + "," + COL_PERSONNE + "," + COL_DATE + " FROM " + TABLE_MATCHS + " ;";
+		Cursor cursor = db.rawQuery(query, null);
+		
+		if (cursor != null)
+			cursor.moveToFirst();
+		
+		personne = personneDAO.retrievePersonne(cursor.getInt(0), context);
+		stade = stadeDAO.retrieveStade(cursor.getInt(1));
+		Match match = new Match(
+				cursor.getInt(0),
+				stade,
+				personne,
+				cursor.getString(3));
+		;
+		db.close();
+		return match;
+	}
+	
+	// Retrieve
 	public Match retrieveMatch(Context context, int idMatch) {
 		SQLiteDatabase db = this.getReadableDatabase();
 		PersonneDAO personneDAO = new PersonneDAO(context);

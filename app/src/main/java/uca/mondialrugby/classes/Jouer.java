@@ -11,6 +11,11 @@ public class Jouer {
     private Match match;
     private int score;
 
+    public Jouer(Equipe idPays){
+        this.idEquipe = idPays;
+        this.score = NULL;
+    }
+    
     public Jouer(Equipe idPays, Match match, int score) {
         this.idEquipe = idPays;
         this.match = match;
