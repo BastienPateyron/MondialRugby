@@ -30,8 +30,7 @@ public class PosteDAO extends SQLiteDBHelper {
 
     public Poste retrievePoste(String id){
         SQLiteDatabase db = this.getReadableDatabase();
-        System.out.println("debut retrieve poste");
-        System.out.println("id : " + id);
+        System.out.println("je rentre");
 
         /* Requete */
         Cursor cursor = db.query(TABLE_POSTE, // Nom de table
@@ -45,9 +44,9 @@ public class PosteDAO extends SQLiteDBHelper {
                 cursor.getString(0),
                 cursor.getString(1))
                 ;
-
+        System.out.println(cursor.getString(1));
         db.close();
-        System.out.println("fin retrieve poste");
+
         return poste;
     }
 

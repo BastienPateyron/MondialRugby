@@ -53,7 +53,7 @@ public class PersonneDAO extends SQLiteDBHelper {
 
     public Personne retrievePersonne(int id, Context context){
         SQLiteDatabase db = this.getReadableDatabase();
-
+        System.out.println("je rentre dan sretrieve peronne");
 
         /* Requete */
         Cursor cursor = db.query(TABLE_PERSONNE, // Nom de table
@@ -73,7 +73,7 @@ public class PersonneDAO extends SQLiteDBHelper {
 
         PosteDAO posteDAO = new PosteDAO (context);
         Poste poste = posteDAO.retrievePoste (cursor.getString(2));
-
+        System.out.println("cursor : " + cursor.getString(3));
         Personne personne = new Personne(
                 cursor.getInt(0),
                 poste,
@@ -85,6 +85,7 @@ public class PersonneDAO extends SQLiteDBHelper {
 
 
         db.close();
+        System.out.println("je sors dan sretrieve peronne");
         return personne;
     }
 
@@ -195,7 +196,7 @@ public class PersonneDAO extends SQLiteDBHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COL_ID,personne.getId());
-        values.put(COL_PERS_PAYS,personne.getPoste().getLibelle());
+        values.put(COL_PERS_PAYS,personne.getPoste().getNumero());
         values.put(COL_POSTE,personne.getEquipe().getPays());
         values.put(COL_NOM,personne.getNom());
         values.put(COL_PRENOM,personne.getPrenom());

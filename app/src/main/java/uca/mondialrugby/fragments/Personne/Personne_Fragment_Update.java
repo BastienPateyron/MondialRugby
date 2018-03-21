@@ -31,8 +31,6 @@ import uca.mondialrugby.classes.Personne;
 import uca.mondialrugby.classes.Poste;
 import uca.mondialrugby.fragments.Stade.Stade_fragment_home;
 
-import static android.content.ContentValues.TAG;
-
 /**
  * Created by watson on 12/03/2018.
  */
@@ -46,11 +44,11 @@ public class Personne_Fragment_Update extends Fragment {
     private Personne personne;
     private EditText dateNaissance;
     private PersonneDAO personneDAO;
-    private Calendar myCalendar;
+    private Calendar myCalendar = Calendar.getInstance();
     private String editext_state;
 
     public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        final View myView = inflater.inflate(R.layout.stade_layout_update, container, false);
+        final View myView = inflater.inflate(R.layout.personne_layout_update, container, false);
 
         Bundle bundle = this.getArguments();
 
@@ -72,24 +70,26 @@ public class Personne_Fragment_Update extends Fragment {
         //
         final Spinner spinnerPoste = myView.findViewById(R.id.spinner_poste);
         final ArrayList<Poste> listPoste;
-        final PosteDAO posteDAO = new PosteDAO(context);
+        final PosteDAO posteDAO = new PosteDAO(getContext());
         listPoste = posteDAO.getAllPoste();
 
 
-        final ArrayAdapter<Poste> adapterPoste = new ArrayAdapter<Poste>(context, android.R.layout.simple_spinner_item, listPoste);
+        final ArrayAdapter<Poste> adapterPoste = new ArrayAdapter<Poste>(getActivity(), android.R.layout.simple_spinner_item, listPoste);
         adapterPoste.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPoste.setAdapter(adapterPoste);
 
-        if (!personne.getPoste().getNumero().equals(null))
+        if (!personne.getPoste().getNumero().equals(null)) {
+            System.out.println("spinner " + personne.getPoste().getNumero());
             spinnerPoste.setSelection(getIndex(spinnerPoste, personne.getPoste().toString()));
+            System.out.println("index  : " + getIndex(spinnerPoste, personne.getPoste().toString()) );
+        }
         spinnerPoste.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (adapterPoste.getItem(position).getNumero() == null) {
 
                 } else {
                     idPoste = adapterPoste.getItem(position).getNumero();
-                    System.out.println("spinner : " + idPoste);
-                    System.out.println("spinner : " + adapterPoste.getItem(position).getNumero());
+
                 }
             }
 
@@ -101,14 +101,14 @@ public class Personne_Fragment_Update extends Fragment {
         // Spinner equipe
         final Spinner spinnerEquipe = myView.findViewById(R.id.spinner_equipe); // Création du spinner
         final ArrayList<Equipe> listEquipe;
-        final EquipeDAO equipeDAO = new EquipeDAO(context);
+        final EquipeDAO equipeDAO = new EquipeDAO(getContext());
         listEquipe = equipeDAO.getAllEquipe();
 
-        final ArrayAdapter<Equipe> adapterEquipe = new ArrayAdapter<Equipe>(context, android.R.layout.simple_spinner_item, listEquipe);
+        final ArrayAdapter<Equipe> adapterEquipe = new ArrayAdapter<Equipe>(getActivity(), android.R.layout.simple_spinner_item, listEquipe);
         adapterEquipe.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerEquipe.setAdapter(adapterEquipe);
-        if (!personne.getEquipe().getPays().toString().equals(null))
-            spinnerPoste.setSelection(getIndex(spinnerPoste, personne.getEquipe().toString()));
+        if (!personne.getEquipe().getPays().equals(null)){
+            spinnerPoste.setSelection(getIndex(spinnerPoste, personne.getEquipe().toString()));}
         spinnerEquipe.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (adapterEquipe.getItem(position).getPays().isEmpty()) {
@@ -133,10 +133,10 @@ public class Personne_Fragment_Update extends Fragment {
                 updateLabel();
             }
         };
-
+        System.out.println(personne.getDate());
         dateNaissance = (EditText) myView.findViewById(R.id.value_date_naissance);
         dateNaissance.setText(personne.getDate());
-        final DatePickerDialog datePicker_match = new DatePickerDialog(context, R.style.DatePicker, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
+        final DatePickerDialog datePicker_match = new DatePickerDialog(getActivity(), R.style.DatePicker, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
         dateNaissance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -144,6 +144,8 @@ public class Personne_Fragment_Update extends Fragment {
                 datePicker_match.show();
             }
         });
+
+
         Button button_annule_personne = (Button) myView.findViewById(R.id.button_noupdate_personne);
 
         button_annule_personne.setOnClickListener(new View.OnClickListener() {
@@ -154,12 +156,13 @@ public class Personne_Fragment_Update extends Fragment {
             }
         });
 
-        Button button_update_stade = (Button) myView.findViewById(R.id.button_update_personne);
+      /* Button button_update_stade = (Button) myView.findViewById(R.id.button_update_personne);
 
         button_update_stade.setOnClickListener(new View.OnClickListener() {
 
             PosteDAO posteDAO = new PosteDAO(getContext());
             Poste poste = posteDAO.retrievePoste(idPoste);
+
 
             EquipeDAO equipeDAO = new EquipeDAO(getContext());
             Equipe equipe = equipeDAO.retrieveEquipe(idEquipe);
@@ -180,7 +183,7 @@ public class Personne_Fragment_Update extends Fragment {
                 ((MainActivity) getActivity()).changeFragment(new Personne_Fragment_home());
             }
         });
-
+*/
 
         return myView;
 
