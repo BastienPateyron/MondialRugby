@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class SQLiteDBHelper extends SQLiteOpenHelper {
     protected static final String DATABASE_NAME = "MONDIALRUGBY";
-    private static final int DATABASE_VERSION = 39;      /* A incrémenter quand on modifie cette classe */
+    private static final int DATABASE_VERSION = 40;      /* A incrémenter quand on modifie cette classe */
 
 
 	private Context context;
@@ -21,7 +21,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_PERSONNE = "CREATE TABLE PERSONNE" +
             "(" +
             "ID_PERSONNE  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
-            "PAYS_PERSONNE TEXT NOT NULL        REFERENCES EQUIPE(PAYS)     ON DELETE CASCADE,"  +
+            "PAYS_PERSONNE TEXT NOT NULL        REFERENCES EQUIPE(PAYS)     ON DELETE CASCADE   ON UPDATE CASCADE,"  +
             "NUMERO INTEGER NOT NULL            REFERENCES POSTE(NUMERO)    ON DELETE CASCADE, "  +
             "NOM_PERSONNE TEXT NOT NULL," +
             "PRENOM_PERSONNE TEXT NOT NULL," +
@@ -63,7 +63,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_JOUER = "CREATE TABLE JOUER" +
             "(" +
-            "PAYS  TEXT  NOT NULL           REFERENCES EQUIPE(PAYS)     ON DELETE CASCADE," +
+            "PAYS  TEXT  NOT NULL           REFERENCES EQUIPE(PAYS)     ON DELETE CASCADE    ON UPDATE CASCADE," +
             "ID_MATCH INTEGER NOT NULL      REFERENCES STADE(ID_STADE)  ON DELETE CASCADE,"  +
             "SCORE INTEGER DEFAULT NULL"  +
             ");";

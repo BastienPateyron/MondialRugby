@@ -195,9 +195,10 @@ public class MatchDAO extends SQLiteDBHelper {
 	public void deleteMatch(Context context, int idMatch) {
 		
 		//TODO : supprimer avec double clé
-		
+
 		SQLiteDatabase db = this.getWritableDatabase();
-		
+
+
 		
 		db.delete(TABLE_MATCHS, COL_ID + "=" + idMatch, null);
 		

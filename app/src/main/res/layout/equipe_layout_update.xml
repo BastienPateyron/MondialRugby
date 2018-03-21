@@ -14,27 +14,27 @@
 
 
     <Button
-        android:id="@+id/button_update_equipe"
+        android:id="@+id/button_update_personne"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
 
-        android:layout_alignBaseline="@+id/button_noupdate_equipe"
-        android:layout_alignBottom="@+id/button_noupdate_equipe"
+        android:layout_alignBaseline="@+id/button_noupdate_personne"
+        android:layout_alignBottom="@+id/button_noupdate_personne"
         android:layout_alignParentEnd="true"
         android:background="@color/add_button"
         android:padding="20dp"
         android:text="Mettre à jour" />
 
     <Button
-        android:id="@+id/button_noupdate_equipe"
+        android:id="@+id/button_noupdate_personne"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         android:layout_below="@+id/form_part"
         android:layout_marginEnd="25dp"
         android:layout_marginTop="30dp"
-        android:layout_toStartOf="@+id/button_update_equipe"
+        android:layout_toStartOf="@+id/button_update_personne"
         android:background="@color/trash_button"
         android:padding="20dp"
         android:text="Annuler"/>
@@ -46,7 +46,7 @@
 <RelativeLayout
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
-android:layout_below="@+id/button_noupdate_equipe"
+android:layout_below="@+id/button_noupdate_personne"
 android:layout_marginTop="15dp"
     >
 

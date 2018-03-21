@@ -1,10 +1,8 @@
 package uca.mondialrugby.fragments.Equipe;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +21,6 @@ import uca.mondialrugby.bdd.EquipeDAO;
 import uca.mondialrugby.bdd.PersonneDAO;
 import uca.mondialrugby.classes.Equipe;
 import uca.mondialrugby.classes.Personne;
-import uca.mondialrugby.fragments.Stade.Stade_fragment_home;
 
 /**
  * Created by watson on 18/03/2018.
@@ -66,7 +63,7 @@ public class Equipe_Frament_Update extends Fragment {
                 ((MainActivity) getActivity()).changeFragment(new Client_fragment());
             }
         });*/
-        Button button_update_stade = (Button) myView.findViewById(R.id.button_update_equipe);
+        Button button_update_stade = (Button) myView.findViewById(R.id.button_update_personne);
 
         button_update_stade.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +82,7 @@ public class Equipe_Frament_Update extends Fragment {
             }
         });
 
-        Button button_annule_equipe = (Button) myView.findViewById(R.id.button_noupdate_equipe);
+        Button button_annule_equipe = (Button) myView.findViewById(R.id.button_noupdate_personne);
 
         button_annule_equipe.setOnClickListener(new View.OnClickListener() {
             @Override

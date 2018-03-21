@@ -82,7 +82,7 @@ public class Personne_Fragment_Ajout extends Fragment {
 			    String editext_state = "Date de naissance";
 			    datePicker_match.show();
 			
-			    // TODO la selection sur le calendrier ne met pas la date dans le champ
+
 		    }
 	    });
 	
@@ -190,18 +190,8 @@ public class Personne_Fragment_Ajout extends Fragment {
 	            }
 
 
-                //DATE PICKER SETTINGS
-                final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
-                        myCalendar.set(Calendar.YEAR, year);
-                        myCalendar.set(Calendar.MONTH, monthOfYear);
-                        myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                        updateLabel();
-                    }
-                };
-                //DATE naissance
+
 
 
 
@@ -212,13 +202,13 @@ public class Personne_Fragment_Ajout extends Fragment {
 
     }
 
-    private void updateLabel() {
+    public void updateLabel() {
         String myFormat = "dd/MM/yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
 
         // TODO Adapter une fois la saisie de DATE géree
-             //if (editext_state.equals("DATE_NAISSANCE")) {
-            dateNaissance.setText(sdf.format(myCalendar.getTime()));
+        //if (editext_state.equals("DATE_NAISSANCE")) {
+        dateNaissance.setText(sdf.format(myCalendar.getTime()));
 
 
     }

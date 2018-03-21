@@ -124,8 +124,9 @@ public class EquipeDAO extends SQLiteDBHelper {
         ContentValues values = new ContentValues();
         values.put(COL_PAYS,equipe.getPays());
         values.put(COL_SURNOM,equipe.getSurnom());
-        System.out.println();
+        System.out.println("copie de l'id : " +equipe.getCopyPays());
         db.update(TABLE_EQUIPE, values, COL_PAYS + "= '"+ equipe.getCopyPays()+ "'", null);
+        equipe.setCopyPays(equipe.getPays());
         db.close();
     }
 

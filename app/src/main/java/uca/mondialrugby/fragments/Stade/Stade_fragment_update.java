@@ -59,17 +59,8 @@ public class Stade_fragment_update extends Fragment {
         value_cp.setText("" + stade.getCp());
         value_ville.setText(stade.getVille());
 
-        /*
-        Button button_remove_client = (Button) myView.findViewById(R.id.remove_client);
 
-        button_remove_client.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stadeDAO.deleteClient(getContext(), stade.getId());
-                ((MainActivity) getActivity()).changeFragment(new Client_fragment());
-            }
-        });*/
-        Button button_update_stade = (Button) myView.findViewById(R.id.button_update_equipe);
+        Button button_update_stade = (Button) myView.findViewById(R.id.button_update_personne);
 
         button_update_stade.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +81,7 @@ public class Stade_fragment_update extends Fragment {
             }
         });
 
-        Button button_annule_stade = (Button) myView.findViewById(R.id.button_noupdate_equipe);
+        Button button_annule_stade = (Button) myView.findViewById(R.id.button_noupdate_personne);
 
         button_annule_stade.setOnClickListener(new View.OnClickListener() {
             @Override

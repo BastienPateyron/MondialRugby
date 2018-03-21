@@ -190,7 +190,7 @@ public class PersonneDAO extends SQLiteDBHelper {
         return listPersonne;
     }
 
-    public void updateStade(Personne personne){
+    public void updatePersonne(Personne personne){
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();

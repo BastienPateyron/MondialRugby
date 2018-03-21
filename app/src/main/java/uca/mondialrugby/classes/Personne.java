@@ -5,7 +5,9 @@ package uca.mondialrugby.classes;
  */
 
 public class Personne {
-    private final int id;
+
+
+    private  int id;
     private Poste poste;
     private Equipe equipe;
     private String nom;
@@ -22,6 +24,8 @@ public class Personne {
         this.prenom = prenom;
         this.date = date;
     }
+    public Personne() {}
+
     @Override
     public String toString (){
         return (" " + nom + " " + prenom );
@@ -30,6 +34,10 @@ public class Personne {
     // GETTER & SETTER
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Poste getPoste() {
