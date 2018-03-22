@@ -72,8 +72,8 @@ public class EquipeDAO extends SQLiteDBHelper {
     public Equipe retrieveEquipe(String id){ // TODO : modifier avec un string
         SQLiteDatabase db = this.getReadableDatabase();
 		Equipe equipe = new Equipe();
-        System.out.println("debut retrieve equipe");
-        System.out.println("affichage de la valeur dans retrieve : " + id);
+//        System.out.println("debut retrieve equipe");
+//        System.out.println("affichage de la valeur dans retrieve : " + id);
         /* Requete */
         Cursor cursor = db.query(TABLE_EQUIPE, // Nom de table
                 new String[] {COL_PAYS, COL_SURNOM},
@@ -84,14 +84,14 @@ public class EquipeDAO extends SQLiteDBHelper {
 
         if(cursor != null) {
 	        cursor.moveToFirst();
-            System.out.println("cursor 0 : "+cursor.getString(0));
+//            System.out.println("cursor 0 : "+cursor.getString(0));
 	        equipe.setPays(cursor.getString(0));
 	        equipe.setSurnom(cursor.getString(1));
         }
 		else Log.d(TAG, "retrieveEquipe: equipe introuvable");
 	
 	    db.close();
-        System.out.println("fin retrieve equipe");
+//        System.out.println("fin retrieve equipe");
         return equipe;
     }
 

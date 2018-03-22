@@ -20,8 +20,8 @@ import static android.content.ContentValues.TAG;
 
 public class JouerDAO extends SQLiteDBHelper {
     private static final String TABLE_JOUER = "JOUER";
-    private static final String COL_PAYS = "PAYS_ID";
-    private static final String COL_MATCH = "MATCH_ID";
+    private static final String COL_PAYS = "PAYS";
+    private static final String COL_MATCH = "ID_MATCH";
     private static final String COL_SCORE = "SCORE";
 
     private Match match;
@@ -78,7 +78,7 @@ public class JouerDAO extends SQLiteDBHelper {
 
         values.put(COL_PAYS,jouer.getIdPays().getPays());
         values.put(COL_MATCH,jouer.getMatch().getIdMatch());
-        values.put(COL_SCORE,jouer.getScore());
+//        values.put(COL_SCORE,jouer.getScore());       // Quand on cree un jouer le score est null
 
         SQLiteDatabase db = this.getWritableDatabase();
         boolean insertSuccessful = db.insert(TABLE_JOUER,null,values) > 0;
@@ -141,7 +141,7 @@ public class JouerDAO extends SQLiteDBHelper {
         return listJouer;
     }
 
-    public void updateEquipe(Jouer jouer){
+    public void updateJouer(Jouer jouer){
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();

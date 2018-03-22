@@ -185,7 +185,6 @@ public class Match_fragment_ajout extends Fragment {
 				
 				// Création d'un match
 				
-				System.out.println("Id Personne: " + idArbitre);
 				PersonneDAO personneDAO = new PersonneDAO(context);
 				Personne personne = personneDAO.retrievePersonne(idArbitre, context);
 				
@@ -219,9 +218,13 @@ public class Match_fragment_ajout extends Fragment {
 						
 						matchDAO.createMatch(match);                        // Insertion du match dans la bdd
 						Match lastMatch = matchDAO.getLastMatch(context);   // On récupère le match avec son id auto-généré
+						Log.d(TAG, "onClick: lastMatch (ID) : " + lastMatch.getIdMatch());
 						for(Jouer j : participants){
 							j.setMatch(lastMatch);      // On affecte le match créé aux 2 occurences de jouer
 							jouerDAO.createJouer(j);    // On insère le match crée
+							Log.d(TAG, "onClick: match cree");
+							Log.d(TAG, "onClick: new Jouer: " + j);
+							
 						}
 						Log.d(TAG, "Ajout match");
 						((MainActivity) context).changeFragment(new Match_fragment()); // TODO : changer le fragment
@@ -256,8 +259,7 @@ public class Match_fragment_ajout extends Fragment {
 		String du_jour = sdf.format(date_du_Jour);
 		date_du_Jour = sdf.parse(du_jour);
 		Date matchDate = sdf.parse(dateMatch);
-		Log.d(TAG, "champsRemplis: date_du_jour: " + date_du_Jour);
-		Log.d(TAG, "champsRemplis: matchDate: " + matchDate);
+
 		if (match.getStade().equals(null)) {
 			Toast.makeText(context, "Stade manquant", Toast.LENGTH_SHORT).show();
 			isSet = false;
@@ -270,7 +272,7 @@ public class Match_fragment_ajout extends Fragment {
 		}
 		// TOTO Tester si les 2 equipes sont differentes
 		else if (matchDate.compareTo(date_du_Jour) < 0) {
-			Toast.makeText(context, "La date du match est déjà passée", Toast.LENGTH_SHORT).show();
+			Toast.makeText(context, "La date du match est dépassée", Toast.LENGTH_SHORT).show();
 			isSet = false;
 		} else if (dateMatch.isEmpty()) {
 			Toast.makeText(context, "Saisissez une date pour le match", Toast.LENGTH_SHORT).show();

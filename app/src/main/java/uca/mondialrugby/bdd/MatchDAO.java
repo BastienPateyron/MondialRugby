@@ -67,7 +67,7 @@ public class MatchDAO extends SQLiteDBHelper {
 						cursor.getString(3)
 				);
 				
-				Log.d(TAG, "getAllMatchFini: new match: " + jouer);
+//				Log.d(TAG, "getAllMatchFini: new match: " + jouer);
 				listMatch.add(jouer);
 			} while(cursor.moveToNext());
 		} else Log.d(TAG, "getAllMatchFini: Liste vide");
@@ -102,7 +102,7 @@ public class MatchDAO extends SQLiteDBHelper {
 				
 				listMatch.add(jouer);
 				
-				Log.d(TAG, "getAllMatchPrevu: new match: " + jouer);
+//				Log.d(TAG, "getAllMatchPrevu: new match: " + jouer);
 			} while(cursor.moveToNext());
 		} else Log.d(TAG, "getAllMatchPrevu: Liste vide");
 		db.close();
@@ -142,7 +142,7 @@ public class MatchDAO extends SQLiteDBHelper {
 	public boolean createMatch(Match match) {
 		ContentValues values = new ContentValues();
 		
-		values.put(COL_ID, match.getIdMatch());
+//		values.put(COL_ID, match.getIdMatch());     // L'ID est auto incrémenté donc on ne le met pas
 		values.put(COL_STADE, match.getStade().getId());
 		values.put(COL_PERSONNE, match.getPersonne().getId());
 		values.put(COL_DATE, match.getDateMatch());
