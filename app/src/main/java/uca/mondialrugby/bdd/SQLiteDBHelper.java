@@ -16,7 +16,6 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 	private Context context;
     /* Tables */
 
-    // TODO Ajouter les ON DELETE CASCADE !!
 	
     private static final String CREATE_TABLE_PERSONNE = "CREATE TABLE PERSONNE" +
             "(" +

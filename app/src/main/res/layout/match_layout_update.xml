@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/stadeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stade: "
+            android:layout_weight="5"/>
+        <TextView
+            android:id="@+id/stadeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="95">
+        </TextView>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/arbitreLayout"
+        android:layout_below="@id/stadeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Arbitre: "
+            android:layout_weight="5"/>
+        <TextView
+            android:id="@+id/arbitreText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="95">
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/equipeDomicileLayout"
+        android:layout_below="@id/arbitreLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Domicile: "
+            android:layout_weight="40"/>
+        <TextView
+            android:id="@+id/equipeDomicileText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="20">
+        </TextView>
+
+        <EditText
+            android:id="@+id/scoreDomicileInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_weight="40"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/equipeExterieurLayout"
+        android:layout_below="@id/equipeDomicileLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Exterieur: "
+            android:layout_weight="40"/>
+        <TextView
+            android:id="@+id/equipeExterieurTexte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="20">
+        </TextView>
+
+        <EditText
+            android:id="@+id/scoreExterieurInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_weight="40"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dateMatchLayout"
+        android:layout_below="@+id/equipeExterieurLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date match:"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/dateMatchText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ajoutLayout"
+        android:layout_below="@+id/dateMatchLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity="right">
+
+        <Button
+            android:id="@+id/matchBouttonNegatif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ANNULER"
+            android:background="@color/trash_button"
+            />
+
+        <Button
+            android:id="@+id/matchBoutonPositif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MISE A JOUR"
+            android:background="@color/add_button"
+            android:layout_marginLeft="10dp"
+
+            />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
