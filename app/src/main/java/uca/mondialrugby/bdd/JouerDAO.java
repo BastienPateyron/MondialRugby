@@ -149,7 +149,10 @@ public class JouerDAO extends SQLiteDBHelper {
         values.put(COL_MATCH,jouer.getMatch().getIdMatch());
         values.put(COL_SCORE,jouer.getScore());
 
-        db.update(TABLE_JOUER, values, COL_PAYS + "="+ equipe.getPays(), null);
+        db.update(
+        		TABLE_JOUER, values,
+		        COL_PAYS + "='"+ jouer.getIdPays().getPays() + "' AND " + COL_MATCH + "='" + jouer.getMatch().getIdMatch() + "'",
+		        null);
         db.close();
     }
 

@@ -28,8 +28,7 @@ import uca.mondialrugby.bdd.StadeDAO;
 public class Stade_fragment_update extends Fragment {
     View myView;
     private int idStade;
-
-
+    
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
         myView = inflater.inflate(R.layout.stade_layout_update, container, false);

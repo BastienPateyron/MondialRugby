@@ -22,6 +22,7 @@ import uca.mondialrugby.MainActivity;
 import uca.mondialrugby.R;
 import uca.mondialrugby.bdd.MatchDAO;
 import uca.mondialrugby.classes.Match;
+import uca.mondialrugby.fragments.Stade.Stade_fragment_update;
 
 import static android.content.ContentValues.TAG;
 
@@ -58,19 +59,19 @@ public class Match_fragment extends Fragment {
 		final ArrayAdapter<Match> adapterFini = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, matchFinisListe);
 		matchFiniListView.setAdapter(adapterFini);
 		
-		// TODO Définir le comportement d'un click sur un élément de la liste
-		matchFiniListView.setOnItemClickListener(
-				new AdapterView.OnItemClickListener() {
-					@Override
-					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-						// TODO Ouvrir dialog modification ?
-					}
-				}
-		);
+		//Définir le comportement d'un click sur un élément de la liste
+//		matchFiniListView.setOnItemClickListener(
+//				new AdapterView.OnItemClickListener() {
+//					@Override
+//					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//						// NOTE On ne modifie pas les matchs finis
+//					}
+//				}
+//		);
 		
 		/* Liste matchsPrévus */
 		ArrayList<Match> matchPrevusListe = matchDAO.getAllMatchPrevu(getContext());
-		ListView matchPrevuListView = myView.findViewById(R.id.matchPrevuList);
+		final ListView matchPrevuListView = myView.findViewById(R.id.matchPrevuList);
 		final ArrayAdapter<Match> adapterPrevu = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, matchPrevusListe);
 		matchPrevuListView.setAdapter(adapterPrevu);
 		
@@ -79,12 +80,17 @@ public class Match_fragment extends Fragment {
 				new AdapterView.OnItemClickListener() {
 					@Override
 					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-						// TODO Ouvrir dialog modification ?
+						int idMatch = adapterPrevu.getItem(position).getIdMatch();
+						Log.d(TAG, "onItemClick: idMatch: " + idMatch);
+						Bundle bundle = new Bundle();
+						bundle.putInt("idMatch", idMatch);
+						Match_fragment_update mfu = new Match_fragment_update();
+						mfu.setArguments(bundle);
+						((MainActivity) getContext()).changeFragment(mfu);
 					}
 				}
 		);
 		
 		return myView;
 	}
-
 }
