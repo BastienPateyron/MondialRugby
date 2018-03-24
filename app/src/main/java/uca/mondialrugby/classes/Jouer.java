@@ -26,10 +26,10 @@ public class Jouer {
    
     @Override
     public String toString() {
-        Log.d(TAG, "toString: Pays: " + idEquipe.getPays());
-        Log.d(TAG, "toString: Match: " + match.getIdMatch());
-        Log.d(TAG, "toString: Score: " + score);
-        return idEquipe.getPays() + " Match (" + match.getIdMatch() + ")  [ " + score + " ]  " ;
+//        Log.d(TAG, "toString: Pays: " + idEquipe.getPays());
+//        Log.d(TAG, "toString: Match: " + match.getIdMatch());
+//        Log.d(TAG, "toString: Score: " + score);
+        return idEquipe.getPays() + " Match (" + match.getIdMatch() + ")  score [ " + score + " ]  " ;
     }
     
     public String toStringDomicile(){
