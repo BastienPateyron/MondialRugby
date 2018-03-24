@@ -196,12 +196,14 @@ public class PersonneDAO extends SQLiteDBHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COL_ID,personne.getId());
-        values.put(COL_PERS_PAYS,personne.getPoste().getNumero());
-        values.put(COL_POSTE,personne.getEquipe().getPays());
+        values.put(COL_POSTE,personne.getPoste().getNumero());
+        values.put(COL_PERS_PAYS,personne.getEquipe().getPays());
         values.put(COL_NOM,personne.getNom());
         values.put(COL_PRENOM,personne.getPrenom());
         values.put(COL_DATE_N,personne.getDate());
         db.update(TABLE_PERSONNE, values, COL_ID + "="+ personne.getId(), null);
+
+
         db.close();
     }
 

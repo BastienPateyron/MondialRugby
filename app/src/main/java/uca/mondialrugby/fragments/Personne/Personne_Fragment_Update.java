@@ -78,11 +78,9 @@ public class Personne_Fragment_Update extends Fragment {
         adapterPoste.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPoste.setAdapter(adapterPoste);
 
-        if (!personne.getPoste().getNumero().equals(null)) {
-            System.out.println("spinner " + personne.getPoste().getNumero());
-            spinnerPoste.setSelection(getIndex(spinnerPoste, personne.getPoste().toString()));
-            System.out.println("index  : " + getIndex(spinnerPoste, personne.getPoste().toString()) );
-        }
+        if (!personne.getPoste().getNumero().equals(null)){
+            spinnerPoste.setSelection(getIndex(spinnerPoste, personne.getPoste().toString()));}
+
         spinnerPoste.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (adapterPoste.getItem(position).getNumero() == null) {
@@ -108,7 +106,9 @@ public class Personne_Fragment_Update extends Fragment {
         adapterEquipe.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerEquipe.setAdapter(adapterEquipe);
         if (!personne.getEquipe().getPays().equals(null)){
-            spinnerPoste.setSelection(getIndex(spinnerPoste, personne.getEquipe().toString()));}
+
+            spinnerEquipe.setSelection(getIndex(spinnerEquipe, personne.getEquipe().toString()));}
+
         spinnerEquipe.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (adapterEquipe.getItem(position).getPays().isEmpty()) {
@@ -145,7 +145,7 @@ public class Personne_Fragment_Update extends Fragment {
             }
         });
 
-
+        System.out.println("id poste : " + idPoste);
         Button button_annule_personne = (Button) myView.findViewById(R.id.button_noupdate_personne);
 
         button_annule_personne.setOnClickListener(new View.OnClickListener() {
@@ -156,20 +156,26 @@ public class Personne_Fragment_Update extends Fragment {
             }
         });
 
-      /* Button button_update_stade = (Button) myView.findViewById(R.id.button_update_personne);
+       Button button_update_stade = (Button) myView.findViewById(R.id.button_update_personne);
 
         button_update_stade.setOnClickListener(new View.OnClickListener() {
 
-            PosteDAO posteDAO = new PosteDAO(getContext());
-            Poste poste = posteDAO.retrievePoste(idPoste);
 
-
-            EquipeDAO equipeDAO = new EquipeDAO(getContext());
-            Equipe equipe = equipeDAO.retrieveEquipe(idEquipe);
             @Override
             public void onClick(View v) {
+                PosteDAO posteDAO = new PosteDAO(getContext());
+                Poste poste = posteDAO.retrievePoste(idPoste);
+                System.out.println("numero du poste " + poste.getNumero() + ", " + poste.getLibelle());
+
+                EquipeDAO equipeDAO = new EquipeDAO(getContext());
+                Equipe equipe = equipeDAO.retrieveEquipe(idEquipe);
+
+                System.out.println("equipe : " + equipe.getPays() + ", " + equipe.getSurnom());
+                System.out.println("id poste +++++: " + idPoste);
+                System.out.println("id equipe ******: " + idEquipe);
+                System.out.println("id personne :" +personne.getId());
                 Personne personne_modify = new Personne();
-                personne_modify.setId(idPersonne);
+                personne_modify.setId(personne.getId());
                 personne_modify.setPoste(poste);
                 personne_modify.setEquipe(equipe);
                 personne_modify.setNom(value_nom.getText().toString());
@@ -183,7 +189,7 @@ public class Personne_Fragment_Update extends Fragment {
                 ((MainActivity) getActivity()).changeFragment(new Personne_Fragment_home());
             }
         });
-*/
+
 
         return myView;
 

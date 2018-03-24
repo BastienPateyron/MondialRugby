@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class SQLiteDBHelper extends SQLiteOpenHelper {
     protected static final String DATABASE_NAME = "MONDIALRUGBY";
-    private static final int DATABASE_VERSION = 40;      /* A incrémenter quand on modifie cette classe */
+    private static final int DATABASE_VERSION = 45;      /* A incrémenter quand on modifie cette classe */
 
 
 	private Context context;
@@ -21,8 +21,8 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_PERSONNE = "CREATE TABLE PERSONNE" +
             "(" +
             "ID_PERSONNE  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
-            "PAYS_PERSONNE TEXT NOT NULL        REFERENCES EQUIPE(PAYS)     ON DELETE CASCADE   ON UPDATE CASCADE,"  +
-            "NUMERO INTEGER NOT NULL            REFERENCES POSTE(NUMERO)    ON DELETE CASCADE, "  +
+            "PAYS_PERSONNE TEXT NOT NULL        REFERENCES EQUIPE(PAYS)     ON DELETE CASCADE  ON UPDATE CASCADE,"  +
+            "NUMERO INTEGER NOT NULL            REFERENCES POSTE(NUMERO), "  +
             "NOM_PERSONNE TEXT NOT NULL," +
             "PRENOM_PERSONNE TEXT NOT NULL," +
             "DATE_NAISSANCE TEXT NOT NULL" +
@@ -45,8 +45,8 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_MATCHS = "CREATE TABLE MATCHS" +
             "(" +
             "ID_MATCH INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
-            "ID_STADE INTEGER NOT NULL      REFERENCES STADE(ID_STADE)          ON DELETE CASCADE," +
-            "ID_PERSONNE INTEGER NOT NULL   REFERENCES PERSONNE(ID_PERSONNE)    ON DELETE CASCADE," +
+            "ID_STADE INTEGER NOT NULL      REFERENCES STADE(ID_STADE)          ON DELETE CASCADE    ," +
+            "ID_PERSONNE INTEGER NOT NULL   REFERENCES PERSONNE(ID_PERSONNE)    ON DELETE CASCADE    ," +
             "DATE_MATCH TEXT NOT NULL" +
             ");";
 
@@ -64,7 +64,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_JOUER = "CREATE TABLE JOUER" +
             "(" +
             "PAYS  TEXT  NOT NULL           REFERENCES EQUIPE(PAYS)     ON DELETE CASCADE    ON UPDATE CASCADE," +
-            "ID_MATCH INTEGER NOT NULL      REFERENCES STADE(ID_STADE)  ON DELETE CASCADE,"  +
+            "ID_MATCH INTEGER NOT NULL      REFERENCES STADE(ID_STADE)  ON DELETE CASCADE   ,"  +
             "SCORE INTEGER DEFAULT NULL"  +
             ");";
 
