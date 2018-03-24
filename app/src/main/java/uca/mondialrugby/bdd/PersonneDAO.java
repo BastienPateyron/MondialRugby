@@ -163,9 +163,10 @@ public class PersonneDAO extends SQLiteDBHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         PosteDAO posteDAO = new PosteDAO (context);
         EquipeDAO equipeDAO = new EquipeDAO(context);
+        String id_poste = "0";
 
         ArrayList<Personne> listPersonne = new ArrayList<>();
-        String query = "SELECT * FROM PERSONNE WHERE PAYS_PERSONNE" + "='" + id + "';";
+        String query = "SELECT * FROM PERSONNE WHERE PAYS_PERSONNE" + "='" + id + "'and " +"NUMERO" + " != '" + id_poste +"';";
         Cursor cursor = db.rawQuery(query, null);
 
         if (cursor.moveToFirst()){

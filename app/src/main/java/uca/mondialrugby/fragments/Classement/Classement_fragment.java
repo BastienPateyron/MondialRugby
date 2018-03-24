@@ -1,33 +1,53 @@
 package uca.mondialrugby.fragments.Classement;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import uca.mondialrugby.MainActivity;
 import uca.mondialrugby.R;
+import uca.mondialrugby.bdd.JouerDAO;
+import uca.mondialrugby.classes.Jouer;
+import uca.mondialrugby.fragments.Equipe.Equipe_Adapter;
+import uca.mondialrugby.fragments.Equipe.Equipe_Fragment_Add;
 
 /**
  * Created by basti on 3/14/2018.
  */
 
 public class Classement_fragment extends Fragment {
-	
+/*
 	View myView;
-	Context context;
-	
-	public View onCreateView(LayoutInflater inflater, final ViewGroup container) {
-		
-		myView = inflater.inflate(R.layout.classement_layout, container, false);
-		
-		context = myView.getContext();
+	private ArrayList<Jouer> listClassement = new ArrayList<Jouer>();
 
-//		Bundle bundle = this.getArguments();
-		
-		// TODO Liste du classement
-	
+
+	@Nullable
+	@Override
+	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+		myView = inflater.inflate(R.layout.general_layout_list, container, false);
+
+		initListClassement();
+
 		return myView;
 	}
+
+	public void initListClassement () {
+		JouerDAO jouerDAO = new JouerDAO(getContext());
+		listClassement = jouerDAO.getAllClassement(); // todo : rename avec ton nom
+
+		ListView listView = (ListView) myView.findViewById(R.id.generalListe);
+		Equipe_Adapter adapter = new Equipe_Adapter(getActivity(), listClassement);
+		listView.setAdapter(adapter);
+	}
+	*/
 }

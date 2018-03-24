@@ -152,7 +152,7 @@ public class Personne_Fragment_Update extends Fragment {
             @Override
             public void onClick(View v) {
                 MainActivity.closekeyboard(getContext(), myView);
-                ((MainActivity) getActivity()).changeFragment(new Stade_fragment_home());
+                ((MainActivity) getActivity()).changeFragment(new Personne_Fragment_home());
             }
         });
 

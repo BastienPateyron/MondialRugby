@@ -21,6 +21,7 @@ import uca.mondialrugby.bdd.EquipeDAO;
 import uca.mondialrugby.bdd.PersonneDAO;
 import uca.mondialrugby.classes.Equipe;
 import uca.mondialrugby.classes.Personne;
+import uca.mondialrugby.fragments.Personne.Personne_Adapter;
 
 /**
  * Created by watson on 18/03/2018.
@@ -91,12 +92,10 @@ public class Equipe_Frament_Update extends Fragment {
                 ((MainActivity) getActivity()).changeFragment(new Equipe_Fragment_Home());
             }
         });
-        // Get all contrats
-        PersonneDAO personneDAO = new PersonneDAO(getContext());
+        // Get all Joueur
+       /* Liste les joueurs du pays en enlevant les arbitres */
 
-
-        ArrayList<Personne> listPersonne = personneDAO.getAllPersonneOfEquipe(getContext(),idEquipe);
-
+ /*
         final ArrayAdapter<Personne> adapter = new ArrayAdapter<Personne>(myView.getContext(),android.R.layout.simple_list_item_1, listPersonne);
 
         ListView listView = myView.findViewById(R.id.list_joueur);
@@ -113,14 +112,24 @@ public class Equipe_Frament_Update extends Fragment {
                 bundle.putString("id_personne",String.valueOf(adapter.getItem(position).getId()));
 
 
-
-
-
-
-
             }
-        });
+        });*/
+
+
+        initListJoueur();
+
         return myView;
 
+    }
+    private void initListJoueur () {
+        PersonneDAO personneDAO = new PersonneDAO(getContext());
+
+
+        ArrayList<Personne> listPersonne = personneDAO.getAllPersonneOfEquipe(getContext(),idEquipe);
+       // PersonneDAO personneDAO = new PersonneDAO(getContext());
+        listPersonne = personneDAO.getAllPersonneOfEquipe(getContext(),idEquipe);
+        ListView listView = (ListView) myView.findViewById(R.id.list_joueur);
+        Personne_Adapter adapter = new Personne_Adapter(getActivity(), listPersonne);
+        listView.setAdapter(adapter);
     }
 }
