@@ -89,21 +89,25 @@ public class Match_fragment_update extends Fragment {
 		updateBouton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// Mise à jour du score de l'hote
-				jouerArrayList.get(0).setScore(Integer.valueOf(domicileScore.getText().toString()));
 				
-				// Mise à jour du score de l'invite
-				jouerArrayList.get(1).setScore(Integer.valueOf(exterieurScore.getText().toString()));
-
-				// Pour chacune des 2 equipes, on met son score a jour
-				for (Jouer equipes : jouerArrayList){
-					Log.d(TAG, "onClick: Equipe: " + equipes.toString());
-					jouerDAO.updateJouer(equipes);
+				// On vérifie que les champs sont remplis
+				if(champsRemplis(domicileScore, exterieurScore)){
+					// Mise à jour du score de l'hote
+					jouerArrayList.get(0).setScore(Integer.valueOf(domicileScore.getText().toString()));
+					
+					// Mise à jour du score de l'invite
+					jouerArrayList.get(1).setScore(Integer.valueOf(exterieurScore.getText().toString()));
+					
+					// Pour chacune des 2 equipes, on met son score a jour
+					for (Jouer equipes : jouerArrayList){
+						Log.d(TAG, "onClick: Equipe: " + equipes.toString());
+						jouerDAO.updateJouer(equipes);
+					}
+					
+					Toast.makeText(context, "Match mis à jour", Toast.LENGTH_SHORT).show();
+					MainActivity.closekeyboard(getContext(), myView);
+					((MainActivity) getActivity()).changeFragment(new Match_fragment());
 				}
-				
-				Toast.makeText(context, "Match mis à jour", Toast.LENGTH_SHORT).show();
-				MainActivity.closekeyboard(getContext(), myView);
-				((MainActivity) getActivity()).changeFragment(new Match_fragment());
 			}
 		});
 
@@ -120,4 +124,20 @@ public class Match_fragment_update extends Fragment {
 		return myView;
 	}
 	
+	// Verifie que les champs sont correctement remplis
+	private boolean champsRemplis(EditText domicile, EditText exterieur){
+		boolean validate = true;
+		Log.d(TAG, "champsRemplis: domicile: " + domicile.getText().toString());
+		Log.d(TAG, "champsRemplis: exterieur: " + exterieur.getText().toString());
+		
+		if(domicile.getText().toString().equals("")){
+			Toast.makeText(context, "Le score du domicile est vide", Toast.LENGTH_SHORT).show();
+			validate = false;
+		} else if(exterieur.getText().toString().equals("")){
+			Toast.makeText(context, "Le score de l'exterieur est vide", Toast.LENGTH_SHORT).show();
+			validate = false;
+		}
+		
+		return validate;
+	}
 }
