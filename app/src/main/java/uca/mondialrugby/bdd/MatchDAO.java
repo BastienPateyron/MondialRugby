@@ -67,7 +67,7 @@ public class MatchDAO extends SQLiteDBHelper {
 						cursor.getString(3)
 				);
 				
-				Log.d(TAG, "getAllMatchFini: new match: " + jouer);
+//				Log.d(TAG, "getAllMatchFini: new match: " + jouer);
 				listMatch.add(jouer);
 			} while(cursor.moveToNext());
 		} else Log.d(TAG, "getAllMatchFini: Liste vide");
@@ -102,7 +102,7 @@ public class MatchDAO extends SQLiteDBHelper {
 				
 				listMatch.add(jouer);
 				
-				Log.d(TAG, "getAllMatchPrevu: new match: " + jouer);
+//				Log.d(TAG, "getAllMatchPrevu: new match: " + jouer);
 			} while(cursor.moveToNext());
 		} else Log.d(TAG, "getAllMatchPrevu: Liste vide");
 		db.close();
@@ -142,7 +142,7 @@ public class MatchDAO extends SQLiteDBHelper {
 	public boolean createMatch(Match match) {
 		ContentValues values = new ContentValues();
 		
-		values.put(COL_ID, match.getIdMatch());
+//		values.put(COL_ID, match.getIdMatch());     // L'ID est auto incrémenté donc on ne le met pas
 		values.put(COL_STADE, match.getStade().getId());
 		values.put(COL_PERSONNE, match.getPersonne().getId());
 		values.put(COL_DATE, match.getDateMatch());
@@ -153,6 +153,33 @@ public class MatchDAO extends SQLiteDBHelper {
 		return insertSuccessful;
 	}
 	
+	
+	// getLastMatch
+	public Match getLastMatch(Context context) {
+		SQLiteDatabase db = this.getReadableDatabase();
+		PersonneDAO personneDAO = new PersonneDAO(context);
+		StadeDAO stadeDAO = new StadeDAO(context);
+
+        /* Requete */
+		String query = "SELECT MAX(" + COL_ID + ")," + COL_STADE + "," + COL_PERSONNE + "," + COL_DATE + " FROM " + TABLE_MATCHS + " ;";
+		Cursor cursor = db.rawQuery(query, null);
+		
+		if (cursor != null)
+			cursor.moveToFirst();
+		
+		personne = personneDAO.retrievePersonne(cursor.getInt(0), context);
+		stade = stadeDAO.retrieveStade(cursor.getInt(1));
+		Match match = new Match(
+				cursor.getInt(0),
+				stade,
+				personne,
+				cursor.getString(3));
+		;
+		db.close();
+		return match;
+	}
+	
+	// Retrieve
 	public Match retrieveMatch(Context context, int idMatch) {
 		SQLiteDatabase db = this.getReadableDatabase();
 		PersonneDAO personneDAO = new PersonneDAO(context);

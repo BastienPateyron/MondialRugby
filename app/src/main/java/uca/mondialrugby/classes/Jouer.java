@@ -1,5 +1,8 @@
 package uca.mondialrugby.classes;
 
+import android.util.Log;
+
+import static android.content.ContentValues.TAG;
 import static java.sql.Types.NULL;
 
 /**
@@ -11,6 +14,10 @@ public class Jouer {
     private Match match;
     private int score;
 
+    public Jouer(Equipe idPays){
+        this.idEquipe = idPays;
+    }
+    
     public Jouer(Equipe idPays, Match match, int score) {
         this.idEquipe = idPays;
         this.match = match;
@@ -19,7 +26,10 @@ public class Jouer {
    
     @Override
     public String toString() {
-        return "Jouer{" + "idPays='" + idEquipe + '\'' + ", match=" + match + ", score=" + score + '}';
+        Log.d(TAG, "toString: Pays: " + idEquipe.getPays());
+        Log.d(TAG, "toString: Match: " + match.getIdMatch());
+        Log.d(TAG, "toString: Score: " + score);
+        return idEquipe.getPays() + " Match (" + match.getIdMatch() + ")  [ " + score + " ]  " ;
     }
     
     public String toStringDomicile(){

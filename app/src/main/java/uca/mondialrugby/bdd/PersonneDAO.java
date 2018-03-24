@@ -116,7 +116,7 @@ public class PersonneDAO extends SQLiteDBHelper {
             
                 );
     
-                Log.d(TAG, "getAllArbitres: " + personne);
+//                Log.d(TAG, "getAllArbitres: " + personne);
                 listPersonne.add(personne);
             } while(cursor.moveToNext());
         }

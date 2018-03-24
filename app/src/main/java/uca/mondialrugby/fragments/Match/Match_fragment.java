@@ -41,7 +41,6 @@ public class Match_fragment extends Fragment {
 	                         @Nullable Bundle savedInstanceState) {
 		myView = inflater.inflate(R.layout.match_layout, container, false);
 		
-		
 		// TODO Ajouter bouton CREER MATCH
 		creerBouton = myView.findViewById(R.id.matchBoutonNew);
 		creerBouton.setOnClickListener(new View.OnClickListener() {
@@ -51,7 +50,6 @@ public class Match_fragment extends Fragment {
 				((MainActivity) getActivity()).changeFragment(match_fragment_ajout); // Affiche le fragment ajout
 			}
 		});
-		
 		
 		/* Liste Matchs Finis */
 		MatchDAO matchDAO = new MatchDAO(getContext());
@@ -85,8 +83,6 @@ public class Match_fragment extends Fragment {
 					}
 				}
 		);
-		
-		
 		
 		return myView;
 	}
