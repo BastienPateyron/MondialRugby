@@ -3,15 +3,14 @@ package uca.mondialrugby.fragments.Equipe;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -28,8 +27,9 @@ import uca.mondialrugby.fragments.Personne.Personne_Adapter;
  */
 
 public class Equipe_Frament_Update extends Fragment {
-    View myView;
+    private View myView;
     private String idEquipe;
+    private ArrayList<Equipe> listValidate;
 
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -52,69 +52,54 @@ public class Equipe_Frament_Update extends Fragment {
 
         value_pays.setText(equipe.getPays());
         value_surnom.setText(equipe.getSurnom());
-
-
-        /*
-        Button button_remove_client = (Button) myView.findViewById(R.id.remove_client);
-
-        button_remove_client.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                equipeDAO.deleteClient(getContext(), equipe.getId());
-                ((MainActivity) getActivity()).changeFragment(new Client_fragment());
-            }
-        });*/
+         final String pays = value_pays.getText().toString();
+            final String surnom = value_surnom.getText().toString();
         Button button_update_stade = (Button) myView.findViewById(R.id.button_update_personne);
 
         button_update_stade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Equipe equipe_modify = new Equipe();
-                System.out.print(idEquipe);
-                System.out.println("fin");
-                equipe_modify.setCopyPays(equipe.getPays());
-                equipe_modify.setPays(value_pays.getText().toString());
-                System.out.println(equipe_modify.getPays());
-                equipe_modify.setSurnom(value_surnom.getText().toString());
 
-                equipeDAO.updateEquipe(equipe_modify);
-                MainActivity.closekeyboard(getContext(), myView);
-                ((MainActivity) getActivity()).changeFragment(new Equipe_Fragment_Home());
+
+                EquipeDAO equipeDAO = new EquipeDAO(myView.getContext());
+                listValidate = equipeDAO.getAllEquipe();
+                boolean validate = true;
+                if ( TextUtils.isEmpty(pays)) {
+                    Toast.makeText(getContext(), "Pays manquant", Toast.LENGTH_SHORT).show();
+                    validate = false;
+                } else if (TextUtils.isEmpty(surnom)) {
+                    Toast.makeText(getContext(), "surnom manquant", Toast.LENGTH_SHORT).show();
+                    validate = false;
+                } else if (TextUtils.isEmpty(surnom)) {
+                    Toast.makeText(getContext(), "surnom manquant", Toast.LENGTH_SHORT).show();
+                    validate = false;
+                }
+                if (validate) {
+                    equipe_modify.setCopyPays(equipe.getPays());
+                    equipe_modify.setPays(value_pays.getText().toString());
+                    System.out.println(equipe_modify.getPays());
+                    equipe_modify.setSurnom(value_surnom.getText().toString());
+
+                    equipeDAO.updateEquipe(equipe_modify);
+                    MainActivity.closekeyboard(getContext(), myView);
+                    ((MainActivity) getActivity()).changeFragment(new Equipe_Fragment_Home());
+                }
             }
         });
 
         Button button_annule_equipe = (Button) myView.findViewById(R.id.button_noupdate_personne);
 
-        button_annule_equipe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        button_annule_equipe.setOnClickListener(new View.OnClickListener()
+
+            {
+                @Override public void onClick (View v){
                 MainActivity.closekeyboard(getContext(), myView);
                 ((MainActivity) getActivity()).changeFragment(new Equipe_Fragment_Home());
+
             }
+
         });
-        // Get all Joueur
-       /* Liste les joueurs du pays en enlevant les arbitres */
-
- /*
-        final ArrayAdapter<Personne> adapter = new ArrayAdapter<Personne>(myView.getContext(),android.R.layout.simple_list_item_1, listPersonne);
-
-        ListView listView = myView.findViewById(R.id.list_joueur);
-        listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("ID Equipe :", (idEquipe));
-                Log.i("ID Personne :", String.valueOf(adapter.getItem(position).getId()));
-
-                Bundle bundle = new Bundle();
-                bundle.putString("id_equipe",(idEquipe));
-                bundle.putString("id_personne",String.valueOf(adapter.getItem(position).getId()));
-
-
-            }
-        });*/
-
 
         initListJoueur();
 
@@ -125,11 +110,14 @@ public class Equipe_Frament_Update extends Fragment {
         PersonneDAO personneDAO = new PersonneDAO(getContext());
 
 
-        ArrayList<Personne> listPersonne = personneDAO.getAllPersonneOfEquipe(getContext(),idEquipe);
-       // PersonneDAO personneDAO = new PersonneDAO(getContext());
+        ArrayList<Personne> listPersonne;
         listPersonne = personneDAO.getAllPersonneOfEquipe(getContext(),idEquipe);
         ListView listView = (ListView) myView.findViewById(R.id.list_joueur);
         Personne_Adapter adapter = new Personne_Adapter(getActivity(), listPersonne);
         listView.setAdapter(adapter);
     }
+
+
+
+
 }

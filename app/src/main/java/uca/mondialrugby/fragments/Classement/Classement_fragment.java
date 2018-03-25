@@ -50,7 +50,7 @@ public class Classement_fragment extends Fragment {
 		listClassement = equipeDAO.getClassement();
 
 		ListView listView = (ListView) myView.findViewById(R.id.generalListe);
-		Equipe_Adapter adapter = new Equipe_Adapter(getActivity(), listClassement);
+		Classement_Adapter adapter = new Classement_Adapter(getActivity(), listClassement);
 		listView.setAdapter(adapter);
 	}
 }

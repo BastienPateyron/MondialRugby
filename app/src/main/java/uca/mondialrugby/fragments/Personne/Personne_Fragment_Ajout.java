@@ -18,9 +18,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import uca.mondialrugby.MainActivity;
@@ -163,10 +165,17 @@ public class Personne_Fragment_Ajout extends Fragment {
 		            Toast.makeText(getContext(), "Nom manquant", Toast.LENGTH_SHORT).show();
 		            validate = false;
 	            } else if (TextUtils.isEmpty(prenom)) {
-		            Toast.makeText(getContext(), "Prénom manquant", Toast.LENGTH_SHORT).show();
-		            validate = false;
-	            }  // Todo : rajouter les vérification de date
-                if(validate)
+					Toast.makeText(getContext(), "Prénom manquant", Toast.LENGTH_SHORT).show();
+					validate = false;
+				} else try {
+					if (dateValidate() == false) {
+                        Toast.makeText(getContext(), "date impossible", Toast.LENGTH_SHORT).show();
+                        validate = false;
+                    }
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				if(validate)
 	            {
 		            System.out.println("Insert");
 		            ((MainActivity) getActivity()).closekeyboard(getContext(), myView);
@@ -201,16 +210,28 @@ public class Personne_Fragment_Ajout extends Fragment {
         return myView;
 
     }
-
-    public void updateLabel() {
-        String myFormat = "dd/MM/yyyy"; //In which you need put here
+	// Permet d'afficher le calendrier
+    private void updateLabel() {
+        String myFormat = "dd/MM/yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
-
-        // TODO Adapter une fois la saisie de DATE géree
-        //if (editext_state.equals("DATE_NAISSANCE")) {
         dateNaissance.setText(sdf.format(myCalendar.getTime()));
-
-
     }
+
+	private boolean dateValidate () throws ParseException {
+		String dateN = dateNaissance.getText().toString();
+		String myFormat = "dd/MM/yyyy"; //In which you need put here
+		SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
+		Date date_du_Jour = new Date();
+		String du_jour = sdf.format(date_du_Jour);
+		date_du_Jour = sdf.parse(du_jour);
+		Date naissanceDate = sdf.parse(dateN);
+		System.out.println(date_du_Jour);
+		System.out.println(naissanceDate);
+		if (date_du_Jour.compareTo(naissanceDate) < 0) {
+			Toast.makeText(getContext(), "date impossible", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		return true;
+	}
 
 }//fin

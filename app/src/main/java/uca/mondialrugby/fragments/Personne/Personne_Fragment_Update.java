@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +15,14 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import uca.mondialrugby.MainActivity;
@@ -163,30 +167,43 @@ public class Personne_Fragment_Update extends Fragment {
 
             @Override
             public void onClick(View v) {
+
                 PosteDAO posteDAO = new PosteDAO(getContext());
                 Poste poste = posteDAO.retrievePoste(idPoste);
-                System.out.println("numero du poste " + poste.getNumero() + ", " + poste.getLibelle());
 
                 EquipeDAO equipeDAO = new EquipeDAO(getContext());
                 Equipe equipe = equipeDAO.retrieveEquipe(idEquipe);
 
-                System.out.println("equipe : " + equipe.getPays() + ", " + equipe.getSurnom());
-                System.out.println("id poste +++++: " + idPoste);
-                System.out.println("id equipe ******: " + idEquipe);
-                System.out.println("id personne :" +personne.getId());
-                Personne personne_modify = new Personne();
-                personne_modify.setId(personne.getId());
-                personne_modify.setPoste(poste);
-                personne_modify.setEquipe(equipe);
-                personne_modify.setNom(value_nom.getText().toString());
-                personne_modify.setPrenom(value_prenom.getText().toString());
-                personne_modify.setDate(dateNaissance.getText().toString());
+                boolean validate = true;
+                if ( TextUtils.isEmpty(value_nom.getText())) {
+                    Toast.makeText(getContext(), "Nom manquant", Toast.LENGTH_SHORT).show();
+                    validate = false;
+                } else if (TextUtils.isEmpty(value_prenom.getText())) {
+                    Toast.makeText(getContext(), "Prénom manquant", Toast.LENGTH_SHORT).show();
+                    validate = false;
+                } else try {
+                    if (dateValidate() == false) {
+                        Toast.makeText(getContext(), "date impossible", Toast.LENGTH_SHORT).show();
+                        validate = false;
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                if(validate) {
+                    Personne personne_modify = new Personne();
+                    personne_modify.setId(personne.getId());
+                    personne_modify.setPoste(poste);
+                    personne_modify.setEquipe(equipe);
+                    personne_modify.setNom(value_nom.getText().toString());
+                    personne_modify.setPrenom(value_prenom.getText().toString());
+                    personne_modify.setDate(dateNaissance.getText().toString());
 
 
-                personneDAO.updatePersonne(personne_modify);
-                System.out.println("Personne modifie");
-                MainActivity.closekeyboard(getContext(), myView);
-                ((MainActivity) getActivity()).changeFragment(new Personne_Fragment_home());
+                    personneDAO.updatePersonne(personne_modify);
+                    System.out.println("Personne modifie");
+                    MainActivity.closekeyboard(getContext(), myView);
+                    ((MainActivity) getActivity()).changeFragment(new Personne_Fragment_home());
+                }
             }
         });
 
@@ -210,11 +227,25 @@ public class Personne_Fragment_Update extends Fragment {
     }
 
     public void updateLabel() {
-        String myFormat = "dd/MM/yyyy"; //In which you need put here
+        String myFormat = "dd/MM/yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
-
-
-        //if (editext_state.equals("DATE_NAISSANCE")) {
         dateNaissance.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    private boolean dateValidate () throws ParseException {
+        String dateN = personne.getDate();
+        String myFormat = "dd/MM/yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
+        Date date_du_Jour = new Date();
+        String du_jour = sdf.format(date_du_Jour);
+        date_du_Jour = sdf.parse(du_jour);
+        Date naissanceDate = sdf.parse(dateN);
+        System.out.println(date_du_Jour);
+        System.out.println(naissanceDate);
+        if (date_du_Jour.compareTo(naissanceDate) < 0) {
+            Toast.makeText(getContext(), "date impossible", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 }

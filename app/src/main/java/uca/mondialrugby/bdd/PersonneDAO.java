@@ -37,7 +37,7 @@ public class PersonneDAO extends SQLiteDBHelper {
     public boolean insertPersonne( Personne personne){
         ContentValues values = new ContentValues();
 
-        values.put(COL_ID,personne.getId());
+
         values.put(COL_POSTE,personne.getPoste().getNumero());
         values.put(COL_PERS_PAYS,personne.getEquipe().getPays());
         values.put(COL_NOM,personne.getNom());
@@ -53,7 +53,7 @@ public class PersonneDAO extends SQLiteDBHelper {
 
     public Personne retrievePersonne(int id, Context context){
         SQLiteDatabase db = this.getReadableDatabase();
-        System.out.println("je rentre dan sretrieve peronne");
+
 
         /* Requete */
         Cursor cursor = db.query(TABLE_PERSONNE, // Nom de table
@@ -85,7 +85,7 @@ public class PersonneDAO extends SQLiteDBHelper {
 
 
         db.close();
-        System.out.println("je sors dan sretrieve peronne");
+
         return personne;
     }
 

@@ -284,7 +284,7 @@ public class Match_fragment_ajout extends Fragment {
 	
 	// Mise à jour de la date
 	private void updateLabel() {
-		String myFormat = "dd/MM/yyyy"; //In which you need put here
+		String myFormat = "dd/MM/yyyy";
 		SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
 		if (date_match_default.equals("DATE_MATCH")) {
 			dateMatch.setText(sdf.format(myCalendar.getTime()));
