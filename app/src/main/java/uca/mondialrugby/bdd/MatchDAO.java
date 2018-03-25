@@ -207,18 +207,7 @@ public class MatchDAO extends SQLiteDBHelper {
 		return match;
 	}
 	
-	public void updateMatch(Match match) {
 
-		SQLiteDatabase db = this.getWritableDatabase();
-		ContentValues values = new ContentValues();
-		values.put(COL_ID, match.getIdMatch());
-		values.put(COL_STADE, match.getStade().getId());
-		values.put(COL_PERSONNE, match.getPersonne().getId());
-		values.put(COL_DATE, match.getDateMatch());
-		db.update(TABLE_MATCHS, values, COL_ID + "=" + match.getIdMatch(), null);
-		db.close();
-	}
-	
 	// deleteMatch
 	public void deleteMatch(Context context, int idMatch) {
 		

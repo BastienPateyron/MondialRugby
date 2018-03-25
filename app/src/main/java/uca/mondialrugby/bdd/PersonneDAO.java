@@ -124,39 +124,7 @@ public class PersonneDAO extends SQLiteDBHelper {
         return listPersonne;
     }
 
-    /* getAllPersonne*/
-    public ArrayList<Personne> getsupprArbitresbyMatch(Context context){
-        SQLiteDatabase db = this.getReadableDatabase();
-        PosteDAO posteDAO = new PosteDAO (context);
-        EquipeDAO equipeDAO = new EquipeDAO(context);
 
-        ArrayList<Personne> listPersonne = new ArrayList<>();
-        String query = "SELECT * FROM " + TABLE_PERSONNE + " WHERE " + COL_POSTE + " = 0;";
-        Cursor cursor = db.rawQuery(query, null);
-
-        if (cursor.moveToFirst()){
-            do {
-
-                Equipe equipe = equipeDAO.retrieveEquipe(cursor.getString(1));
-                Poste poste = posteDAO.retrievePoste (cursor.getString(2));
-
-                Personne personne = new Personne (
-                        cursor.getInt(0),
-                        poste,
-                        equipe,
-                        cursor.getString(3),
-                        cursor.getString(4),
-                        cursor.getString(5)
-
-                );
-
-//                Log.d(TAG, "getAllArbitres: " + personne);
-                listPersonne.add(personne);
-            } while(cursor.moveToNext());
-        }
-        db.close();
-        return listPersonne;
-    }
 
     /* getAllPersonne*/
     public ArrayList<Personne> getAllPersonne(Context context){
