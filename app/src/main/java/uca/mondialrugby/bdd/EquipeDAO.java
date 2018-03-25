@@ -9,6 +9,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import uca.mondialrugby.classes.Equipe;
+import uca.mondialrugby.classes.Jouer;
 
 import static android.content.ContentValues.TAG;
 
@@ -130,9 +131,18 @@ public class EquipeDAO extends SQLiteDBHelper {
 
 
     // deleteEquipe
-    public void deleteEquipe(String id_equipe)
+    public void deleteEquipe(String id_equipe, Context context)
     {
-
+        MatchDAO matchDAO = new MatchDAO(context);
+        JouerDAO jouerDAO = new JouerDAO(context);
+        ArrayList<Jouer> listjouer = jouerDAO.getAllJouer(context);
+        for (Jouer i: listjouer){
+            if (id_equipe.compareTo(i.getIdPays().getPays()) == 0) {
+                System.out.println("je supprime : "+ i.getMatch().getIdMatch());
+                matchDAO.deleteMatch(context, i.getMatch().getIdMatch());
+            }
+          //  if (i.getMatch().)
+        }
         SQLiteDatabase db = this.getWritableDatabase();
 
 

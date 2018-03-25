@@ -71,6 +71,7 @@ public class MatchDAO extends SQLiteDBHelper {
 				listMatch.add(jouer);
 			} while(cursor.moveToNext());
 		} else Log.d(TAG, "getAllMatchFini: Liste vide");
+		cursor.close();
 		db.close();
 		return listMatch;
 	}
@@ -109,7 +110,33 @@ public class MatchDAO extends SQLiteDBHelper {
 		return listMatch;
 	}
 	
+	/* getAllMatch */
+	public ArrayList<Match> getAllMatch(Context context){
+		SQLiteDatabase db = this.getReadableDatabase();
+		PersonneDAO personneDAO = new PersonneDAO (context);
+		StadeDAO stadeDAO = new StadeDAO(context);
 
+		ArrayList<Match> listMatch = new ArrayList<>();
+		String query = "SELECT * FROM " + TABLE_MATCHS + ";";
+		Cursor cursor = db.rawQuery(query, null);
+
+		if (cursor.moveToFirst()){
+			do {
+				stade = stadeDAO.retrieveStade(cursor.getInt(1));
+				personne = personneDAO.retrievePersonne(cursor.getInt(2),context);
+				Match jouer = new Match (
+						cursor.getInt(0),
+						stade,
+						personne,
+						cursor.getString(3)
+				);
+
+				listMatch.add(jouer);
+			} while(cursor.moveToNext());
+		} else Log.d(TAG, "getAllMatch: Liste vide");
+		db.close();
+		return listMatch;
+	}
 	
 	/* Méthodes CRUD */
 	/*createMatch*/
@@ -180,13 +207,24 @@ public class MatchDAO extends SQLiteDBHelper {
 		return match;
 	}
 	
+	public void updateMatch(Match match) {
 
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put(COL_ID, match.getIdMatch());
+		values.put(COL_STADE, match.getStade().getId());
+		values.put(COL_PERSONNE, match.getPersonne().getId());
+		values.put(COL_DATE, match.getDateMatch());
+		db.update(TABLE_MATCHS, values, COL_ID + "=" + match.getIdMatch(), null);
+		db.close();
+	}
 	
 	// deleteMatch
 	public void deleteMatch(Context context, int idMatch) {
 		
 
 		SQLiteDatabase db = this.getWritableDatabase();
+
 
 
 		db.delete(TABLE_MATCHS, COL_ID + "=" + idMatch, null);

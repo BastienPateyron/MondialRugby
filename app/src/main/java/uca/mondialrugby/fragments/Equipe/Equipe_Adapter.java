@@ -82,7 +82,7 @@ public class Equipe_Adapter extends ArrayAdapter<Equipe> {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 EquipeDAO equipeDAO = new EquipeDAO(getContext());
-                                equipeDAO.deleteEquipe(equipe.getPays());
+                                equipeDAO.deleteEquipe(equipe.getPays(),getContext());
                                 equipes.remove(position);
                                 notifyDataSetChanged();
                             }

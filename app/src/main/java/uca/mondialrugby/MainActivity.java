@@ -17,10 +17,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-
+//import uca.mondialrugby.fragments.Classement.Classement_fragment;
 import uca.mondialrugby.fragments.Classement.Classement_fragment;
+import uca.mondialrugby.fragments.Equipe.Equipe_Fragment_Add;
 import uca.mondialrugby.fragments.Equipe.Equipe_Fragment_Home;
+
 import uca.mondialrugby.fragments.Match.Match_fragment;
+import uca.mondialrugby.fragments.Match.Match_fragment_ajout;
 import uca.mondialrugby.fragments.Personne.Personne_Fragment_home;
 import uca.mondialrugby.fragments.Stade.Stade_fragment_home;
 
@@ -89,7 +92,7 @@ public class MainActivity extends AppCompatActivity
 		int id = item.getItemId();
 		
 		if (id == R.id.nav_home_layout) {
-			changeFragment(new Match_fragment());
+			//changeFragment(new Home_fragment());
 		}
 		if (id == R.id.nav_matchs) {
 			changeFragment(new Match_fragment());

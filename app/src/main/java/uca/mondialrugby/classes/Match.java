@@ -32,7 +32,7 @@ public class Match {
     }
 	
     
-    // TODO : redéfinir le toString
+
     @Override
     public String toString() {
         // TODO Recupere les 2 matchs (getAllMatchOf(Table, id))
