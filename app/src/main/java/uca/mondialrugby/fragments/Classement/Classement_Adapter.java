@@ -19,7 +19,7 @@ import uca.mondialrugby.fragments.Equipe.Equipe_Frament_Update;
 /**
  * Created by watson on 24/03/2018.
  */
-
+/* Classe qui permet de personnalisé les item de la liste */
 public class Classement_Adapter extends ArrayAdapter<Equipe> {
     private ArrayList<Equipe> equipes = new ArrayList<>();
     private static class EquipeHolder

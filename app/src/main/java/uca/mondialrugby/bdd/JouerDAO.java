@@ -157,8 +157,8 @@ public class JouerDAO extends SQLiteDBHelper {
     }
 
 
-    // deleteEquipe
-    public void deleteClient(Context context, int idEquipe , int idMatch)
+    // deleteJouer
+    public void deleteJouer(Context context, int idEquipe , int idMatch)
     {
 
 
