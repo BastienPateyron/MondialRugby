@@ -21,7 +21,7 @@ import uca.mondialrugby.bdd.StadeDAO;
 
 public class Stade_fragment_ajout extends Fragment {
 
-    View myView;
+    private View myView;
     boolean validate = true;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {

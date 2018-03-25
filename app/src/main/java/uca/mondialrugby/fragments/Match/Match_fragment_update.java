@@ -35,8 +35,8 @@ import static java.sql.Types.NULL;
  */
 
 public class Match_fragment_update extends Fragment {
-	View myView;
-	Context context = new MainActivity().getsContext();
+	private View myView;
+	private Context context = new MainActivity().getsContext();
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 		
 		myView = inflater.inflate(R.layout.match_layout_update, container, false);

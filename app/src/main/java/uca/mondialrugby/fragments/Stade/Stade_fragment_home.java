@@ -25,7 +25,7 @@ import uca.mondialrugby.bdd.StadeDAO;
  */
 
 public class Stade_fragment_home extends Fragment {
-    View myView;
+    private View myView;
     private ArrayList<Stade> listStade = new ArrayList<Stade>();
 
 

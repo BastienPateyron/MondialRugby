@@ -110,7 +110,7 @@ public class Match_fragment_ajout extends Fragment {
 		});
 		
 		
-		// TODO 1- Spinner DOMICILE
+		//- Spinner DOMICILE
 		final Spinner spinnerDomicile = myView.findViewById(R.id.equipeDomicileSpinner);
 		final ArrayList<Equipe> listeEquipes;
 		final EquipeDAO equipeDAO = new EquipeDAO(context);
@@ -131,7 +131,7 @@ public class Match_fragment_ajout extends Fragment {
 			}
 		});
 		
-		// TODO 2- SPINNER EXTERIEUR
+		// SPINNER EXTERIEUR
 		final Spinner spinnerExterieur = myView.findViewById(R.id.equipeExterieurSpinner);
 		
 		final ArrayAdapter<Equipe> adapterExterieur = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, listeEquipes);
@@ -209,7 +209,7 @@ public class Match_fragment_ajout extends Fragment {
 				participants.add(jouer);
 				
 				
-				try {   // TODO ajouter les 2 equipes en parametre
+				try {
 					if (champsRemplis(match, participants)) { // Si tout les champs sont bien remplis on réalise l'insertion
 						MatchDAO matchDAO = new MatchDAO(context);
 						JouerDAO jouerDAO = new JouerDAO(context);
@@ -225,7 +225,7 @@ public class Match_fragment_ajout extends Fragment {
 							
 						}
 						Log.d(TAG, "Ajout match");
-						((MainActivity) context).changeFragment(new Match_fragment()); // TODO : changer le fragment
+						((MainActivity) context).changeFragment(new Match_fragment());
 						Toast.makeText(context, "Match ajouté", Toast.LENGTH_SHORT).show();
 					}
 				} catch (ParseException e) {

@@ -28,7 +28,7 @@ import uca.mondialrugby.classes.Personne;
 public class Personne_Fragment_home extends Fragment {
 
 
-    View myView;
+    private View myView;
     private ArrayList<Personne> listPersonne = new ArrayList<Personne>();
 
 

@@ -22,7 +22,7 @@ import uca.mondialrugby.R;
  */
 
 public class Equipe_Fragment_Home extends Fragment{
-    View myView;
+    private View myView;
     private ArrayList<Equipe> listEquipe = new ArrayList<Equipe>();
 
 
