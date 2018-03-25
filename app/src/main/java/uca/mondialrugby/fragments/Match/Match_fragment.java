@@ -42,13 +42,13 @@ public class Match_fragment extends Fragment {
 	                         @Nullable Bundle savedInstanceState) {
 		myView = inflater.inflate(R.layout.match_layout, container, false);
 		
-		// TODO Ajouter bouton CREER MATCH
+
 		creerBouton = myView.findViewById(R.id.matchBoutonNew);
 		creerBouton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Match_fragment_ajout match_fragment_ajout = new Match_fragment_ajout();
-				((MainActivity) getActivity()).changeFragment(match_fragment_ajout); // Affiche le fragment ajout
+				((MainActivity) getActivity()).changeFragment(match_fragment_ajout);
 			}
 		});
 		
@@ -59,15 +59,7 @@ public class Match_fragment extends Fragment {
 		final ArrayAdapter<Match> adapterFini = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, matchFinisListe);
 		matchFiniListView.setAdapter(adapterFini);
 		
-		//Définir le comportement d'un click sur un élément de la liste
-//		matchFiniListView.setOnItemClickListener(
-//				new AdapterView.OnItemClickListener() {
-//					@Override
-//					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//						// NOTE On ne modifie pas les matchs finis
-//					}
-//				}
-//		);
+
 		
 		/* Liste matchsPrévus */
 		ArrayList<Match> matchPrevusListe = matchDAO.getAllMatchPrevu(getContext());
@@ -75,7 +67,7 @@ public class Match_fragment extends Fragment {
 		final ArrayAdapter<Match> adapterPrevu = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, matchPrevusListe);
 		matchPrevuListView.setAdapter(adapterPrevu);
 		
-		// TODO Définir le comportement d'un click sur un élément de la liste
+
 		matchPrevuListView.setOnItemClickListener(
 				new AdapterView.OnItemClickListener() {
 					@Override

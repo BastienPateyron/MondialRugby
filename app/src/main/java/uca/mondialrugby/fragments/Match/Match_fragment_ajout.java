@@ -43,8 +43,6 @@ import static android.content.ContentValues.TAG;
  */
 
 public class Match_fragment_ajout extends Fragment {
-	// private List<Personne> listPersonne = new ArrayList<Personne>();     // Pour choisir l'arbitre
-	//private List<Stade> listStade = new ArrayList<Stade>();
 	private EditText dateMatch;
 	private Calendar myCalendar = Calendar.getInstance();
 	
@@ -64,7 +62,7 @@ public class Match_fragment_ajout extends Fragment {
 		
 		context = myView.getContext();
 
-//		Bundle bundle = this.getArguments();
+
 		
 		// Spinner Stade
 		final Spinner spinnerStade = myView.findViewById(R.id.stadeSpinner);
@@ -171,7 +169,7 @@ public class Match_fragment_ajout extends Fragment {
 		dateMatch.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				date_match_default = "DATE_MATCH";     // Servira peut être
+				date_match_default = "DATE_MATCH";
 				datePicker_match.show();
 			}
 		});
@@ -253,7 +251,7 @@ public class Match_fragment_ajout extends Fragment {
 	private boolean champsRemplis(Match match, ArrayList<Jouer> participants) throws ParseException {
 		boolean isSet = true;
 		String dateMatch = match.getDateMatch();
-		String myFormat = "dd/MM/yyyy"; //In which you need put here
+		String myFormat = "dd/MM/yyyy";
 		SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
 		Date date_du_Jour = new Date();
 		String du_jour = sdf.format(date_du_Jour);

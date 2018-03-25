@@ -19,16 +19,16 @@ import uca.mondialrugby.MainActivity;
 import uca.mondialrugby.R;
 import uca.mondialrugby.bdd.EquipeDAO;
 import uca.mondialrugby.classes.Equipe;
-import uca.mondialrugby.fragments.Equipe.Equipe_Adapter;
+
 
 
 /**
  * Created by watson on 19/03/2018.
  */
-
+/* Permet de modifier les item de la liste */
 public class Equipe_Adapter extends ArrayAdapter<Equipe> {
     private ArrayList<Equipe> equipes = new ArrayList<>();
-    private static class EquipeHolder /* Objet qui contient les éléments affichés à l'écran */
+    private static class EquipeHolder
     {
         TextView equipe_nom;
         ImageButton delete_item;
@@ -44,17 +44,17 @@ public class Equipe_Adapter extends ArrayAdapter<Equipe> {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent)
     {
-        //On recupere l'objet
+
         final Equipe equipe = getItem(position);
         Equipe_Adapter.EquipeHolder viewHolder;
 
         if (convertView == null)
         {
             viewHolder = new Equipe_Adapter.EquipeHolder();
-            LayoutInflater inflater = LayoutInflater.from(getContext()); /* On désérialise les données du context */
-            convertView = inflater.inflate(R.layout.test,parent,false); /* On désérialise le layout */
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            convertView = inflater.inflate(R.layout.test,parent,false);
 
-            viewHolder.equipe_nom = (TextView) convertView.findViewById(R.id.generique_item_nom); /* On valorise le nom */
+            viewHolder.equipe_nom = (TextView) convertView.findViewById(R.id.generique_item_nom);
             viewHolder.delete_item = (ImageButton) convertView.findViewById(R.id.generique_item_trash);
 
 
@@ -65,7 +65,7 @@ public class Equipe_Adapter extends ArrayAdapter<Equipe> {
 
             viewHolder = (Equipe_Adapter.EquipeHolder) convertView.getTag();
         }
-        // setText avec notre object
+
 
         viewHolder.equipe_nom.setText(equipe.getPays());
         viewHolder.delete_item.setOnClickListener(new View.OnClickListener() {

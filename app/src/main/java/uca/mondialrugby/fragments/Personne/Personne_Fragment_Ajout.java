@@ -42,14 +42,13 @@ import static android.content.ContentValues.TAG;
  */
 
 public class Personne_Fragment_Ajout extends Fragment {
-    String idEquipe;
-    String idPoste;
-    Poste poste;
-    Equipe equipe;
-    View myView;
-    private String editext_state;
-    boolean validate = true;
-    Context context;
+    private String idEquipe;
+    private String idPoste;
+   	private Poste poste;
+    private Equipe equipe;
+    private View myView;
+   	private boolean validate = true;
+    private Context context;
     private EditText dateNaissance;
     private Calendar myCalendar = Calendar.getInstance();
     
@@ -81,7 +80,6 @@ public class Personne_Fragment_Ajout extends Fragment {
 	    dateNaissance.setOnClickListener(new View.OnClickListener() {
 		    @Override
 		    public void onClick(View view) {
-			    String editext_state = "Date de naissance";
 			    datePicker_match.show();
 			
 
@@ -219,7 +217,7 @@ public class Personne_Fragment_Ajout extends Fragment {
 
 	private boolean dateValidate () throws ParseException {
 		String dateN = dateNaissance.getText().toString();
-		String myFormat = "dd/MM/yyyy"; //In which you need put here
+		String myFormat = "dd/MM/yyyy";
 		SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
 		Date date_du_Jour = new Date();
 		String du_jour = sdf.format(date_du_Jour);
