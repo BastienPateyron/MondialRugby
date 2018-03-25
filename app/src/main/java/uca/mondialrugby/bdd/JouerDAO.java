@@ -57,7 +57,7 @@ public class JouerDAO extends SQLiteDBHelper {
 	    if (cursor.moveToFirst()){
 		    do {
 			    equipe = equipeDAO.retrieveEquipe(cursor.getString(0));
-			    match = matchDAO.retrieveMatch(super.getContext(), cursor.getInt(1)); // Risque de bug 2e élément :: risque supprimé
+			    match = matchDAO.retrieveMatch(super.getContext(), cursor.getInt(1));
 			    Jouer jouer = new Jouer (
 					    equipe,
 					    match,
