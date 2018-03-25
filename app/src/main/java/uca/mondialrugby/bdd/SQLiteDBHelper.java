@@ -16,7 +16,6 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 	private Context context;
 	/* Tables */
 	
-	
 	private static final String CREATE_TABLE_PERSONNE = "CREATE TABLE PERSONNE" +
 			"(" +
 			"ID_PERSONNE  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
