@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#7a292a</color>
+    <color name="colorPrimary">#1E7FCB</color>
     <color name="colorSecondaire">#AF7A6D</color>
 
-    <color name="add_button">#ca249648</color>
-    <color name="trash_button">#712b24</color>
+    <color name="add_button">#56739A</color>
+    <color name="trash_button">#8EA2C6</color>
 
     <color name="secteur_textview">#adb1bc</color>
     <color name="secteur_hint">#6d91d9</color>
     <color name="datepicker_header">#595959</color>
-    <color name="colorPrim">#2fcb2a</color>
-    <color name="color_button_add">#f70f12</color>
+    <color name="colorPrim">#F0C300</color>
+    <color name="color_button_add">#912B3B</color>
 
 
 </resources>

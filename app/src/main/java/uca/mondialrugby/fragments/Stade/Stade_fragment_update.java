@@ -3,6 +3,7 @@ package uca.mondialrugby.fragments.Stade;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -65,20 +67,42 @@ public class Stade_fragment_update extends Fragment {
             @Override
             public void onClick(View v) {
 
+                boolean validate = true;
+                if ( TextUtils.isEmpty(value_nom.getText())) {
+                    Toast.makeText(getContext(), "Nom manquant", Toast.LENGTH_SHORT).show();
+                    validate = false;
+                } else if (TextUtils.isEmpty(value_num.getText())) {
+                    Toast.makeText(getContext(), "Numero rue manquant", Toast.LENGTH_SHORT).show();
+                    validate = false;
+                } else if (TextUtils.isEmpty(value_rue.getText())) {
+                    Toast.makeText(getContext(), "nom rue manquant", Toast.LENGTH_SHORT).show();
+                    validate = false;
+                } else if (TextUtils.isEmpty(value_ville.getText())) {
+                    Toast.makeText(getContext(), "nom ville manquant", Toast.LENGTH_SHORT).show();
+                    validate = false;
+                } else if (TextUtils.isEmpty(value_cp.getText())) {
+                    Toast.makeText(getContext(), "Ville manquante", Toast.LENGTH_SHORT).show();
+                    validate = false;
+                } else if (TextUtils.isEmpty(String.valueOf(value_place))) {
+                    Toast.makeText(getContext(), "nombre de place  manquant", Toast.LENGTH_SHORT).show();
+                    validate = false;
+                } else validate = true;
 
-                Stade stade_modify = new Stade();
-                stade_modify.setId(idStade);
-                stade_modify.setNom(value_nom.getText().toString());
-                stade_modify.setNombre_place(Integer.parseInt(value_place.getText().toString()));
-                stade_modify.setNum_rue(value_num.getText().toString());
-                stade_modify.setNom_rue(value_rue.getText().toString());
-                stade_modify.setCp(value_cp.getText().toString());
-                stade_modify.setVille(value_ville.getText().toString());
+                if (validate) {
+                    Stade stade_modify = new Stade();
+                    stade_modify.setId(idStade);
+                    stade_modify.setNom(value_nom.getText().toString());
+                    stade_modify.setNombre_place(Integer.parseInt(value_place.getText().toString()));
+                    stade_modify.setNum_rue(value_num.getText().toString());
+                    stade_modify.setNom_rue(value_rue.getText().toString());
+                    stade_modify.setCp(value_cp.getText().toString());
+                    stade_modify.setVille(value_ville.getText().toString());
 
-                stadeDAO.updateStade(stade_modify);
-                System.out.println("Stade modifie");
-                MainActivity.closekeyboard(getContext(), myView);
-                ((MainActivity) getActivity()).changeFragment(new Stade_fragment_home());
+                    stadeDAO.updateStade(stade_modify);
+                    System.out.println("Stade modifie");
+                    MainActivity.closekeyboard(getContext(), myView);
+                    ((MainActivity) getActivity()).changeFragment(new Stade_fragment_home());
+                }
             }
         });
 

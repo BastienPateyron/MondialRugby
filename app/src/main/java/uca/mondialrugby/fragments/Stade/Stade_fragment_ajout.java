@@ -57,22 +57,20 @@ public class Stade_fragment_ajout extends Fragment {
                     Toast.makeText(getContext(), "Nom manquant", Toast.LENGTH_SHORT).show();
                     validate = false;
                 } else if (TextUtils.isEmpty(num_rue)) {
-                    Toast.makeText(getContext(), "Prénom manquant", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "numéro de la rue manquant", Toast.LENGTH_SHORT).show();
                     validate = false;
                 } else if (TextUtils.isEmpty(nom_rue)) {
-                    Toast.makeText(getContext(), "Numero de téléphone manquant", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Non de la rue manquant", Toast.LENGTH_SHORT).show();
                     validate = false;
                 } else if (TextUtils.isEmpty(ville)) {
-                    Toast.makeText(getContext(), "Numero de rue manquant", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Ville manquant", Toast.LENGTH_SHORT).show();
                     validate = false;
-                } else if (TextUtils.isEmpty(nom_rue)) {
-                    Toast.makeText(getContext(), "Nom de rue manquant", Toast.LENGTH_SHORT).show();
-                    validate = false;
-                } else if (TextUtils.isEmpty(ville)) {
-                    Toast.makeText(getContext(), "Ville manquante", Toast.LENGTH_SHORT).show();
-                    validate = false;
-                } else if (TextUtils.isEmpty(String.valueOf(place))) {
+                } else if (TextUtils.isEmpty(cp)) {
                     Toast.makeText(getContext(), "Code postal manquant", Toast.LENGTH_SHORT).show();
+                    validate = false;
+
+                } else if (TextUtils.isEmpty(String.valueOf(place))) {
+                    Toast.makeText(getContext(), "Nombre de place manquant", Toast.LENGTH_SHORT).show();
                     validate = false;
                 } else validate = true;
 

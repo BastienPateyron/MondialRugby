@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity
 		int id = item.getItemId();
 		
 		if (id == R.id.nav_home_layout) {
-			changeFragment(new Home_fragment());
+			changeFragment(new Match_fragment());
 		}
 		if (id == R.id.nav_matchs) {
 			changeFragment(new Match_fragment());

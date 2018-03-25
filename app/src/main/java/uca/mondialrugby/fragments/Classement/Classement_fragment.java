@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -26,8 +27,8 @@ public class Classement_fragment extends Fragment {
 
 	private View myView;
 	private ArrayList<Equipe> listClassement = new ArrayList<>();
-	//Button button =(Button) myView.findViewById(R.id.add_part);
-	//button.setVisibility(myView.INVISIBLE);
+
+
 
 	@Nullable
 	@Override
@@ -35,7 +36,8 @@ public class Classement_fragment extends Fragment {
 
 		getActivity().setTitle("Classement");
 		myView = inflater.inflate(R.layout.general_layout_list, container, false);
-
+		LinearLayout button =(LinearLayout) myView.findViewById(R.id.add_part);
+		button.setVisibility(myView.INVISIBLE);
 
 		initListClassement();
 

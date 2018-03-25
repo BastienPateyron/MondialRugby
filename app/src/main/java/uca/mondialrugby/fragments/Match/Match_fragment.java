@@ -1,5 +1,6 @@
 package uca.mondialrugby.fragments.Match;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -41,8 +42,8 @@ public class Match_fragment extends Fragment {
 	                         @Nullable ViewGroup container,
 	                         @Nullable Bundle savedInstanceState) {
 		myView = inflater.inflate(R.layout.match_layout, container, false);
-		
 
+		getActivity().setTitle("Match");
 		creerBouton = myView.findViewById(R.id.matchBoutonNew);
 		creerBouton.setOnClickListener(new View.OnClickListener() {
 			@Override
