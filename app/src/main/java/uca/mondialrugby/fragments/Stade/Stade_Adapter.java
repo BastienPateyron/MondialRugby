@@ -50,10 +50,10 @@ public class Stade_Adapter extends ArrayAdapter<Stade> {
         if (convertView == null)
         {
             viewHolder = new StadeHolder();
-            LayoutInflater inflater = LayoutInflater.from(getContext()); /* On désérialise les données du context */
-            convertView = inflater.inflate(R.layout.test,parent,false); /* On désérialise le layout */
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            convertView = inflater.inflate(R.layout.test,parent,false);
 
-            viewHolder.secteur_nom = (TextView) convertView.findViewById(R.id.generique_item_nom); /* On valorise le nom */
+            viewHolder.secteur_nom = (TextView) convertView.findViewById(R.id.generique_item_nom);
             viewHolder.delete_item = (ImageButton) convertView.findViewById(R.id.generique_item_trash);
 
 

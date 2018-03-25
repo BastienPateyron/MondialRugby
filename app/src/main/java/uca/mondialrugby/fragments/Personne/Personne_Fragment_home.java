@@ -66,22 +66,6 @@ public class Personne_Fragment_home extends Fragment {
         listView.setAdapter(adapter);
     }
 
-      /*  ListView listView = (ListView) myView.findViewById(R.id.generalListe);
-        final ArrayAdapter<Personne> adapter = new ArrayAdapter<Personne>(myView.getContext(), android.R.layout.simple_list_item_1, listPersonne);
-        listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("ID", String.valueOf(adapter.getItem(position).getId()));
-
-                Bundle bundle = new Bundle();
-                bundle.putString("id", String.valueOf(adapter.getItem(position).getId()));
-                Personne_Fragment_Update pfu = new Personne_Fragment_Update();
-                pfu.setArguments(bundle);
-                ((MainActivity) getContext()).changeFragment(pfu);
-            }
-        });*/
 
 
 

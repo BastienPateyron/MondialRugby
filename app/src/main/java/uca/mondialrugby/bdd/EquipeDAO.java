@@ -31,7 +31,7 @@ public class EquipeDAO extends SQLiteDBHelper {
     /* Get Classement
     * Retourne une liste des équipes classées en fonction de leur nombre de victoires
     * puis de leur score total */
-    // TODO
+
     public ArrayList<Equipe> getClassement(){
         SQLiteDatabase db = this.getReadableDatabase();
         
@@ -69,7 +69,7 @@ public class EquipeDAO extends SQLiteDBHelper {
         return insertSuccessful;
     }
 
-    public Equipe retrieveEquipe(String id){ // TODO : modifier avec un string
+    public Equipe retrieveEquipe(String id){
         SQLiteDatabase db = this.getReadableDatabase();
 		Equipe equipe = new Equipe();
 

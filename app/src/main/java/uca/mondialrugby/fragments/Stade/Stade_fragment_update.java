@@ -23,7 +23,7 @@ import uca.mondialrugby.bdd.StadeDAO;
 /**
  * Created by watson on 28/02/2018.
  */
-// TODO : problème de modification ( cause : surement  layout)
+
 
 public class Stade_fragment_update extends Fragment {
     View myView;
@@ -64,6 +64,8 @@ public class Stade_fragment_update extends Fragment {
         button_update_stade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 Stade stade_modify = new Stade();
                 stade_modify.setId(idStade);
                 stade_modify.setNom(value_nom.getText().toString());

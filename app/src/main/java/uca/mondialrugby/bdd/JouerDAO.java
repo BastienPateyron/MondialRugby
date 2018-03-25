@@ -34,7 +34,7 @@ public class JouerDAO extends SQLiteDBHelper {
     }
 
     
-    //TODO
+
     /* getJouerOf
     * Cherche tout les occurences de la table jouer en fonction de de l'id du match ou de l'équipe (qui sont les seules tables admissibles */
     public ArrayList<Jouer> getAllJouerOf(String tableName, int id){
@@ -92,7 +92,7 @@ public class JouerDAO extends SQLiteDBHelper {
         matchDAO = new MatchDAO(context);
 
 
-        //TODO : rajouter idMAtch : pas sur de moi ;
+
         /* Requete */
         Cursor cursor = db.query(TABLE_JOUER, // Nom de table
                 new String[] {COL_PAYS, COL_MATCH, COL_SCORE},
@@ -103,7 +103,7 @@ public class JouerDAO extends SQLiteDBHelper {
             cursor.moveToFirst();
 
         equipe = equipeDAO.retrieveEquipe(cursor.getString(0));
-        match = matchDAO.retrieveMatch(context, cursor.getInt(1)); // TODO : risque de beug
+        match = matchDAO.retrieveMatch(context, cursor.getInt(1));
         Jouer jouer = new Jouer (
                 equipe,
                 match,
@@ -127,7 +127,7 @@ public class JouerDAO extends SQLiteDBHelper {
             do {
 
                 equipe = equipeDAO.retrieveEquipe(cursor.getString(0));
-                match = matchDAO.retrieveMatch(context, cursor.getInt(1)); // TODO : rique de beug 2eme cursor
+                match = matchDAO.retrieveMatch(context, cursor.getInt(1));
                 Jouer jouer = new Jouer (
                         equipe,
                         match,
