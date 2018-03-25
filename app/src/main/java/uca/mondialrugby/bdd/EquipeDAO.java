@@ -36,14 +36,14 @@ public class EquipeDAO extends SQLiteDBHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         
         ArrayList<Equipe> classement = new ArrayList<>();
-        String query = "SELECT * FROM EQUIPE";
+        String query = "SELECT * FROM CLASSEMENT";
         Cursor cursor = db.rawQuery(query, null);
         
         if (cursor.moveToFirst()){
             do {
                 Equipe equipe = new Equipe (
                         cursor.getString(0),
-                        cursor.getString(1)
+                        cursor.getString(1)    // C'est sale mais on met le nb de victoires dans le surnom
                 );
     
                 classement.add(equipe);
@@ -92,7 +92,7 @@ public class EquipeDAO extends SQLiteDBHelper {
 
         return equipe;
     }
-
+    
     /* getAllEquipe*/
     public ArrayList<Equipe> getAllEquipe(){
         SQLiteDatabase db = this.getReadableDatabase();

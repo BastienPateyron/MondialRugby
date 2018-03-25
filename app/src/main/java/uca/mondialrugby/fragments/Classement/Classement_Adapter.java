@@ -56,9 +56,7 @@ public class Classement_Adapter extends ArrayAdapter<Jouer> {
             viewHolder.secteur_number = (TextView) convertView.findViewById(R.id.classement_item_number); /* On valorise le nombre */
             viewHolder.secteur_nom = (TextView) convertView.findViewById(R.id.classement_item_nom); /* On valorise le nom */
 
-
-
-
+            
             convertView.setTag(viewHolder);
         }
         else {

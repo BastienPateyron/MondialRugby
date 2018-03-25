@@ -16,7 +16,9 @@ import java.util.ArrayList;
 
 import uca.mondialrugby.MainActivity;
 import uca.mondialrugby.R;
+import uca.mondialrugby.bdd.EquipeDAO;
 import uca.mondialrugby.bdd.JouerDAO;
+import uca.mondialrugby.classes.Equipe;
 import uca.mondialrugby.classes.Jouer;
 import uca.mondialrugby.fragments.Equipe.Equipe_Adapter;
 import uca.mondialrugby.fragments.Equipe.Equipe_Fragment_Add;
@@ -26,14 +28,16 @@ import uca.mondialrugby.fragments.Equipe.Equipe_Fragment_Add;
  */
 
 public class Classement_fragment extends Fragment {
-/*
+
 	View myView;
-	private ArrayList<Jouer> listClassement = new ArrayList<Jouer>();
+	private ArrayList<Equipe> listClassement = new ArrayList<>();
 
 
 	@Nullable
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+		
+		getActivity().setTitle("Classement");
 		myView = inflater.inflate(R.layout.general_layout_list, container, false);
 
 		initListClassement();
@@ -42,12 +46,11 @@ public class Classement_fragment extends Fragment {
 	}
 
 	public void initListClassement () {
-		JouerDAO jouerDAO = new JouerDAO(getContext());
-		listClassement = jouerDAO.getAllClassement(); // todo : rename avec ton nom
+		EquipeDAO equipeDAO = new EquipeDAO(getContext());
+		listClassement = equipeDAO.getClassement();
 
 		ListView listView = (ListView) myView.findViewById(R.id.generalListe);
 		Equipe_Adapter adapter = new Equipe_Adapter(getActivity(), listClassement);
 		listView.setAdapter(adapter);
 	}
-	*/
 }
