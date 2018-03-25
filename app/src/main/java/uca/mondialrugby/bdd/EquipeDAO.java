@@ -93,7 +93,7 @@ public class EquipeDAO extends SQLiteDBHelper {
         return equipe;
     }
     
-    /* getAllEquipe*/
+    /* getAllEquip*/
     public ArrayList<Equipe> getAllEquipe(){
         SQLiteDatabase db = this.getReadableDatabase();
 
